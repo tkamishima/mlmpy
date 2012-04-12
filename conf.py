@@ -282,7 +282,7 @@ epub_cover = ('_static/image/cover.png', 'epub_cover.html')
 #epub_post_files = []
 
 # A list of files that should not be packed into the epub file.
-#epub_exclude_files = []
+epub_exclude_files = ['_static/doctools.js', '_static/jquery.js', '_static/searchtools.js', '_static/translations.js', '_static/underscore.js', '_static/websupport.js']
 
 # The depth of the table of contents in toc.ncx.
 #epub_tocdepth = 3
