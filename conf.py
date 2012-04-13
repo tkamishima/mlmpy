@@ -105,8 +105,8 @@ html_theme_options = {
 #  'collapsiblesidebar': 'true',
   'footerbgcolor': '#FFF',
   'footertextcolor': '#000',
-  'sidebarbgcolor': '#EFE',
-  'sidebarbtncolor': '#CFC',
+  'sidebarbgcolor': '#EEE',
+  'sidebarbtncolor': '#EEE',
   'sidebartextcolor': '#060',
   'sidebarlinkcolor': '#36F',
   'relbarbgcolor': '#36F',
@@ -119,8 +119,8 @@ html_theme_options = {
   'headbgcolor': '#DFC', 
   'headtextcolor': '#060',
   'headlinkcolor': '#060',
-#  'codebgcolor': '#DFC',
-#  'codetextcolor': '#000',
+  'codebgcolor': '#EEE',
+  'codetextcolor': '#000',
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
