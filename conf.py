@@ -102,11 +102,11 @@ html_theme = 'default'
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
-#  'collapsiblesidebar': 'true',
+  'collapsiblesidebar': 'true',
   'footerbgcolor': '#FFF',
   'footertextcolor': '#000',
   'sidebarbgcolor': '#EEE',
-  'sidebarbtncolor': '#EEE',
+  'sidebarbtncolor': '#BBB',
   'sidebartextcolor': '#060',
   'sidebarlinkcolor': '#36F',
   'relbarbgcolor': '#36F',
