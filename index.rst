@@ -15,7 +15,7 @@
 .. only:: not latex
 
    :著者:
-      神嶌 敏弘 (Toshihiro Kamishima)
+      `神嶌 敏弘 (Toshihiro Kamishima) <http://www.kamishima.net/>`_
 
 .. only:: not latex
 
