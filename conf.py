@@ -28,6 +28,9 @@ sys.path.insert(0, os.path.abspath('.'))
 extensions = ['sphinx.ext.mathjax']
 #extensions = ['sphinx.ext.pngmath']
 
+# If you want use MathJax CDN intead of your local copy, comment out the next line.
+mathjax_path = '/MathJax/MathJax.js?config=default'
+
 # for TODO list
 extensions.append('sphinx.ext.todo')
 #todo_include_todos = True
@@ -102,7 +105,7 @@ html_theme = 'default'
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
-  'collapsiblesidebar': 'true',
+#  'collapsiblesidebar': 'true',
   'footerbgcolor': '#FFF',
   'footertextcolor': '#000',
   'sidebarbgcolor': '#EEE',
