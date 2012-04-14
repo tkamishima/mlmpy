@@ -22,22 +22,25 @@
   :math:`\mathbf{X}` と :math:`Y` の同時分布は次式で与えられます．
 
 .. math::
+   :label: nbayes1-joint-prob
 
-   \Pr[X, Y] = \Pr[Y] \prod_{j=1}^k \Pr[X_j | Y]
+   \Pr[\mathbf{X}, Y] = \Pr[Y] \prod_{j=1}^k \Pr[X_j | Y]
 
 * 大きさ :math:`n` のデータ集合 :math:`\mathcal{D}=\{\mathbf{x}_i, y_i\}`
   に対する，対数尤度は次式で与えられます．
 
 .. math::
+   :label: nbayes1-likelihood
 
    \mathcal{L}(\mathcal{D}; \Theta) = \sum_{(\mathbf{x}_i, y_i)\in\mathcal{D}} \ln\Pr[\mathbf{x}_i, y_i]
 
 さらに， :math:`\Pr[Y]` と :math:`\Pr[X_j|Y]` の分布をカテゴリ分布（離散分布）とします．すると，以下の量をパラメータとして求めれば，単純ベイズの分類器が学習できます．
 
-* :math:`\Pr[y]`
-  （ :math:`y=1, \ldots, c` ）
-* :math:`\Pr[y | x_i]`
-  （ :math:`y=1, \ldots, c` ， :math:`i=1, \ldots, p` ， :math:`x_i=1, \ldots, m_i` ）
+.. math::
+   :label: nbayes1-param
+
+   \Pr[y],&\quad y=1, \ldots, c\\
+   \Pr[x_i | y],&\quad y=1,\ldots,c,\; i=1,\ldots,p,\;x_i=1,\ldots,m_i
 
 これらのパラメータは，データ集合 :math:`\mathcal{D}` 中のデータの分割表を作成すれば計算できます．
 ここでは，さらに簡単に， :math:`c` や :math:`m_j` は全て 2 とします．
@@ -46,6 +49,7 @@
 推論をするときには，入力ベクトル :math:`\mathbf{x}_\mathrm{new}` が与えられたときのクラスの事後確率を最大にするクラスを，次式で求めます．
 
 .. math::
+   :label: nbayes1-inferance
 
    \hat{y} &= \arg\max_y \Pr[y|\mathbf{x}_\mathrm{new}] \\
            &= \arg\max_y \frac{\Pr[y, \mathbf{x}_\mathrm{new}]}{\sum_{y'} \Pr[y']\Pr[y', \mathbf{x}_\mathrm{new}]}
