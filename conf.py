@@ -192,7 +192,7 @@ html_domain_indices = False
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'mlmpy'
+htmlhelp_basename = 'mlmpyja'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -241,7 +241,7 @@ latex_domain_indices = False
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('idx', 'mlmpy', u'Machine Learning Meets Python',
+    ('index', 'mlmpyja', u'Machine Learning Meets Python',
      [u'Toshihiro Kamishima'], 1)
 ]
 
@@ -255,8 +255,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('idx', 'mlmpy', u'Machine Learning Meets Python',
-   u'Toshihiro Kamishima', 'mlmpy', 'One line description of project.',
+  ('index', 'mlmpyja', u'Machine Learning Meets Python',
+   u'Toshihiro Kamishima', 'mlmpyja', 'One line description of project.',
    'Miscellaneous'),
 ]
 
