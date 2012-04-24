@@ -9,5 +9,5 @@
 この文書は `Sphinx <http://sphinx.pocoo.org/>`_ を用いて書かれています．
 適宜コンパイルすることで，html，PDF，ePub などの形式で読むことができます．
 
-ePub を生成するときは， ``conf.py`` の ``extensions`` で ``sphinx.ext.pngmath`` を，html や PDF を生成するときは ``sphinx.ext.mathjax`` を指定して下さい．
+ePub を生成するときは， ``sphinx.ext.pngmath`` を，html や PDF を生成するときは ``sphinx.ext.mathjax`` を利用して数式を処理するようになっています．
 このとき， `MathJax <http://www.mathjax.org>`_ を，ローカルサーバではなく， ``http://cdn.mathjax.org`` でサービスされているものを使う場合は， ``conf.py`` 中の ``mathjax_path`` の定義をコメントアウトして下さい．

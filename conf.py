@@ -25,8 +25,13 @@ sys.path.insert(0, os.path.abspath('.'))
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.mathjax']
-#extensions = ['sphinx.ext.pngmath']
+extensions = []
+
+# set math math extension
+if 'MY_MATH_MODE' in os.environ:
+    extensions.append(os.environ['MY_MATH_MODE'])
+else:
+    extensions.append('sphinx.ext.mathjax')
 
 # If you want use MathJax CDN intead of your local copy, comment out the next line.
 mathjax_path = '/MathJax/MathJax.js?config=default'
@@ -89,7 +94,7 @@ exclude_patterns = ['_build', '00memo', 'readme.rst', '_static/source/readme.rst
 #show_authors = False
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'default'
+pygments_style = 'sphinx'
 
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
@@ -305,7 +310,7 @@ epub_cover = ('_static/image/cover.png', 'epub_cover.html')
 #epub_post_files = []
 
 # A list of files that should not be packed into the epub file.
-epub_exclude_files = ['_static/doctools.js', '_static/jquery.js', '_static/searchtools.js', '_static/translations.js', '_static/underscore.js', '_static/websupport.js']
+epub_exclude_files = ['_static/doctools.js', '_static/jquery.js', '_static/searchtools.js', '_static/translations.js', '_static/underscore.js', '_static/websupport.js', '_static/source/readme.rst']
 
 # The depth of the table of contents in toc.ncx.
 #epub_tocdepth = 3

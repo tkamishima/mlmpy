@@ -4,8 +4,10 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
-PAPER         =
+PAPER         = a4
 BUILDDIR      = _build
+
+MATH_PNGMATH  = -D my_math_mode=sphinx.ext.pngmath
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -91,7 +93,8 @@ devhelp:
 	@echo "# devhelp"
 
 epub:
-	$(SPHINXBUILD) -b epub $(ALLSPHINXOPTS) $(BUILDDIR)/epub
+	@(export MY_MATH_MODE=sphinx.ext.pngmath; \
+	$(SPHINXBUILD) -b epub $(MATH_PNGMATH) $(ALLSPHINXOPTS) $(BUILDDIR)/epub)
 	@echo
 	@echo "Build finished. The epub file is in $(BUILDDIR)/epub."
 
