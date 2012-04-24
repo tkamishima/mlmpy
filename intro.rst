@@ -34,8 +34,26 @@ NumPy や SciPy には，体系的なリファレンスマニュアルやサン�
 
 .. _intro-note:
 
-ソースコードに関する注意点
---------------------------
+ソースコード
+------------
 
-* 本稿のソースコードは :ref:`appendix-import` のようにモジュールが ``import`` されていることを前提としているので，参照してください．
-* 本稿のコードは，ソフトウェアやモジュールのバージョンが付録 :ref:`appendix-version` の，もしくはそれ以降であることを想定しています．
+本稿のソースコード関する注意点を最初にまとめておきます．
+
+実行可能なソースコードは次の URL より参照できます．
+
+  https://github.com/tkamishima/mlmpy/tree/release/_static/source
+
+モジュールが以下のように ``import`` されていることを前提としています::
+
+  import numpy as np
+  import scipy as sp
+  import matplotlib.pyplot as plt
+  import sklearn
+
+本稿のコードは，ソフトウェアやモジュールのバージョンが下記，もしくはそれ以降であることを想定しています::
+
+  python: 2.7.x
+  numpy: 1.6.x
+  scipy: 0.10.x
+  matplotlib: 1.1.x
+  sklearn: 0.10

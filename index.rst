@@ -27,7 +27,6 @@
 
    intro
    nbayes1/index
-   appendix
    ack
 
 .. only:: not latex
