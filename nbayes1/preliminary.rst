@@ -44,7 +44,7 @@
 .. math::
    :label: nbayes1-likelihood
 
-   \mathcal{L}(\mathcal{D}; \Theta) = \sum_{(\mathbf{x}_i, y_i)\in\mathcal{D}} \ln\Pr[\mathbf{x}_i, y_i]
+   \mathcal{L}(\mathcal{D}; \{\Pr[y]\}, \{\Pr[x_j | y]\}) = \sum_{(\mathbf{x}_i, y_i)\in\mathcal{D}} \ln\Pr[\mathbf{x}_i, y_i]
 
 この対数尤度を最大化する最尤推定により 式 :eq:`nbayes1-param` のパラメータを求めます．
 クラスの分布のパラメータ群 :math:`\Pr[y=c]` は次式で計算できます．
