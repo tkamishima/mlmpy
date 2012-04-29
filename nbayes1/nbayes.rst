@@ -1,24 +1,18 @@
-.. _nbayes1-preliminary:
+.. _nbayes1-nbayes:
 
-準備
-====
+単純ベイズ：カテゴリ特徴の場合
+==============================
 
-単純ベイズ法を実装する前の準備として，実装するアルゴリズムについて簡単に復習し，実装の説明に関し Numpy の配列について最低限必要なことを述べます．
-
-.. _nbayes1-preliminary-nbayes:
-
-特徴がカテゴリ変数である単純ベイズ
-----------------------------------
-
-ここでは，特徴がカテゴリ変数である場合の単純ベイズ法による分類について，ごく簡単にまとめます．
+実装の前に，特徴がカテゴリ変数である場合の単純ベイズ法による分類について，ごく簡単に復習します．
 
 .. index::
    single: naive Bayes
+   single: naive Bayes; multinomial
 
 変数を次のように定義します．
 
 * 特徴量 :math:`\mathbf{x}_i=(x_{i1}, \ldots, x_{iK})` の要素 :math:`x_{ij}` はカテゴリ変数で， :math:`M_j` 個の値のうちの一つをとります．
-ただし， :math:`K` は特徴の種類数です．
+  ただし， :math:`K` は特徴の種類数です．
 * クラス :math:`y` は， :math:`C` 個の値のうちの一つをとります．
 
 ここで，特徴 :math:`\mathbf{X}` は，クラス :math:`Y` が与えられたとき条件付き独立であるとする，単純ベイズの仮定を導入するすると， :math:`\mathbf{X}` と :math:`Y` の同時分布は次式で与えられます．
@@ -72,21 +66,3 @@
 
    \hat{y} &= \arg\max_y \Pr[y|\mathbf{x}_\mathrm{new}] \\
            &= \arg\max_y \frac{\Pr[y, \mathbf{x}_\mathrm{new}]}{\sum_{y'} \Pr[y']\Pr[y', \mathbf{x}_\mathrm{new}]}
-
-.. _nbayes1-preliminary-array:
-
-Numpy 配列の基礎
-----------------
-
-.. index::
-   single: np.ndarray
-
-Numpy で最も重要なクラスである :class:`np.ndarray` について，基本的な機能を紹介します．
-:ref:`intro-intro` では，機能を単独では説明しないと述べましたが，そうした説明を全くしないで書くのは難しすぎるので，この節だけ忍耐強く読んで下さい．
-
-.. todo::
-   配列の作り方
-   要素の参照（行や列の取り出しはやらない）
-   ndim, shape, dtypeの説明
-   dtype が全部同じ場合，Structured arrayは存在のみ示唆
-   

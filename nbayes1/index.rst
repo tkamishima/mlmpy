@@ -10,7 +10,8 @@
 .. toctree::
    :maxdepth: 2
 
-   preliminary
+   ndarray
+   nbayes
    spec
    implement1
    exec
