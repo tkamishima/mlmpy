@@ -43,18 +43,19 @@ NumPy や SciPy には，体系的なリファレンスマニュアルやサン�
 
   https://github.com/tkamishima/mlmpy/tree/release/_static/source
 
-モジュールが以下のように ``import`` されていることを前提としています::
+モジュールが以下のように ``import`` されていることを前提としています:
 
-  import numpy as np
-  import scipy as sp
-  import matplotlib.pyplot as plt
-  import sklearn
+.. code-block:: python
 
-本稿のコードは，ソフトウェアやモジュールのバージョンが下記，もしくはそれ以降であることを想定しています::
+   import numpy as np
+   import scipy as sp
+   import matplotlib.pyplot as plt
+   import sklearn
 
-  python: 2.7.x
-  numpy: 1.6.x
-  scipy: 0.10.x
-  matplotlib: 1.1.x
-  sklearn: 0.10
+本稿のコードは，ソフトウェアやモジュールのバージョンが下記のとおりであることを想定しています．
 
+* Python: 2.7.0（Python 3 は除く）
+* NumPy: 1.6.0 以降
+* SciPy: 0.10.0 以降
+* Matplotlib: 1.1.x 以降
+* scikit-learn: 0.10 以降
