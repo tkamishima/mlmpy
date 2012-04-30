@@ -54,8 +54,8 @@ NumPy や SciPy には，体系的なリファレンスマニュアルやサン�
 
 本稿のコードは，ソフトウェアやモジュールのバージョンが下記のとおりであることを想定しています．
 
-* Python: 2.7.0（Python 3 は除く）
+* Python: 2.7.x（Python 3 は除く）
 * NumPy: 1.6.0 以降
 * SciPy: 0.10.0 以降
-* Matplotlib: 1.1.x 以降
+* Matplotlib: 1.1.0 以降
 * scikit-learn: 0.10 以降
