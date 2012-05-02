@@ -11,7 +11,7 @@
 
 変数を次のように定義します．
 
-* 特徴量 :math:`\mathbf{x}_i=(x_{i1}, \ldots, x_{iK})` の要素 :math:`x_{ij}` はカテゴリ変数で， :math:`M_j` 個の値のうちの一つをとります．
+* 特徴量 :math:`\mathbf{x}_i=(x_{i1}, \ldots, x_{iK})` の要素 :math:`x_{ij}` はカテゴリ変数で， :math:`F_j` 個の値のうちの一つをとります．
   ただし， :math:`K` は特徴の種類数です．
 * クラス :math:`y` は， :math:`C` 個の値のうちの一つをとります．
 
@@ -28,9 +28,9 @@
    :label: nbayes1-param
 
    \Pr[y],&\quad y=1, \ldots, C\\
-   \Pr[x_j | y],&\quad y=1,\ldots,C,\;x_j=1,\ldots,M_j,\; j=1,\ldots,K
+   \Pr[x_j | y],&\quad y=1,\ldots,C,\;x_j=1,\ldots,F_j,\; j=1,\ldots,K
 
-さらに，ここでは実装を容易にするために， :math:`C` や :math:`M_j` は全て 2 に固定します．
+さらに，ここでは実装を容易にするために， :math:`C` や :math:`F_j` は全て 2 に固定します．
 すなわち，クラスや各特徴量は全て2値変数となり，これにより :math:`\Pr[Y]` と :math:`\Pr[X_j|Y]` は，カテゴリ分布の特殊な場合であるベルヌーイ分布に従うことなります．
 
 ここで，大きさ :math:`N` のデータ集合 :math:`\mathcal{D}=\{\mathbf{x}_i, y_i\},\,i=1,\ldots,N` が与えられると，対数尤度は次式になります．
@@ -41,7 +41,7 @@
    \mathcal{L}(\mathcal{D}; \{\Pr[y]\}, \{\Pr[x_j | y]\}) = \sum_{(\mathbf{x}_i, y_i)\in\mathcal{D}} \ln\Pr[\mathbf{x}_i, y_i]
 
 この対数尤度を最大化する最尤推定により 式 :eq:`nbayes1-param` のパラメータを求めます．
-クラスの分布のパラメータ群 :math:`\Pr[y=c]` は次式で計算できます．
+クラスの分布のパラメータ群 :math:`\Pr[y]` は次式で計算できます．
 
 .. math::
    :label: nbayes1-pY
@@ -54,12 +54,12 @@
 .. math::
    :label: nbayes1-pXgY
 
-   \Pr[x_{ij}=x_j | y_i=y]=\frac{N[x_{ij}=x_j, y_i=y]}{N[y_i=y]},\quad x_j\in\{0,1\},\;y\in\{0,1\}
+   \Pr[x_j | y]=\frac{N[x_{ij}=x_j, y_i=y]}{N[y_i=y]},\quad x_j\in\{0,1\},\;y\in\{0,1\}
 
 ただし， :math:`N[x_{ij}=x_j, y_i=y]` は，データ集合 :math:`\mathcal{D}` のうち，クラス :math:`y_i` の値が :math:`y` であり，かつ特徴 :math:`x_{ij}` の値が :math:`x_j` である事例の数です．
 :math:`N` ， :math:`\Pr[x_{ij}=x_{ij}|y_i=y]` ，  :math:`N[x_{ij}=x_j, y_i=y]` は，データ集合 :math:`\mathcal{D}` に対する分割表を作成すれば計算できます．
 
-推論をするときには，入力ベクトル :math:`\mathbf{x}_\mathrm{new}` が与えられたときのクラスの事後確率を最大にするクラスを，次式で求めます．
+予測をするときには，入力ベクトル :math:`\mathbf{x}_\mathrm{new}` が与えられたときのクラスの事後確率を最大にするクラスを，次式で求めます．
 
 .. math::
    :label: nbayes1-inferance
