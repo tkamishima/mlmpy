@@ -43,7 +43,21 @@ NumPy や SciPy には，体系的なリファレンスマニュアルやサン�
 
   https://github.com/tkamishima/mlmpy/tree/release/_static/source
 
-モジュールが以下のように ``import`` されていることを前提としています:
+本稿では，以下のソフトウェアを利用します．
+
+* 言うまでもなく `Python <http://www.python.org/>`_ を利用します．
+  Python3 ではなく，Python2系統の最終版とされるバージョン 2.7 を想定しています．
+
+* ここで紹介する `NumPy <http://numpy.scipy.org/>`_ と `SciPy <http://www.scipy.org/>`_ も利用します．
+  _NumPy は 1.6.0 以降， _SciPy は 0.10.0 以降のバージョンを想定しています．
+
+* 機械学習のライブラリである `scikit-learn <http://scikit-learn.org/>`_ の利用や連携についても紹介します．
+  _scikit-learn はバージョンが 0.10 以降を想定しています．
+
+* `Matplotlib <http://matplotlib.sourceforge.net/>`_ はグラフ（チャート）を描くためのライブラリで，入力データや学習結果の表示に利用します．
+  バージョンは 1.1.0 以降を想定しています．
+
+これらのモジュールは以下のように ``import`` されていることを前提とします:
 
 .. code-block:: python
 
@@ -52,10 +66,3 @@ NumPy や SciPy には，体系的なリファレンスマニュアルやサン�
    import matplotlib.pyplot as plt
    import sklearn
 
-本稿のコードは，ソフトウェアやモジュールのバージョンが下記のとおりであることを想定しています．
-
-* Python: 2.7.x（Python 3 は除く）
-* NumPy: 1.6.0 以降
-* SciPy: 0.10.0 以降
-* Matplotlib: 1.1.0 以降
-* scikit-learn: 0.10 以降
