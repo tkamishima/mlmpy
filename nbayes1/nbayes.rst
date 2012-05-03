@@ -55,7 +55,8 @@
 .. math::
    :label: nbayes1-pXgY
 
-   \Pr[x_j | y]=\frac{N[x_{ij}=x_j, y_i=y]}{N[y_i=y]},\quad x_j\in\{0,1\},\;y\in\{0,1\}
+   \Pr[x_j | y]=\frac{N[x_{ij}=x_j, y_i=y]}{N[y_i=y]},
+   \quad y\in\{0,1\},\;x_j\in\{0,1\},\;j=1,\ldots,K
 
 ただし， :math:`N[x_{ij}=x_j, y_i=y]` は，データ集合 :math:`\mathcal{D}` のうち，クラス :math:`y_i` の値が :math:`y` であり，かつ特徴 :math:`x_{ij}` の値が :math:`x_j` である事例の数です．
 :math:`N` ， :math:`\Pr[x_{ij}=x_{ij}|y_i=y]` ，  :math:`N[x_{ij}=x_j, y_i=y]` は，データ集合 :math:`\mathcal{D}` に対する分割表を作成すれば計算できます．
