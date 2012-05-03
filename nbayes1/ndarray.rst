@@ -32,6 +32,8 @@ N次元配列 :class:`np.ndarray` は，数学の概念で言えば，1次元の
 
 .. function:: np.array(object, dtype=None)
 
+   Create an array.
+
 最初の引数 ``object`` には，配列の内容を，array_like という型で与えます．
 この array_like という型は，配列を :class:`np.ndarray` の他，（多重）リストや（多重）タプルで表現したものです．
 リストの場合は，ネストしていない直線状のリストでベクトルを表します．
@@ -84,10 +86,14 @@ N次元配列 :class:`np.ndarray` は，数学の概念で言えば，1次元の
 
 .. function:: np.zeros(shape, dtype=None)
 
+   Return a new array of given shape and type, filled with zeros.
+
 .. index::
    single: ones
 
 .. function:: np.ones(shape, dtype=None)
+
+   Return a new array of given shape and type, filled with ones.
 
 ``shape`` は，スカラーや，タプルによって配列の各次元の長さを表したものです．
 長さが 5 のベクトルはスカラー ``5`` によって，2行3列の行列はタプル ``(2, 3)`` によって表現します．
@@ -117,6 +123,8 @@ N次元配列 :class:`np.ndarray` は，数学の概念で言えば，1次元の
 
 .. function:: np.empty(shape, dtype=None)
 
+   Return a new array of given shape and type, without initializing entries.
+
 :func:`np.zeros` ，:func:`np.ones` ，および :func:`np.empty` には，それぞれ今までに生成した配列と同じ大きさの配列を生成する関数 :func:`np.zeros_like` ，:func:`np.ones_like` ，および :func:`np.empty_like` があります．
 
 .. index::
@@ -124,15 +132,21 @@ N次元配列 :class:`np.ndarray` は，数学の概念で言えば，1次元の
 
 .. function:: np.zeros_like(a, dtype=None)
 
+   Return an array of zeros with the same shape and type as a given array.
+
 .. index::
    single: ones_like
 
 .. function:: np.ones_like(a, dtype=None)
 
+   Return an array of ones with the same shape and type as a given array.
+
 .. index::
    single: empty_like
 
 .. function:: np.empty_like(a, dtype=None)
+
+   Return a new array with the same shape and type as a given array.
 
 この例では， :math:`2\times3` の行列 ``a`` と同じ大きさの0行列を生成します:
 
@@ -151,8 +165,10 @@ N次元配列 :class:`np.ndarray` は，数学の概念で言えば，1次元の
 
 .. function:: np.identity(n, dtype=None)
 
+   Return the identity array.
+
 ``n`` は行列の大きさを表します．
-例えば，``4`` と指定すると，単位行列は正方行列なので，大きさ :math:`4 \times 4` の行列を指定したことになります．
+例えば，4 と指定すると，単位行列は正方行列なので，大きさ :math:`4 \times 4` の行列を指定したことになります．
 
 .. code-block:: ipython
 
@@ -178,6 +194,8 @@ NumPy 配列の属性と要素の参照
 :class:`np.ndarray` には多数の属性がありますが，よく使われるものをまとめました．
 
 .. class:: np.ndarray
+
+   An array object represents a multidimensional, homogeneous array of fixed-size items. An associated data-type object describes the format of each element in the array (its byte-order, how many bytes it occupies in memory, whether it is an integer, a floating point number, or something else, etc.)
 
    :ivar dtype: Data-type of the array's elements
    :ivar ndim: Number of array dimensions
