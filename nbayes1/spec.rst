@@ -51,14 +51,14 @@ NumPy配列の多様な配列操作を利用できるようにするため，こ
   このメソッドの引数は評価対象のデータ．
 * 次元削減などのデータ変換を行うのが ``transform`` メソッド．
 
-単純ベイズクラスの名前は ``NaiveBayes`` とします．
+単純ベイズクラスの名前は ``NaiveBayes1`` とします．
 単純ベイズは教師あり学習であるため，パラメータの初期化を行うコンストラクタ，学習を行う ``fit`` メソッド，および予測を行う ``predict`` メソッドを実行します．
 
 まず，クラスの定義は次のとおりです．
 
 .. code-block:: python
 
-    class NaiveBayes(object):
+    class NaiveBayes1(object):
         """
         Naive Bayes class (1)
         """
