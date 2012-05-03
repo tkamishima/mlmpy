@@ -96,3 +96,10 @@
 予測メソッドの実装
 ------------------
 
+.. only:: epub or latex
+
+  https://github.com/tkamishima/mlmpy/blob/release/source/nbayes1.py
+
+.. only:: html and not epub
+
+  :download:`NaiveBayes1 クラス nbayes1.py <../source/nbayes1.py>`

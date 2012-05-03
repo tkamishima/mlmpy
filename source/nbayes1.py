@@ -7,6 +7,9 @@ Chapter "Naive Bayes Primer"
 # imports
 import numpy as np
 
+# public symbols
+__all__ = ['NaiveBayes1']
+
 class NaiveBayes1(object):
     """
     Naive Bayes class (1)

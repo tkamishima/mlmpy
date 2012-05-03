@@ -94,7 +94,7 @@ devhelp:
 
 epub:
 	@(export MY_MATH_MODE=sphinx.ext.pngmath; \
-	$(SPHINXBUILD) -b epub $(MATH_PNGMATH) $(ALLSPHINXOPTS) $(BUILDDIR)/epub)
+	$(SPHINXBUILD) -b epub -t epub $(MATH_PNGMATH) $(ALLSPHINXOPTS) $(BUILDDIR)/epub)
 	@echo
 	@echo "Build finished. The epub file is in $(BUILDDIR)/epub."
 
