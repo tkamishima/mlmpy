@@ -70,3 +70,13 @@ NumPy や SciPy には，体系的なリファレンスマニュアルやサン�
    import matplotlib.pyplot as plt
    import sklearn
 
+バグリポート
+------------
+
+TYPO や記述の誤りを見つけられた場合はご連絡いただけると助かります．
+このチュートリアルはソースファイルを ``GitHub`` で公開しています．
+
+  https://github.com/tkamishima/mlmpy
+
+可能であれば pull request で，でなければ issue トラッカーでお知らせ下さい．
+事情により，すぐには対処できない場合もありますので，予め，ご承知おき下さい．
