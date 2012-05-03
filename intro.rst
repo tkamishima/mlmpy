@@ -51,14 +51,12 @@ NumPy や SciPy には，体系的なリファレンスマニュアルやサン�
 * ここで紹介する `NumPy <http://numpy.scipy.org/>`_ と `SciPy <http://www.scipy.org/>`_ も利用します．
   _NumPy は 1.6.0 以降， _SciPy は 0.10.0 以降のバージョンを想定しています．
 
-.. index::
-   single: scikit-learn
+.. index:: ! scikit-learn
 
 * 機械学習のライブラリである `scikit-learn <http://scikit-learn.org/>`_ の利用や連携についても紹介します．
   _scikit-learn はバージョンが 0.10 以降を想定しています．
 
-.. index::
-   single: matplotlib
+.. index:: matplotlib
 
 * `Matplotlib <http://matplotlib.sourceforge.net/>`_ はグラフ（チャート）を描くためのライブラリで，入力データや学習結果の表示に利用します．
   バージョンは 1.1.0 以降を想定しています．

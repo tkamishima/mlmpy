@@ -5,8 +5,9 @@
 
 実装の前に，特徴がカテゴリ変数である場合の単純ベイズ法による分類について，ごく簡単に復習します．
 
+.. index:: ! naive Bayes
+
 .. index::
-   single: naive Bayes
    single: naive Bayes; multinomial
 
 変数を次のように定義します．

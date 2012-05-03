@@ -3,8 +3,7 @@
 NumPy 配列の基礎
 ================
 
-.. index::
-   single: ndarray
+.. index:: ! ndarray
 
 ここでは，NumPy で最も重要なクラスである :class:`np.ndarray` について， :ref:`intro-intro` の方針に従い，最低限必要な予備知識について説明します．
 
@@ -27,8 +26,7 @@ NumPy 配列の生成
 N次元配列 :class:`np.ndarray` は，数学の概念で言えば，1次元の場合はベクトルに，2次元の場合は行列に，そして3次元以上の場合はテンソルに該当します．
 :class:`np.ndarray` にもコンストラクタはありますが，通常は，次の :func:`np.array` 関数 [#]_ によって生成します．
 
-.. index::
-   single: array
+.. index:: array
 
 .. function:: np.array(object, dtype=None)
 
@@ -81,15 +79,13 @@ N次元配列 :class:`np.ndarray` は，数学の概念で言えば，1次元の
 
 :func:`np.zeros` と :func:`np.ones` は，それぞれ要素が全て0である0行列と，全て1である1行列を生成する関数です．
 
-.. index::
-   single: zeros
+.. index:: zeros
 
 .. function:: np.zeros(shape, dtype=None)
 
    Return a new array of given shape and type, filled with zeros.
 
-.. index::
-   single: ones
+.. index:: ones
 
 .. function:: np.ones(shape, dtype=None)
 
@@ -118,8 +114,7 @@ N次元配列 :class:`np.ndarray` は，数学の概念で言えば，1次元の
 配列を生成した後，その内容をすぐ後で書き換える場合には，配列の要素全てに 0 や 1 を代入すると，無駄な計算をすることになります．
 そこで，0 や 1 ではなく，要素の不定値のまま指定した大きさの配列関数 :func:`np.empty` が用意されています．
 
-.. index::
-   single: empty
+.. index:: empty
 
 .. function:: np.empty(shape, dtype=None)
 
@@ -127,22 +122,19 @@ N次元配列 :class:`np.ndarray` は，数学の概念で言えば，1次元の
 
 :func:`np.zeros` ，:func:`np.ones` ，および :func:`np.empty` には，それぞれ今までに生成した配列と同じ大きさの配列を生成する関数 :func:`np.zeros_like` ，:func:`np.ones_like` ，および :func:`np.empty_like` があります．
 
-.. index::
-   single: zeros_like
+.. index:: zeros_like
 
 .. function:: np.zeros_like(a, dtype=None)
 
    Return an array of zeros with the same shape and type as a given array.
 
-.. index::
-   single: ones_like
+.. index:: ones_like
 
 .. function:: np.ones_like(a, dtype=None)
 
    Return an array of ones with the same shape and type as a given array.
 
-.. index::
-   single: empty_like
+.. index:: empty_like
 
 .. function:: np.empty_like(a, dtype=None)
 
@@ -160,8 +152,7 @@ N次元配列 :class:`np.ndarray` は，数学の概念で言えば，1次元の
 
 最後に，最も基本的な行列である単位行列を生成する関数 :func:`np.identity` 
 
-.. index::
-   single: identity
+.. index:: identity
 
 .. function:: np.identity(n, dtype=None)
 
@@ -206,8 +197,7 @@ NumPy 配列の属性と要素の参照
 二番目の属性 ``ndim`` は，次元数を表します．ベクトルでは 1 に，配列では 2 になります．
 三番目の属性 ``shape`` は，各次元ごとの配列の大きさをまとめたタプルを返します．例えば，長さが 5 のベクトルは ``(5,)`` [#]_ となり， :math:`2 \times 3` の大きさの行列では ``(2, 3)`` となります．
 
-.. index::
-   single: dtype
+.. index:: ! dtype
 
 これらの属性のうち ``dtype`` について詳しく述べます．
 よく使われる型は Python のビルトイン型の真理値型，整数型，浮動小数点型，複素数型に対応する ``np.bool`` ， ``np.int`` ， ``np.float`` ， ``np.complex`` です．
