@@ -8,7 +8,7 @@
 特に，特徴量がカテゴリ変数である場合の単純ベイズの実装を通じて，NumPy / SciPy を用いた行列・ベクトルの初歩的な扱いについて説明します．
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    ndarray
    nbayes
