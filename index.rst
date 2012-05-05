@@ -19,6 +19,10 @@
    :リリース:
        |release|
 
+.. only:: html and not epub
+
+   ダウンロード用 [ `PDF版 </archive/mlmpyja.pdf>`_ ] [ `ePub版 </archive/mlmpyja.epub>`_ ]
+
 .. only:: not latex
 
    目次
