@@ -24,6 +24,10 @@ NumPy 配列の生成
 
 それでは， :class:`np.ndarray` の生成方法を説明します．
 N次元配列 :class:`np.ndarray` は，数学の概念で言えば，1次元の場合はベクトルに，2次元の場合は行列に，そして3次元以上の場合はテンソルに該当します．
+
+np.array() 関数による生成
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
 :class:`np.ndarray` にもコンストラクタはありますが，通常は，次の :func:`np.array` 関数 [#]_ によって生成します．
 
 .. index:: array
@@ -75,6 +79,9 @@ N次元配列 :class:`np.ndarray` は，数学の概念で言えば，1次元の
    array([[  1.,   2.,   3.],
           [ 10.,  20.,  30.]])
 
+その他の関数による生成
+^^^^^^^^^^^^^^^^^^^^^^
+
 :class:`np.ndarray` を作るための関数は非常にたくさんありますが，よく使われるものを簡単に紹介しておきます．
 
 :func:`np.zeros` と :func:`np.ones` は，それぞれ要素が全て0である0行列と，全て1である1行列を生成する関数です．
@@ -92,7 +99,7 @@ N次元配列 :class:`np.ndarray` は，数学の概念で言えば，1次元の
    Return a new array of given shape and type, filled with ones.
 
 ``shape`` は，スカラーや，タプルによって配列の各次元の長さを表したものです．
-長さが 5 のベクトルはスカラー ``5`` によって，2行3列の行列はタプル ``(2, 3)`` によって表現します．
+長さが 5 のベクトルはスカラー 5 によって，2行3列の行列はタプル (2, 3) によって表現します．
 
 長さが3の0ベクトルの例です:
 
@@ -140,7 +147,7 @@ N次元配列 :class:`np.ndarray` は，数学の概念で言えば，1次元の
 
    Return a new array with the same shape and type as a given array.
 
-この例では， :math:`2\times3` の行列 ``a`` と同じ大きさの0行列を生成します:
+この例では， :math:`2\times3` の行列 :data:`a` と同じ大きさの0行列を生成します:
 
 .. code-block:: ipython
 
@@ -177,6 +184,8 @@ N次元配列 :class:`np.ndarray` は，数学の概念で言えば，1次元の
    関数の引数は他にもありますが，このチュートリアルでは説明上必要なもののみを示します．
    他の引数についてはライブラリのリファレンスマニュアルを参照して下さい．
 
+.. _nbayes1-ndarray-access:
+
 NumPy 配列の属性と要素の参照
 ----------------------------
 
@@ -186,30 +195,31 @@ NumPy 配列の属性と要素の参照
 
 .. class:: np.ndarray
 
-   An array object represents a multidimensional, homogeneous array of fixed-size items. An associated data-type object describes the format of each element in the array (its byte-order, how many bytes it occupies in memory, whether it is an integer, a floating point number, or something else, etc.)
+   An array object represents a multidimensional, homogeneous array of fixed-size items.
+   An associated data-type object describes the format of each element in the array (its byte-order, how many bytes it occupies in memory, whether it is an integer, a floating point number, or something else, etc.)
 
    :ivar dtype: Data-type of the array's elements
    :ivar ndim: Number of array dimensions
    :ivar shape: Tuple of array dimensions
 
-今までに関数の引数に現れた，最初の属性 ``dtype`` は，配列の要素の型を指定します．
+今までに関数の引数に現れた，最初の属性 :attr:`dtype` は，配列の要素の型を指定します．
 :class:`np.ndarray` は，基本的に配列の中の全要素の型は同じです [#]_ ．
-二番目の属性 ``ndim`` は，次元数を表します．ベクトルでは 1 に，配列では 2 になります．
-三番目の属性 ``shape`` は，各次元ごとの配列の大きさをまとめたタプルを返します．例えば，長さが 5 のベクトルは ``(5,)`` [#]_ となり， :math:`2 \times 3` の大きさの行列では ``(2, 3)`` となります．
+二番目の属性 :attr:`ndim` は，次元数を表します．ベクトルでは 1 に，配列では 2 になります．
+三番目の属性 :attr:`shape` は，各次元ごとの配列の大きさをまとめたタプルを返します．例えば，長さが 5 のベクトルは (5,) [#]_ となり， :math:`2 \times 3` の大きさの行列では (2, 3) となります．
 
 .. index:: ! dtype
 
-これらの属性のうち ``dtype`` について詳しく述べます．
-よく使われる型は Python のビルトイン型の真理値型，整数型，浮動小数点型，複素数型に対応する ``np.bool`` ， ``np.int`` ， ``np.float`` ， ``np.complex`` です．
-メモリのビット数を明示的に表す ``np.int32`` や ``np.float64`` などもありますが，メモリを特に節約したい場合や，C や Fortran で書いた関数とリンクするといった場合以外はあまり使わないでしょう．
+これらの属性のうち :attr:`dtype` について詳しく述べます．
+よく使われる型は Python のビルトイン型の真理値型，整数型，浮動小数点型，複素数型に対応する :obj:`np.bool` ， :obj:`np.int` ， :obj:`np.float` ， :obj:`np.complex` です．
+メモリのビット数を明示的に表す :obj:`np.int32` や :obj:`np.float64` などもありますが，メモリを特に節約したい場合や，C や Fortran で書いた関数とリンクするといった場合以外はあまり使わないでしょう．
 
-文字列型については，ビルトイン型の ``str`` とは，少し異なります．
+文字列型については，ビルトイン型の :obj:`str` とは，少し異なります．
 :class:`np.ndarray` では，要素の大きさが同じである必要があるため，文字列も固定長にする必要があります．
 通常の文字列に対応する文字列は，NumPy の型を返す関数 :func:`np.dtype` を用いて， ``np.dtype('S<文字列長>')`` [#]_ のように指定します．
 例えば，最大長が16である文字列を扱う場合は ``np.dtype("S16")`` のように指定します．
 Unicode文字列の場合は，この ``S`` が ``U`` に置き換わります．
 
-配列の ``dtype`` を指定するには，(1) :func:`np.array` などの配列生成関数の ``dtype`` 引数で指定する方法と， (2) :class:`np.ndarray` の :meth:`np.ndarray.astype` メソッドを使う方法とがあります．
+配列の :attr:`dtype` を指定するには，(1) :func:`np.array` などの配列生成関数の ``dtype`` 引数で指定する方法と， (2) :class:`np.ndarray` の :meth:`np.ndarray.astype` メソッドを使う方法とがあります．
 
 まず，(1) の ``dtype`` 引数を指定する方法について述べます．
 :func:`np.array` では要素が全て整数の場合は，要素の型は整数になりますが，それを浮動小数点にするには，次のように指定します．
@@ -255,7 +265,7 @@ Unicode文字列の場合は，この ``S`` が ``U`` に置き換わります�
 次は :class:`np.ndarray` の要素の参照方法について述べます．
 非常に多様な要素の参照方法があるため，最も基本的な方法のみを述べ，他の方法については順次紹介することにします．
 最も基本的な要素の参照方法とは，各次元ごとに何番目の要素を参照するかを指定します．
-1次元配列であるベクトル ``a`` の要素 3 を ``a[3]`` 参照すると，次のような結果が得られます．
+1次元配列であるベクトル :obj:`a` の要素 3 を ``a[3]`` 参照すると，次のような結果が得られます．
 
 .. code-block:: ipython
 
@@ -264,7 +274,7 @@ Unicode文字列の場合は，この ``S`` が ``U`` に置き換わります�
    Out[16]: 4.0
 
 ここで注意すべきは，添え字の範囲は，数学の規則である :math:`1,\ldots,5` ではなく，Python の規則に従って :math:`0,\ldots,4` となることです．
-``a.shape[0]`` とすると，1時限目の要素の長さ，すなわちベクトルの長さとして 5 が得られますが，添え字の範囲はそれより 1 小さな 4 までとなります．
+``a.shape[0]`` とすると，第1次元の要素の長さ，すなわちベクトルの長さとして 5 が得られますが，添え字の範囲はそれより 1 小さな 4 までとなります．
 同様に， :math:`2 \times 3` の行列では，行は :math:`0,\ldots,1` の範囲で，列は :math:`0,\ldots,2` の範囲で指定します．
 
 .. code-block:: ipython
@@ -301,10 +311,10 @@ Unicode文字列の場合は，この ``S`` が ``U`` に置き換わります�
 ここで紹介した基本事項を使い，NumPy / SciPy の他の機能を，機械学習のアルゴリズムの実装を通じて紹介してゆきます．
 
 .. [#]
-   オブジェクトを要素とする型 ``np.object`` や，行ごとに同じ構造である制限の下，いろいろな型を混在できる structured array があります．
+   オブジェクトを要素とする型 :obj:`np.object` や，行ごとに同じ構造である制限の下，いろいろな型を混在できる structured array があります．
 
 .. [#]
-   Python では， ``(5)`` と表記すると，スカラー量 5 を括弧でくくった数式とみなされるため，要素数が1個のタプルは ``(5,)`` となります．
+   Python では， (5) と表記すると，スカラー量 5 を括弧でくくった数式とみなされるため，要素数が1個のタプルは (5,) となります．
 
 .. [#]
    整数型や浮動小数点型にも同様の文字列を用いた指定方法があります．

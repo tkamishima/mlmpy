@@ -61,10 +61,14 @@
 ただし， :math:`N[x_{ij}=x_j, y_i=y]` は，データ集合 :math:`\mathcal{D}` のうち，クラス :math:`y_i` の値が :math:`y` であり，かつ特徴 :math:`x_{ij}` の値が :math:`x_j` である事例の数です．
 :math:`N` ， :math:`\Pr[x_{ij}=x_{ij}|y_i=y]` ，  :math:`N[x_{ij}=x_j, y_i=y]` は，データ集合 :math:`\mathcal{D}` に対する分割表を作成すれば計算できます．
 
-予測をするときには，入力ベクトル :math:`\mathbf{x}_\mathrm{new}` が与えられたときのクラスの事後確率を最大にするクラスを，次式で求めます．
+予測をするときには，入力ベクトル :math:`\mathbf{x}^\mathrm{new}` が与えられたときのクラスの事後確率を最大にするクラスを，次式で求めます．
 
 .. math::
    :label: nbayes1-inferance
 
-   \hat{y} &= \arg\max_y \Pr[y|\mathbf{x}_\mathrm{new}] \\
-           &= \arg\max_y \frac{\Pr[y, \mathbf{x}_\mathrm{new}]}{\sum_{y'} \Pr[y']\Pr[y', \mathbf{x}_\mathrm{new}]}
+   \hat{y} &= \arg\max_y \Pr[y|\mathbf{x}^\mathrm{new}] \\
+           &= \arg\max_y \frac{\Pr[y]\Pr[\mathbf{x}^\mathrm{new}|y]}{\sum_{y'} \Pr[y']\Pr[\mathbf{x}^\mathrm{new} | y']} \\
+           &= \arg\max_y \Pr[y]\Pr[\mathbf{x}^\mathrm{new}|y] \\
+           &= \arg\max_y \Big(\log\Pr[y] +
+              \sum_j \log\Pr[x_j^\mathrm{new}|y]\Big) \\
+

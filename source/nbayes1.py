@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Chapter "Naive Bayes Primer"
+Chapter "Naive Bayes: a Primary Course", a NaiveBayes1 class
 """
 
 # imports
@@ -18,14 +18,11 @@ class NaiveBayes1(object):
     ----------
     `pY_` : array_like, shape=(n_classes), dtype=float
         pmf of a class
-    `pXg_` : array_like, shape(n_features, n_classes, n_fvalues), dtype=float
+    `pXgY_` : array_like, shape(n_features, n_classes, n_fvalues), dtype=float
         pmf of feature values given a class
     """
 
     def __init__(self):
-        """
-        Constructor
-        """
         self.pY_ = None
         self.pXgY_ = None
 
@@ -89,4 +86,23 @@ class NaiveBayes1(object):
         y : array_like, shape=(n_samples), dtype=int
             predicted class labels
         """
-        pass
+
+        # constants
+        n_samples = X.shape[0]
+        n_features = X.shape[1]
+
+        # memory for return values
+        y = np.empty(n_samples, dtype=np.int)
+
+        # for each feature in X
+        for i, xi in enumerate(X):
+
+            # calc joint probability
+            logpXY = np.log(self.pY_) + \
+                     np.sum(np.log(self.pXgY_[np.arange(n_features), xi, :]),
+                            axis=0)
+
+            # predict class
+            y[i] = np.argmax(logpXY)
+
+        return y

@@ -13,5 +13,6 @@
    ndarray
    nbayes
    spec
-   implement1
-   exec
+   fit1
+   predict
+   run
