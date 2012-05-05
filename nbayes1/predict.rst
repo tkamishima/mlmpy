@@ -147,7 +147,9 @@ NumPy 配列の添え字として与える場合には :attr:`dtype` 属性は�
 
 列方向の和をとるには :func:`np.sum` 関数を利用します．
 
-.. function:: sum(a, axis=None, dtype=None)
+.. index:: sum
+
+.. function:: np.sum(a, axis=None, dtype=None)
 
    Sum of array elements over a given axis.
 
