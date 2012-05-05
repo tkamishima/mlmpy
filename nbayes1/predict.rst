@@ -180,7 +180,7 @@ NumPy 配列の添え字として与える場合には :attr:`dtype` 属性は�
 このように計算した :obj:`logpXY` のうち最も大きな値をとる要素が予測クラスになります．
 これには，配列中で最大値をとる要素の添え字を返す関数 :func:`np.argmax` を用います [#]_ ．
 
-.. index:: np.argmax, np.argmin
+.. index:: argmax, argmin
 
 .. function:: np.argmax(a, axis=None)
 

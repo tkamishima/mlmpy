@@ -9,6 +9,11 @@
 この文書は `Sphinx <http://sphinx.pocoo.org/>`_ を用いて書かれています．
 適宜コンパイルすることで，html，PDF，ePub などの形式で読むことができます．
 
+コンパイル済みのファイルは次のリンクからダウンロード出来ます：
+[ `HTML版 <http://www.kamishima.net/mlmpyja/>`_ ]
+[ `PDF版 <http://www.kamishima.net/archive/mlmpyja.pdf>`_ ]
+[ `ePub版 <http://www.kamishima.net/archive/mlmpyja.epub>`_ ]
+
 ePub を生成するときは， ``sphinx.ext.pngmath`` を，html や PDF を生成するときは ``sphinx.ext.mathjax`` を利用して数式を処理するようになっています．
 このとき， `MathJax <http://www.mathjax.org>`_ を，ローカルサーバではなく， ``http://cdn.mathjax.org`` でサービスされているものを使う場合は， ``conf.py`` 中の ``mathjax_path`` の定義をコメントアウトして下さい．
 
