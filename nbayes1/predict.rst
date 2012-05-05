@@ -133,7 +133,7 @@ NumPy 配列やリストを使って複数の要素を指定し，それらを�
 
 .. index:: arange
 
-.. function:: numpy.arange([start], stop[, step], dtype=None)
+.. function:: np.arange([start], stop[, step], dtype=None)
 
    Return evenly spaced values within a given interval.
 
