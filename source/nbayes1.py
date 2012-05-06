@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Chapter "Naive Bayes: a Primary Course", a NaiveBayes1 class
+NaiveBayes1 class
+
+Chapter "Naive Bayes: a Primary Course"
 """
 
 # imports
@@ -55,8 +57,8 @@ class NaiveBayes1(object):
 
         # calc pY_
         self.pY_ = np.empty(n_classes, dtype=np.float)
-        for y in xrange(n_classes):
-            self.pY_ = nY[y] / np.float(n_samples)
+        for i in xrange(n_classes):
+            self.pY_[i] = nY[i] / np.float(n_samples)
 
         # count up n[x_ij=xj, yi=y]
         nXY = np.zeros((n_features, n_fvalues, n_classes), dtype=np.int)

@@ -51,8 +51,8 @@
 .. code-block:: python
 
    self.pY_ = np.empty(n_classes, dtype=np.float)
-   for y in xrange(n_classes):
-       self.pY_ = nY[y] / np.float(n_samples)
+   for i in xrange(n_classes):
+       self.pY_[i] = nY[i] / np.float(n_samples)
 
 
 次は :ref:`nbayes1-nbayes` の式(5)のモデルパラメータです．
