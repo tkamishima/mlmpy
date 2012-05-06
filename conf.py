@@ -309,9 +309,10 @@ epub_exclude_files = [
     '_static/underscore.js',
     '_static/websupport.js',
     '_static/search.html',
-    '_downloads/nbayes1.py'
+    '_downloads/nbayes1.py',
+    '_downloads/run_nbayes1.py',
+    '_downloads/vote_filled.tsv'
 ]
-
 
 # The depth of the table of contents in toc.ncx.
 #epub_tocdepth = 3
