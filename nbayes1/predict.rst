@@ -211,7 +211,7 @@ NumPy 配列の添え字として与える場合には :attr:`dtype` 属性は�
 
 .. only:: html and not epub
 
-  :download:`NaiveBayes1 クラス nbayes1.py <../source/nbayes1.py>`
+  :download:`NaiveBayes1 クラス：nbayes1.py <../source/nbayes1.py>`
 
 .. [#]
    :func:`np.log` や :func:`np.sin` などの NumPy の初等関数は， :mod:`math` のものと比べて，ユニバーサル関数であることの他に， :func:`np.seterr` でエラー処理の方法を変更できたり，複素数を扱えるといった違いもあります．
