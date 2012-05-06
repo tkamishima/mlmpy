@@ -21,7 +21,8 @@
 
 .. only:: html and not epub
 
-   ダウンロード用 [ `PDF版 </archive/mlmpyja.pdf>`_ ] [ `ePub版 </archive/mlmpyja.epub>`_ ]
+   * ダウンロード用 [ `PDF版 </archive/mlmpyja.pdf>`_ ] [ `ePub版 </archive/mlmpyja.epub>`_ ]
+   * ソースレポジトリ [ https://github.com/tkamishima/mlmpy ]
 
 .. only:: not latex
 
