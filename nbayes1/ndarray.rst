@@ -127,7 +127,7 @@ np.array() 関数による生成
 
    Return a new array of given shape and type, without initializing entries.
 
-:func:`np.zeros` ，:func:`np.ones` ，および :func:`np.empty` には，それぞれ今までに生成した配列と同じ大きさの配列を生成する関数 :func:`np.zeros_like` ，:func:`np.ones_like` ，および :func:`np.empty_like` があります．
+:func:`np.zeros` ， :func:`np.ones` ，および :func:`np.empty` には，それぞれ今までに生成した配列と同じ大きさの配列を生成する関数 :func:`np.zeros_like` ， :func:`np.ones_like` ，および :func:`np.empty_like` があります．
 
 .. index:: zeros_like
 
