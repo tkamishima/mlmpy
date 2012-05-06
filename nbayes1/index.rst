@@ -16,3 +16,4 @@
    fit1
    predict
    run
+   summary
