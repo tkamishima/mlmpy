@@ -45,7 +45,7 @@ NumPy や SciPy には，体系的なリファレンスマニュアルやサン�
 
 実行可能なソースコードは次の URL より参照できます．
 
-  https://github.com/tkamishima/mlmpy/tree/release/_static/source
+  https://github.com/tkamishima/mlmpy/tree/release/source
 
 本稿では，以下のソフトウェアを利用します．
 
