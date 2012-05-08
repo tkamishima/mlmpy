@@ -14,6 +14,6 @@
 
 * `UCI Machine Learning Repository <http://archive.ics.uci.edu/ml>`_ のいくつかのデータ集合をサンプルとして利用しています．
 
-  * A. Frank and A. Asuncion "UCI Machine Learning Repository" University of California, Irvine, School of Information and Computer Sciences (2010)
+  * \A. Frank and A. Asuncion "UCI Machine Learning Repository" University of California, Irvine, School of Information and Computer Sciences (2010)
 
 * `Best practices in ePub cover images by Keith Fahlgren @ Threepress Consulting blog <http://blog.threepress.org/2009/11/20/best-practices-in-epub-cover-images/>`_ ：ePub の表紙ファイルの参考にしました．
