@@ -171,7 +171,9 @@ NumPy 配列の添え字として与える場合には :attr:`dtype` 属性は�
              np.sum(np.log(self.pXgY_[np.arange(n_features), xi, :]),
                     axis=0)
 
-.. rubric:: 注釈
+.. only:: not latex
+
+   .. rubric:: 注釈
 
 .. [1]
    :func:`np.log` や :func:`np.sin` などの NumPy の初等関数は， :mod:`math` のものと比べて，ユニバーサル関数であることの他に， :func:`np.seterr` でエラー処理の方法を変更できたり，複素数を扱えるといった違いもあります．
@@ -218,7 +220,9 @@ NumPy 配列の添え字として与える場合には :attr:`dtype` 属性は�
 
   :download:`NaiveBayes1 クラス：nbayes1.py <../source/nbayes1.py>`
 
-.. rubric:: 注釈
+.. only:: not latex
+
+   .. rubric:: 注釈
 
 .. [#]
    NumPy 配列のメソッド :meth:`np.ndarray.argmax` を使う方法もあります．

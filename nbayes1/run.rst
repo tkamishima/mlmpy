@@ -92,7 +92,9 @@ NumPy と SciPy にはいろいろな形式のファイルを読み込む関数�
 
   :download:`NaiveBayes1 実行スクリプト：run_nbayes1.py <../source/run_nbayes1.py>`
 
-.. rubric:: 注釈
+.. only:: not latex
+
+   .. rubric:: 注釈
 
 .. [1]
    代表的な読み込み関数には，バイナリの npy 形式 :func:`np.load` ，matlab 形式 :func:`sp.io.loadmat` ，Weka の arff 形式 :func:`sp.io.loadarff` などがあります．

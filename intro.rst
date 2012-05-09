@@ -32,7 +32,9 @@ NumPy や SciPy には，体系的なリファレンスマニュアルやサン�
 
    なお，このチュートリアルには，このHTML版の他に， `PDF版 </archive/mlmpyja.pdf>`_ と `ePub版 </archive/mlmpyja.epub>`_ もあります．
 
-.. rubric:: 注釈
+.. only:: not latex
+
+   .. rubric:: 注釈
 
 .. [1]
    著者の専門が機械学習なので対象として選びました．
@@ -55,7 +57,7 @@ NumPy や SciPy には，体系的なリファレンスマニュアルやサン�
   Python3 ではなく，Python2系統の最終版とされるバージョン 2.7 を想定しています．
 
 * ここで紹介する `NumPy <http://numpy.scipy.org/>`_ と `SciPy <http://www.scipy.org/>`_ も利用します．
-  _NumPy は 1.6.0 以降， _SciPy は 0.10.0 以降のバージョンを想定しています．
+  NumPy は 1.6.0 以降， SciPy は 0.10.0 以降のバージョンを想定しています．
 
 .. index:: ! scikit-learn
 
