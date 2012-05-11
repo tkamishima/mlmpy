@@ -44,7 +44,7 @@ NumPy と SciPy にはいろいろな形式のファイルを読み込む関数�
   :download:`Congressional Voting Records Data Set : vote_filled.tsv <../source/vote_filled.tsv>`
 
 このデータはタブ区切り形式です．
-また， :class:`NaiveBayes1` では，入力の :attr:`dtype` 属性が整数であることを前提としています．
+また， :class:`NaiveBayes1` クラスでは，入力訓練データの :attr:`dtype` 属性が整数であることを前提としています．
 よって，次のようにファイルを読み込みます．
 
 .. code-block:: python
@@ -52,7 +52,7 @@ NumPy と SciPy にはいろいろな形式のファイルを読み込む関数�
    data = np.genfromtxt('vote_filled.tsv', dtype=np.int)
 
 このファイルは，最終列がクラスラベル，それ以外に特徴量を格納しています．
-よって，変数 :obj:`data` の最終列をクラスラベルの配列 :obj:`y` に，それ以外を特徴量の配列 :obj:`X` に格納します．
+このため，変数 :obj:`data` の最終列をクラスラベルの配列 :obj:`y` に，それ以外を特徴量の配列 :obj:`X` に格納します．
 
 .. code-block:: python
 

@@ -10,7 +10,7 @@
 
 .. only:: not latex
 
-   **(Machine Learning Meets Python)**
+   **Machine Learning Meets Python**
 
 .. only:: not latex
 

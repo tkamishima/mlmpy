@@ -16,7 +16,7 @@
   ただし， :math:`K` は特徴の種類数です．
 * クラス :math:`y` は， :math:`C` 個の値のうちの一つをとります．
 
-ここで，特徴 :math:`\mathbf{X}` は，クラス :math:`Y` が与えられたとき条件付き独立であるとする，単純ベイズの仮定を導入するすると， :math:`\mathbf{X}` と :math:`Y` の同時分布は次式で与えられます．
+ここで，特徴 :math:`\mathbf{X}` は，クラス :math:`Y` が与えられたとき条件付き独立であるとする単純ベイズの仮定を導入すると， :math:`\mathbf{X}` と :math:`Y` の同時分布は次式で与えられます．
 
 .. math::
    :label: nbayes1-joint-prob
@@ -49,7 +49,7 @@
 
    \Pr[y]=\frac{N[y_i=y]}{N},\quad y\in\{0,1\}
 
-ただし， :math:`N[y_i=y]` は，データ集合 :math:`\mathcal{D}` のうち，クラス :math:`y_i` が値 :math:`y` をとる事例の数です．
+ただし， :math:`N[y_i=y]` は，データ集合 :math:`\mathcal{D}` のうち，クラス :math:`y_i` が値 :math:`y` である事例の数です．
 もう一つのパラメータ群 :math:`\Pr[x_{ij}=x_{ij}|y_i=y]` は次式となります．
 
 .. math::
@@ -59,9 +59,9 @@
    \quad y\in\{0,1\},\;x_j\in\{0,1\},\;j=1,\ldots,K
 
 ただし， :math:`N[x_{ij}=x_j, y_i=y]` は，データ集合 :math:`\mathcal{D}` のうち，クラス :math:`y_i` の値が :math:`y` であり，かつ特徴 :math:`x_{ij}` の値が :math:`x_j` である事例の数です．
-:math:`N` ， :math:`\Pr[x_{ij}=x_{ij}|y_i=y]` ，  :math:`N[x_{ij}=x_j, y_i=y]` は，データ集合 :math:`\mathcal{D}` に対する分割表を作成すれば計算できます．
+以上のパラメータの計算に必要な値 :math:`N` ， :math:`\Pr[x_{ij}=x_{ij}|y_i=y]` ，および  :math:`N[x_{ij}=x_j, y_i=y]` は，データ集合 :math:`\mathcal{D}` に対する分割表を作成すれば計算できます．
 
-予測をするときには，入力ベクトル :math:`\mathbf{x}^\mathrm{new}` が与えられたときのクラスの事後確率を最大にするクラスを，次式で求めます．
+予測をするときには，入力ベクトル :math:`\mathbf{x}^\mathrm{new}` が与えられたときのクラス事後確率を最大にするクラスを，次式で求めます．
 
 .. math::
    :label: nbayes1-inferance
@@ -72,3 +72,4 @@
            &= \arg\max_y \Big(\log\Pr[y] +
               \sum_j \log\Pr[x_j^\mathrm{new}|y]\Big) \\
 
+この式は，式 :eq:`nbayes1-pY` と :eq:`nbayes1-pXgY` で求めたパラメータを利用して計算できます．

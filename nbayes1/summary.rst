@@ -9,7 +9,7 @@
 
   * NumPy 配列 :class:`np.ndarray` の特徴
   * :func:`np.array` による NumPy 配列の生成
-  * :func:`np.zeros` などその他の関数による NumPy 配列の生成
+  * :func:`np.zeros` など，その他の関数による NumPy 配列の生成
   * NumPy 配列 :class:`np.ndarray` クラスの属性
   * NumPy 値の型 :class:`np.dtype`
   * NumPy 配列の値の参照方法
@@ -23,7 +23,7 @@
 
   * 入力データの仕様例
   * 機械学習アルゴリズムをクラスとして実装する利点
-  * scikit-learn モジュールのAPIの基本仕様
+  * scikit-learn モジュールのAPI基本仕様
   * 機械学習アルゴリズムのクラスの仕様例
 
 * :ref:`nbayes1-fit1`

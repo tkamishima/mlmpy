@@ -2,13 +2,13 @@
 ====
 
 この文書を作成するにあたり，下記ソフトウェアと，各所のサイトの情報を利用させていただきました．
-ここに感謝とともに，ここに記したいと思います．
+感謝とともに，ここに記したいと思います．
 
 * このチュートリアルは `Sphinx <http://sphinx.pocoo.org/>`_ を利用して執筆しています．
 
 * `Sphinx-Users.jp <http://sphinx-users.jp/>`_ ：Sphinx の関連の情報を参考にしました．
 
-* IPython コンソールのハイライトのために， IPython のソースから ``sphinx.ipython_console_highlighting`` を導入しています．
+* IPython コンソールのハイライトのために， IPython のソースから ``ipython_console_highlighting.py`` を導入しています．
 
   * `The IPython licensing terms <https://github.com/ipython/ipython/blob/master/COPYING.txt>`_
 
