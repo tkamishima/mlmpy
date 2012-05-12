@@ -36,15 +36,17 @@
    nbayes1/index
    ack
 
-.. only:: not latex
+.. only:: html and not epub
 
    索引
    ----
-   
-.. only:: not latex
 
    * :ref:`genindex`
    * :ref:`search`
+
+.. only:: epub
+
+   * :ref:`genindex`
 
 .. if todo_include_todos is True in conf.py, generate a ToDo list.
 
