@@ -1,5 +1,6 @@
 {% extends "!layout.html" %}
 {% block extrahead %}
+{% if pagename == 'index' %}
 <!-- google+1 header -->
 <script type="text/javascript">
   window.___gcfg = {lang: 'ja'};
@@ -18,51 +19,8 @@
   js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+{% endif %}
 {% endblock %}
 {% block document %}
-<!-- start social buttions -->
-<div style="padding: 10px 0px 0px 20px;">
-<table><tbody><tr>
-<!-- hatena bookmark -->
-<td>
-<a
-  href="http://b.hatena.ne.jp/entry/{{ ('http://www.kamishima.net/mlmpyja/'+pagename+file_suffix)|replace("index.html","") }}"
-  class="hatena-bookmark-button"
-  data-hatena-bookmark-title="{{ title }}"
-  data-hatena-bookmark-layout="standard"
-  title="このエントリーをはてなブックマークに追加">
-<img
-  src="http://b.st-hatena.com/images/entry-button/button-only.gif"
-  alt="このエントリーをはてなブックマークに追加"
-  width="20" height="20"
-  style="border: none;" />
-</a>
-<script
-  type="text/javascript"
-  src="http://b.st-hatena.com/js/bookmark_button.js"
-  charset="utf-8"
-  async="async">
-</script>
-</td>
-<!-- google+1 -->
-<td> <g:plusone
-  size="medium"
-  href="{{ ('http://www.kamishima.net/mlmpyja/'+pagename+file_suffix)|replace("index.html","") }}"></g:plusone>
-</td><td>
-<!-- facebook -->
-<div class="fb-like" data-href="{{ ('http://www.kamishima.net/mlmpyja/'+pagename+file_suffix)|replace("index.html","") }}" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
-</td>
-<!-- Twitter -->
-<td>
-<a
-  href="https://twitter.com/share"
-  class="twitter-share-button"
-  data-url="{{ ('http://www.kamishima.net/mlmpyja/'+pagename+file_suffix)|replace("index.html","") }}"
-  data-lang="ja">ツイート</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-</td>
-<!-- end social buttions -->
-</tr></tbody></table>
-</div>
 {{ super() }}
 {% endblock %}
