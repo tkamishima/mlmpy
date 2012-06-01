@@ -40,10 +40,8 @@ NumPy配列の多様な配列操作を利用できるようにするため，こ
 
 .. index:: scikit-learn
 
-このチュートリアルでは，Python の機械学習パッケージ scikit-learn のAPI仕様に従ってクラスを設計します．
+このチュートリアルでは，Python の機械学習パッケージ scikit-learn のAPI仕様 ( `APIs of scikit-learn objects <http://scikit-learn.org/stable/developers/index.html#apis-of-scikit-learn-objects>`_ ) に従ってクラスを設計します．
 主な仕様は次のとおりです．
-
-.. http://scikit-learn.org/0.10/developers/index.html#apis-of-scikit-learn-objects
 
 * データに依存しないアルゴリズムのパラメータは，クラスのコンストラクタの引数で指定する．
 * 学習は :meth:`fit` メソッドで行う．

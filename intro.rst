@@ -63,7 +63,7 @@ NumPy や SciPy には，体系的なリファレンスマニュアルやサン�
 .. index:: ! scikit-learn
 
 * 機械学習のライブラリである `scikit-learn <http://scikit-learn.org/>`_ の利用や連携についても紹介します．
-  _scikit-learn はバージョンが 0.10 以降を想定しています．
+  scikit-learn はバージョンが 0.10 以降を想定しています．
 
 .. index:: matplotlib
 
