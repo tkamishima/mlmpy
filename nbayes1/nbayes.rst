@@ -69,7 +69,10 @@
    \hat{y} &= \arg\max_y \Pr[y|\mathbf{x}^\mathrm{new}] \\
            &= \arg\max_y \frac{\Pr[y]\Pr[\mathbf{x}^\mathrm{new}|y]}{\sum_{y'} \Pr[y']\Pr[\mathbf{x}^\mathrm{new} | y']} \\
            &= \arg\max_y \Pr[y]\Pr[\mathbf{x}^\mathrm{new}|y] \\
+           &= \arg\max_y \Big(\Pr[y]
+              \prod_j \Pr[x_j^\mathrm{new}|y]\Big) \\
            &= \arg\max_y \Big(\log\Pr[y] +
-              \sum_j \log\Pr[x_j^\mathrm{new}|y]\Big) \\
+              \sum_j \log\Pr[x_j^\mathrm{new}|y]\Big)
 
 この式は，式 :eq:`nbayes1-pY` と :eq:`nbayes1-pXgY` で求めたパラメータを利用して計算できます．
+最後に対数をとっているのは，浮動小数点計算では小さな値のかけ算を繰り返すことにより生じる計算結果の不安定さを避けるためです．
