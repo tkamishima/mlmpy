@@ -37,7 +37,7 @@ NumPy と SciPy にはいろいろな形式のファイルを読み込む関数�
 
 .. only:: epub or latex
 
-  https://github.com/tkamishima/mlmpy/blob/release/source/vote_filled.tsv
+  https://github.com/tkamishima/mlmpy/blob/master/source/vote_filled.tsv
 
 .. only:: html and not epub
 
@@ -86,7 +86,7 @@ NumPy と SciPy にはいろいろな形式のファイルを読み込む関数�
 
 .. only:: epub or latex
 
-  https://github.com/tkamishima/mlmpy/blob/release/source/run_nbayes1.py
+  https://github.com/tkamishima/mlmpy/blob/master/source/run_nbayes1.py
 
 .. only:: html and not epub
 
