@@ -226,7 +226,7 @@ NumPy 配列の添え字として与える場合には :attr:`dtype` 属性は�
 
 .. only:: epub or latex
 
-  https://github.com/tkamishima/mlmpy/blob/release/source/nbayes1.py
+  https://github.com/tkamishima/mlmpy/blob/master/source/nbayes1.py
 
 .. only:: html and not epub
 
