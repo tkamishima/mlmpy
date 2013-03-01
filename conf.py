@@ -84,7 +84,7 @@ today_fmt = '%Y/%m/%d'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build', 'source', 'Memo', 'readme.*', '**/readme.*']
+exclude_patterns = ['_build', 'source', '00memo', 'readme.*', '**/readme.*']
 
 # The name of the default domain.
 # Can also be None to disable a default domain. The default is 'py'.
