@@ -61,11 +61,15 @@ copyright = u'2012, Toshihiro Kamishima'
 # built documents.
 #
 # The short X.Y version.
-import commands
+import subprocess
 import os
-if os.access('.git', os.X_OK):
-    version = commands.getoutput('git log -1 --pretty=%H')
-    release = commands.getoutput('git log -1 --pretty=%ai')
+if os.access('.git', os.F_OK):
+    p = subprocess.Popen(['git', '--no-pager', 'log', '-1', '--pretty=%H'],
+                         stdout=subprocess.PIPE)
+    version = p.stdout.readlines()[0][:-1]
+    p = subprocess.Popen(['git', '--no-pager', 'log', '-1', '--pretty=%ai'],
+                         stdout=subprocess.PIPE)
+    release = p.stdout.readlines()[0][:-1]
 else:
     version = "Unknown"
     release = version
