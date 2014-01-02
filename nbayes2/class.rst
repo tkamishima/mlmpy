@@ -3,10 +3,6 @@
 クラスの再編成
 ==============
 
-.. todo::
-   NaiveBayes1 クラスを BaseNaiveBayes のサブクラスに
-   - predict メソッドの共有
-
 この章では単純ベイズ法の学習のいろいろな実装を比較するのに便利になるように， :ref:`nbayes1` の :class:`NaiveBayes1` クラスを再編成します．
 :class:`NaiveBayes1` クラスには，コンストラクタの他には，学習を行う :meth:`fit` メソッドと，予測を行う :meth:`predict` メソッドがありました．
 学習メソッドの実装はいろいろ変えますが， :meth:`predict` メソッドはどの実装でも共通にする予定です．
