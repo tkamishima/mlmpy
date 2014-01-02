@@ -3,7 +3,7 @@
 """
 NaiveBayes1 test runner
 
-Chapter "Naive Bayes: a Primary Course"
+Chapter "Naive Bayes: an Advanced Course"
 """
 
 # imports

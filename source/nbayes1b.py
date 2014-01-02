@@ -3,7 +3,7 @@
 """
 NaiveBayes1 class
 
-Chapter "Naive Bayes: An Advanced Course"
+Chapter "Naive Bayes: an Advanced Course"
 """
 
 # imports
