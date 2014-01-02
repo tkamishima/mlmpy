@@ -1,4 +1,4 @@
-.. _nbayes1-class:
+.. _nbayes2-class:
 
 クラスの再編成
 ==============
@@ -12,8 +12,14 @@
 学習メソッドの実装はいろいろ変えますが， :meth:`predict` メソッドはどの実装でも共通にする予定です．
 そこで，予測メソッドなど共通部分含む抽象クラスを新たに作成し，各クラスで異なる部分は，その抽象クラスを継承した子クラスに実装することにします．
 
+.. _nbayes2-class-abstract:
+
+.. index:: BaseBinaryNaiveBayes
+
 二値単純ベイズの抽象クラス
 --------------------------
+
+.. index:: abstract class
 
 二値単純ベイズの共通部分を含む抽象クラス :class:`BaseBinaryNaiveBayes` を作成します．
 :mod:`abc` モジュールを利用して次のようにクラスを定義しておきます．
@@ -44,6 +50,10 @@
 最後に今後の単純ベイズの実装で共通して使われるコンストラクタと :meth:`predict` メソッドを，今までの :class:`NaiveBayes1` からコピーしておきます．
 以上で，二値単純ベイズの抽象クラスは完成です．
 
+.. _nbayes2-class-nbayes1:
+
+.. index:: NaiveBayes1
+
 新しい :class:`NaiveBayes1` クラス
 ----------------------------------
 
@@ -66,6 +76,8 @@
 
 最後にこのクラスに固有の :meth:`fit` メソッドを，以前の :class:`NaiveBayes1` クラスからコピーしておきます．
 以上で， :class:`NaiveBayes1` クラスの再編成が完了しました．
+
+.. _nbayes2-class-run:
 
 実行
 ----
