@@ -85,8 +85,12 @@ NumPy 配列やリストを使って複数の要素を指定し，それらを�
 
 なお，リスト内包表記や :func:`np.apply_along_axis` を利用する方法もありますが，どの実装の実行速度が速いかは事例数や特徴数に依存するようです．
 
+.. _nbayes1-predict-logjprob:
+
 対数同時確率の計算
 ------------------
+
+.. _nbayes1-predict-logjprob-1:
 
 方針（１）
 ^^^^^^^^^^
@@ -127,6 +131,8 @@ NumPy 配列やリストを使って複数の要素を指定し，それらを�
     Out[42]: array([4, 6])
     In [43]: a * b
     Out[43]: array([3, 8])
+
+.. _nbayes1-predict-logjprob-2:
 
 方針（２）
 ^^^^^^^^^^
