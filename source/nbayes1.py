@@ -70,9 +70,9 @@ class NaiveBayes1(object):
         self.pXgY_ = np.empty((n_features, n_fvalues, n_classes),
                               dtype=np.float)
         for j in xrange(n_features):
-            for x in xrange(n_fvalues):
-                for y in xrange(n_classes):
-                    self.pXgY_[j, x, y] = nXY[j, x, y] / np.float(nY[y])
+            for xi in xrange(n_fvalues):
+                for yi in xrange(n_classes):
+                    self.pXgY_[j, xi, yi] = nXY[j, xi, yi] / np.float(nY[yi])
 
     def predict(self, X):
         """
