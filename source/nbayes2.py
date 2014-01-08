@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-NaiveBayes1 class
+NaiveBayes2 class
 
 Chapter "Naive Bayes: an Advanced Course"
 """
@@ -12,12 +12,12 @@ import numpy as np
 
 # public symbols
 __all__ = ['BaseBinaryNaiveBayes',
-           'NaiveBayes1']
+           'NaiveBayes1',
+           'NaiveBayes2']
 
 class BaseBinaryNaiveBayes(object):
     """
     Abstract Class for Naive Bayes whose classes and features are binary.
-
 
     Attributes
     ----------
@@ -130,3 +130,52 @@ class NaiveBayes1(BaseBinaryNaiveBayes):
             for xi in xrange(n_fvalues):
                 for yi in xrange(n_classes):
                     self.pXgY_[j, xi, yi] = nXY[j, xi, yi] / np.float(nY[yi])
+
+class NaiveBayes2(BaseBinaryNaiveBayes):
+    """
+    Naive Bayes class (2)
+    """
+
+    def __init__(self):
+        super(NaiveBayes2, self).__init__()
+
+    def fit(self, X, y):
+        """
+        Fitting model
+
+        Implementation using matrix sums.
+
+        Parameters
+        ----------
+        X : array_like, shape=(n_samples, n_features), dtype=int
+            feature values of training samples
+        y : array_like, shape=(n_samples), dtype=int
+            class labels of training samples
+        """
+
+        # constants
+        n_samples = X.shape[0]
+        n_features = X.shape[1]
+        n_classes = 2
+        n_fvalues = 2
+
+        # check the size of y
+        if n_samples != len(y):
+            raise ValueError('Mismatched number of samples.')
+
+        # count up n[yi=y]
+        nY = np.sum(y[:, np.newaxis] == np.arange(n_classes)[np.newaxis, :],
+                    axis=0)
+
+        # calc pY_
+        self.pY_ = np.true_divide(nY, n_samples)
+
+        # count up n[x_ij=xj, yi=y]
+        lX = (X[:, :, np.newaxis, np.newaxis] ==
+              np.arange(n_fvalues)[np.newaxis, np.newaxis, :, np.newaxis])
+        ly = (y[:, np.newaxis, np.newaxis, np.newaxis] ==
+              np.arange(n_classes)[np.newaxis, np.newaxis, np.newaxis, :])
+        nXY = np.sum(np.logical_and(lX, ly), axis=0)
+
+        # calc pXgY_
+        self.pXgY_ = np.true_divide(nXY, nY[np.newaxis, np.newaxis, :])

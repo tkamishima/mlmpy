@@ -341,6 +341,8 @@ epub_exclude_files = [
     '_downloads/run_nbayes1.py',
     '_downloads/nbayes1b.py',
     '_downloads/run_nbayes1b.py',
+    '_downloads/nbayes2.py',
+    '_downloads/run_nbayes2.py',
     '_downloads/vote_filled.tsv'
 ]
 
