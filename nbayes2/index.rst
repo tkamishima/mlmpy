@@ -12,8 +12,10 @@ scikit-learn と密接な連携ができるように，その抽象クラスを�
 
    class
    fit2
+   broadcasting
+   featuredist
+   timeit
    fit3
    map
    gauss
-   sklearn
    summary
