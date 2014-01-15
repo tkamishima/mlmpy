@@ -5,7 +5,7 @@
 ******************
 
 この章では， :ref:`nbayes1` で実装した :class:`NaiveBayes1` クラスを，NumPy のより高度な機能を利用して改良します．
-scikit-learn と密接な連携ができるように，その抽象クラスを利用した実装も紹介します．
+その過程で，NumPy の強力な機能であるブロードキャストの機能を紹介します．
 
 .. toctree::
    :maxdepth: 3
@@ -15,7 +15,4 @@ scikit-learn と密接な連携ができるように，その抽象クラスを�
    broadcasting
    featuredist
    timeit
-   fit3
-   map
-   gauss
    summary
