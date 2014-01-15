@@ -1,4 +1,4 @@
-.. _nbayes2-map:
+.. _nbayes3-map:
 
 MAP推定への拡張
 ===============
