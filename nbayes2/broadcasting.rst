@@ -7,7 +7,7 @@
 
 .. _nbayes2-broadcasting-shape:
 
-.. index:: ! ndarray; shape, ! ndarray; ndim, reshape, newaxis
+.. index:: ! ndarray; shape, ! ndarray; ndim
 
 NumPy 配列の大きさの変更
 ------------------------
