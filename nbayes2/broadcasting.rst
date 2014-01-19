@@ -127,6 +127,41 @@ NumPy 配列の次元数や大きさの操作
     In [35]: e[np.newaxis, :, np.newaxis, :].shape
     Out[35]: (1, 2, 1, 3)
 
+.. index:: reshape
+
+ブロードキャストとは関連がありませんが， :attr:`shape` を変更する他の方法として :class:`np.ndarray` の :meth:`reshape` メソッドと，関数 :func:`np.reshape` をここで紹介しておきます．
+
+.. function:: np.reshape(a, newshape)
+
+    Gives a new shape to an array without changing its data.
+
+この関数は，配列 :obj:`a` 全体の要素数はそのままで，その :attr:`shape` を ``newshape`` で指定したものに変更するものです．
+同様の働きをする :meth:`reshape` メソッドもあります．
+
+.. code-block:: ipython
+
+    In [35]: np.arange(6)
+    Out[35]: array([0, 1, 2, 3, 4, 5])
+    In [36]: np.reshape(np.arange(6), (2, 3))
+    Out[36]:
+    array([[0, 1, 2],
+           [3, 4, 5]])
+    In [37]: np.arange(6).reshape((3, 2))
+    Out[37]:
+    array([[0, 1],
+           [2, 3],
+           [4, 5]])
+
+この例では，6個の要素を含む :attr:`shape` が ``(6,)`` の配列を，それぞれ :func:`np.reshape` 関数で ``(2, 3)`` に， :meth:`reshape` メソッドで  ``(3, 2)`` に :attr:`shape` を変更しています．
+ただし， :func:`np.reshape` 関数や， :meth:`reshape` メソッドでは，配列の総要素数を変えるような変更は指定できません．
+
+.. code-block:: ipython
+
+    In [38]: np.arange(6).reshape((3, 3))
+    ValueError: total size of new array must be unchanged
+
+この例では，総要素数が6個の配列を，総要素数が9個の :attr:`shape` ``(3, 3)`` を指定したためエラーとなっています．
+
 .. only:: not latex
 
    .. rubric:: 注釈
