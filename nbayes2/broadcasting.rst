@@ -9,8 +9,8 @@
 
 .. index:: ! ndarray; shape, ! ndarray; ndim
 
-NumPy 配列の大きさの変更
-------------------------
+NumPy 配列の次元数や大きさの操作
+--------------------------------
 
 ブロードキャストを紹介する前に， :ref:`nbayes1-ndarray` で紹介した，NumPy の配列クラス :class:`np.ndarray` の属性 :attr:`ndim` と :attr:`shape` を操作する方法を紹介します．
 
