@@ -52,6 +52,72 @@ NumPy 配列の次元数や大きさの操作
 
 転置しても，縦ベクトルになることはありません．属性 :attr:`T` やメソッド :meth:`transpose` は，次元数 :attr:`ndim` が 1 以下であれば，元と同じ配列を返します．
 
+.. index:: np.newaxis, newaxis
+
+縦ベクトルを得るには次元数や大きさを，転置する前に操作しておく必要があります．
+それには，定数 :const:`np.newaxis` を使います [1]_ [2]_ ．
+:const:`np.newaxis` は，添え字指定の表記の中に用います．
+元の配列の大きさを維持する次元には ``:`` を指定し，新たに大きさが 1 の次元を追加するところには :const:`np.newaxis` を指定します．
+
+.. code-block:: ipython
+
+    In [17]: b
+    Out[17]: array([10, 20])
+    In [18]: b.ndim
+    Out[18]: 1
+    In [19]: b.shape
+    Out[19]: (2,)
+
+    In [20]: c = b[:, np.newaxis]
+    In [21]: c
+    Out[21]:
+    array([[10],
+           [20]])
+    In [22]: c.ndim
+    Out[22]: 2
+    In [23]: c.shape
+    Out[23]: (2, 1)
+
+    In [24]: d = b[np.newaxis, :]
+    In [25]: d
+    Out[25]: array([[10, 20]])
+    In [26]: d.ndim
+    Out[26]: 2
+    In [27]: d.shape
+    Out[27]: (1, 2)
+
+この例で，元の :obj:`b` の :attr:`ndim` は 1 で，その大きさは 2 です．
+20行目では，第0次元 [3]_ は元のベクトルをコピーし，第1次元には大きさ 1 の新たな次元を追加しています．
+その結果， :obj:`c` の :attr:`shape` は ``(2, 1)`` となり， :math:`2 \times 1` 行列，すなわち縦ベクトルになっています．
+24行目では，第0次元の方に新たな次元を追加し，第1次元は元ベクトルをコピーしており，その結果，配列 :obj:`d` の :attr:`shape` は ``(1, 2)`` となります．
+これは， :math:`1 \times 2` 行列，すなわち横ベクトルとなっています．
+
+これら縦ベクトル :obj:`c` と横ベクトル :obj:`d` はそれぞれ2次元の配列，すなわち行列なので，次のように転置することができます．
+
+.. code-block:: ipython
+
+    In [28]: c.T
+    Out[28]: array([[10, 20]])
+    In [29]: d.T
+    Out[29]:
+    array([[10],
+           [20]])
+
+転置により，縦ベクトル :obj:`c` は横ベクトルに，横ベクトル :obj:`d` は縦ベクトルになっています．
+
+.. only:: not latex
+
+   .. rubric:: 注釈
+
+.. [1]
+   :const:`np.newaxis` の実体は :const:`None` であり， :const:`np.newaxis` の代わりに :const:`None` と書いても全く同じ動作をします．
+   ここでは，記述の意味を明確にするために， :const:`np.newaxis` を用います．
+
+.. [2]
+   他にも :func:`np.expand_dims` や :func:`np.atleast_3d` などの関数を使う方法もありますが，最も自由度の高い :const:`np.newaxis` を用いる方法を紹介します．
+
+.. [3]
+   :attr:`shape` で示されるタプルの一番左側から第 0 次元，第 1 次元，… となります．
 
 .. _nbayes2-broadcasting-broadcasting:
 
