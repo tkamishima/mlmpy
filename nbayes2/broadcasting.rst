@@ -105,6 +105,28 @@ NumPy 配列の次元数や大きさの操作
 
 転置により，縦ベクトル :obj:`c` は横ベクトルに，横ベクトル :obj:`d` は縦ベクトルになっています．
 
+:const:`np.newaxis` は，2次元以上の配列にも適用できます．
+
+.. code-block:: ipython
+
+    In [30]: e = np.array([[1, 2, 3], [2, 4, 6]])
+    In [31]: e.shape
+    Out[31]: (2, 3)
+    In [32]: e[np.newaxis, :, :].shape
+    Out[32]: (1, 2, 3)
+    In [33]: e[:, np.newaxis, :].shape
+    Out[33]: (2, 1, 3)
+    In [34]: e[:, :, np.newaxis].shape
+    Out[34]: (2, 3, 1)
+
+:const:`np.newaxis` の挿入位置に応じて，大きさ1の新しい次元が :attr:`shape` に加わっていることが分かります．
+また，同時に2個以上の新しい次元を追加することも可能です．
+
+.. code-block:: ipython
+
+    In [35]: e[np.newaxis, :, np.newaxis, :].shape
+    Out[35]: (1, 2, 1, 3)
+
 .. only:: not latex
 
    .. rubric:: 注釈
