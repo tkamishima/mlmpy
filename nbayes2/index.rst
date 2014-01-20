@@ -13,6 +13,6 @@
    class
    fit2
    broadcasting
-   featuredist
+   distlearn
    timeit
    summary
