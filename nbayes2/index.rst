@@ -12,6 +12,7 @@
 
    class
    fit2
+   shape
    broadcasting
    distlearn
    timeit
