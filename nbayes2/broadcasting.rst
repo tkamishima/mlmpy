@@ -74,7 +74,7 @@
 例えば，上記の入力配列 :obj:`a` ， :obj:`b` ，および :obj:`c` の場合は次の図のようになります．
 
 .. image:: ../Fig/broadcast-match1.*
-    :width: 9.6 cm
+    :width: 8.32 cm
     :align: center
 
 青色の第0次元の大きさを比較すると :obj:`a` では 1， :obj:`b` も 1，そして :obj:`c` も 2 なので，これら三つのうちで最大の 2 が出力配列の第0次元の大きさとなります．
