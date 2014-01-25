@@ -13,3 +13,13 @@
 クラス分布の学習
 ----------------
 
+:ref:`nbayes2-fit2-fitif` 節で紹介した，クラス分布の計算の比較演算を用いた次の実装を，ブロードキャストの機能を用いて実装します．
+
+.. code-block:: python
+
+    nY = np.zeros(n_classes, dtype=np.int)
+    for yi in xrange(n_classes):
+        for i in xrange(n_samples):
+            if y[i] == yi:
+                nY[yi] += 1
+
