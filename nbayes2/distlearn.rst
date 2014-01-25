@@ -112,4 +112,46 @@
 左辺はループ変数 :obj:`yi` のみなので，対応する配列 :obj:``ary_yi`` がそのまま利用できます．
 以上で，比較演算に必要な配列 :obj:`ary_y` と :obj:`ary_yi` が得られました．
 
+冗長な配列の整理
+^^^^^^^^^^^^^^^^
+
+段階5では，冗長な配列の生成を整理します．
+:obj:`ary_y` は， :obj:`ary_i` を展開すると次のようになります．
+
+.. code-block:: python
+
+    ary_y = y[np.arange(n_samples)[:, np.newaxis]]
+
+配列の :attr:`shape` を変えてから :obj:`y` 中の値を取り出す代わりに，先に :obj:`y` の値を取り出してｋだら :attr:`shape` を変更するようにすると次のようになります．
+
+.. code-block:: python
+
+    ary_y = (y[np.arange(n_samples)])[:, np.newaxis]
+
+ここで :obj:`y` の大きさは :obj:`n_samples` であることから， ``y[np.arange(n_samples)]`` は :obj:`y` そのものになります．
+すると :obj:`ary_y` はさらに簡潔に生成できます．
+
+.. code-block:: python
+
+    ary_y = y[:, np.newaxis]
+
+以上のことから， :obj:`ary_i` を生成することなく目的の :obj:`ary_y` を生成できるようになりました．
+
+この冗長なコードの削除は次のループの書き換えと対応付けることができます．
+次のループ変数 :obj:`i` を使って :obj:`y` 中の要素を取り出すコード
+
+.. code-block:: python
+
+    for i in xrange(n_samples):
+        val_y = y[i]
+
+は， :obj:`for` ループで :obj:`y` の要素を順に参照する次のコードと同じ :obj:`val_y` の値を得ることができます．
+
+.. code-block:: python
+
+    for val_y in y:
+        pass
+
+これらのコードは，それぞれ，ループ変数配列を用いた ``y[ary_i]`` と :obj:`y` の値を直接参照する ``y[:, np.newaxis]`` とに対応します．
+
                 axis=0)
