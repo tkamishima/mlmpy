@@ -148,3 +148,18 @@
     .. function::  numpy.apply_over_axes(func, a, axes)
 
         Apply a function repeatedly over multiple axes.
+
+.. _distfeature-prob:
+
+特徴値の確率の計算
+------------------
+
+最後に :obj:`nXY` と，クラスごとの事例数 :obj:`nY` を用いて，クラスが与えられたときの，各特徴値が生じる確率を計算します．
+それには :obj:`nXY` を，対応するクラスごとにクラスごとの総事例数 :obj:`nY` で割ります．
+:obj:`nY` を :obj:`nXY` と同じ次元数にし，そのクラスに対応する第2次元に割り当てるようにすると ``nY[np.newaxis, np.newaxis, :]`` となります．
+あとは，実数の結果を返す割り算のユニバーサル関数 :func:`np.true_divide` を適用すれば，特徴値の確率を計算できます．
+
+.. code-block:: python
+
+    self.pXgY_ = np.true_divide(nXY, nY[np.newaxis, np.newaxis, :])
+
