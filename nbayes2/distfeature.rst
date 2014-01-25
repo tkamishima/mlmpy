@@ -1,4 +1,4 @@
-.. _distfeature:
+.. _nbayes2-distfeature:
 
 特徴の分布の学習
 ================
@@ -27,7 +27,7 @@
 
 それでは，この実装を，特徴の分布と同様に書き換えます．
 
-.. _distfeature-assign:
+.. _nbayes2-distfeature-assign:
 
 ループ変数の次元への割り当て
 ----------------------------
@@ -48,7 +48,7 @@
 この変数 :obj:`nXY` の第0次元は特徴，第1次元は特徴値，そして第3次元はクラスなので，この順序は同じになるように割り当てています．
 最後に凝集演算をしたあとに，次元の入れ替えも可能ですが，入れ替えが不要で，実装が簡潔になるように予め割り当てておきます．
 
-.. _distfeature-arygen:
+.. _nbayes2-distfeature-arygen:
 
 計算に必要な配列の生成
 ----------------------
@@ -75,7 +75,7 @@
 
 以上で演算に必要な値を得ることができました．
 
-.. _distfeature-computation:
+.. _nbayes2-distfeature-computation:
 
 要素ごとの演算と凝集演算
 ------------------------
@@ -149,7 +149,7 @@
 
         Apply a function repeatedly over multiple axes.
 
-.. _distfeature-prob:
+.. _nbayes2-distfeature-prob:
 
 特徴値の確率の計算
 ------------------
@@ -163,7 +163,7 @@
 
     self.pXgY_ = np.true_divide(nXY, nY[np.newaxis, np.newaxis, :])
 
-.. _distfeature-run:
+.. _nbayes2-distfeature-run:
 
 実行
 ----
