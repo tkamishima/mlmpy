@@ -175,7 +175,7 @@ class NaiveBayes2(BaseBinaryNaiveBayes):
                  np.arange(n_fvalues)[np.newaxis, np.newaxis, :, np.newaxis])
         cmp_y = (y[:, np.newaxis, np.newaxis, np.newaxis] ==
                  np.arange(n_classes)[np.newaxis, np.newaxis, np.newaxis, :])
-        nXY = np.sum(np.logical_and(lX, ly), axis=0)
+        nXY = np.sum(np.logical_and(cmp_X, cmp_y), axis=0)
 
         # calc pXgY_
         self.pXgY_ = np.true_divide(nXY, nY[np.newaxis, np.newaxis, :])
