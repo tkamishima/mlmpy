@@ -47,12 +47,11 @@
 表にまとめると次のようになります．
 
 .. csv-table::
-    :stub-columns: 1
+    :header-rows: 1
 
-    次元, 0, 1
-    ループ変数, :obj:`i` , :obj:`yi`
-    大きさ, ``n_samples`` , ``n_classes``
-    意味, 事例, クラス
+    次元, ループ変数, 大きさ, 意味
+    0, :obj:`i` , :obj:`n_samples` , 事例
+    1, :obj:`yi` , :obj:`n_classes` , クラス
 
 .. _nbayes2-distclass-indexgen:
 
