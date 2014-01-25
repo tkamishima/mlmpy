@@ -48,3 +48,30 @@
 この変数 :obj:`nXY` の第0次元は特徴，第1次元は特徴値，そして第3次元はクラスなので，この順序は同じになるように割り当てています．
 最後に凝集演算をしたあとに，次元の入れ替えも可能ですが，入れ替えが不要で，実装が簡潔になるように予め割り当てておきます．
 
+.. _distfeature-arygen:
+
+計算に必要な配列の生成
+----------------------
+
+ループ内での要素ごとの演算は ``y[i] == yi and X[i, j] == xi`` です．
+ループ変数 :obj:`yi` と :obj:`xi` に対応する配列は次のようになります．
+
+.. code-block:: python
+
+    ary_xi = np.arange(n_fvalues)[np.newaxis, np.newaxis, :, np.newaxis]
+    ary_yi = np.arange(n_classes)[np.newaxis, np.newaxis, np.newaxis, :]
+
+``y[i]`` に対応する配列は，全事例の :obj:`y` の値を，事例に対応する第0次元に割り当て，その他の次元の大きさを1にした配列となります．
+
+.. code-block:: python
+
+    ary_y = y[:, np.newaxis, np.newaxis, np.newaxis]
+
+``X[i, j]`` に対応する配列は，全事例の ``X[:, j]`` の値を，事例に対応する第0次元に，そして全特徴の ``X[i, :]`` の値を，特徴に対応する第1次元に割り当て，その他の第2と第3次元の大きさを1にした配列となります．
+
+.. code-block:: python
+
+    ary_X = X[:, :, np.newaxis, np.newaxis]
+
+以上で演算に必要な値を得ることができました．
+
