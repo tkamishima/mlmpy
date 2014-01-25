@@ -163,3 +163,33 @@
 
     self.pXgY_ = np.true_divide(nXY, nY[np.newaxis, np.newaxis, :])
 
+.. _distfeature-run:
+
+実行
+----
+
+.. index:: sample; nbayes2.py, sample; run_nbayes2.py
+
+以上の，ブロードキャスト機能を活用した訓練メソッド :meth:`fit` を実装した :class:`NaiveBayes2` と，その実行スクリプトは，以下より取得できます．
+この :class:`NaiveBayes2` クラスの実行可能な状態のファイルは
+
+.. only:: epub or latex
+
+  https://github.com/tkamishima/mlmpy/blob/master/source/nbayes2.py
+
+.. only:: html and not epub
+
+  :download:`NaiveBayes2 クラス：nbayes2.py <../source/nbayes2.py>`
+
+であり，実行ファイルは
+
+.. only:: epub or latex
+
+  https://github.com/tkamishima/mlmpy/blob/master/source/run_nbayes2.py
+
+.. only:: html and not epub
+
+  :download:`NaiveBayes2 実行スクリプト：run_nbayes2.py <../source/run_nbayes2.py>`
+
+です．
+実行すると， :class:`NaiveBayes1` と :class:`NaiveBayes2` で同じ結果が得られます．
