@@ -171,10 +171,10 @@ class NaiveBayes2(BaseBinaryNaiveBayes):
         self.pY_ = np.true_divide(nY, n_samples)
 
         # count up n[x_ij=xj, yi=y]
-        lX = (X[:, :, np.newaxis, np.newaxis] ==
-              np.arange(n_fvalues)[np.newaxis, np.newaxis, :, np.newaxis])
-        ly = (y[:, np.newaxis, np.newaxis, np.newaxis] ==
-              np.arange(n_classes)[np.newaxis, np.newaxis, np.newaxis, :])
+        cmp_X = (X[:, :, np.newaxis, np.newaxis] ==
+                 np.arange(n_fvalues)[np.newaxis, np.newaxis, :, np.newaxis])
+        cmp_y = (y[:, np.newaxis, np.newaxis, np.newaxis] ==
+                 np.arange(n_classes)[np.newaxis, np.newaxis, np.newaxis, :])
         nXY = np.sum(np.logical_and(lX, ly), axis=0)
 
         # calc pXgY_
