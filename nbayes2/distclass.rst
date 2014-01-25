@@ -102,7 +102,7 @@
 
 .. code-block:: python
 
-    if y[i] == yi:
+    y[i] == yi
 
 右辺はループ変数 :obj:`i` で指定された位置の，配列 :obj:`y` の値です．
 
