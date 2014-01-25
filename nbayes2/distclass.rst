@@ -192,11 +192,6 @@
 
     nY = np.sum(cmp_y, axis=0)
 
-.. _nbayes2-distclass-complete:
-
-まとめ
-------
-
 以上の実装をまとめて書くと次のようになります．
 
 .. code-block:: python
@@ -212,3 +207,34 @@
 
     nY = np.sum(y[:, np.newaxis] == np.arange(n_classes)[np.newaxis, :],
                 axis=0)
+
+
+.. _nbayes2-distclass-prob:
+
+クラスの確率の計算
+------------------
+
+:class:`NaiveBayes1` の実装では，各クラスごとの標本数 :obj:`nY` を，総標本数 :obj:`n_samples` で割って，クラスの確率を計算しました．
+
+.. code-block:: python
+
+    self.pY_ = np.empty(n_classes, dtype=np.float)
+    for i in xrange(n_classes):
+        self.pY_[i] = nY[i] / np.float(n_samples)
+
+この処理も，ユニバーサル関数の機能を使うと次のように簡潔に実装できます．
+
+.. code-block:: python
+
+    self.pY_ = np.true_divide(nY, n_samples)
+
+Python では整数同士の割り算の解は切り捨ての整数になります．
+しかし，ここでは実数の解を得たいので :func:`np.true_divide` 関数を用いて，切り捨てではない実数の解を得ます．
+
+.. index:: true_divide
+
+.. function:: true_divide(x1, x2[, out]) = <ufunc 'true_divide'>
+
+    Returns a true division of the inputs, element-wise.
+
+この関数はユニバーサル関数なので， :obj:`nY` の各要素は，それぞれ :obj:`n_samples` で割られます．
