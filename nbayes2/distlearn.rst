@@ -52,7 +52,8 @@
     :stub-columns: 1
 
     次元, 0, 1
-    ループ変数, 0, 1
+    ループ変数, :obj:`i` , :obj:`yi`
     大きさ, ``n_samples`` , ``n_classes``
-    意味, 訓練標本, クラス
+    意味, 標本, クラス
 
+                axis=0)
