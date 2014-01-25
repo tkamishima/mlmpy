@@ -22,8 +22,4 @@
 
   * \A. Frank and A. Asuncion "UCI Machine Learning Repository" University of California, Irvine, School of Information and Computer Sciences (2010)
 
-* ePub の表紙ファイルの参考にしました．
-
-  * `Best practices in ePub cover images by Keith Fahlgren @ Threepress Consulting blog <http://blog.threepress.org/2009/11/20/best-practices-in-epub-cover-images/>`_
-
 最後に，本チュートリアルのバグ等をご連絡いただきました方々に感謝します．

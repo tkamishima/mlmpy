@@ -4,8 +4,14 @@
 ========================
 
 モデルパラメータを，訓練データから学習する :meth:`fit` メソッドを，単純に多次元配列として，NumPy 配列を利用する方針で実装します．
-実は，この実装方針では NumPy の利点は生かせませんが，以後，NumPy のいろいろな利点を順に紹介しながら，この実装を改良してゆきます．
+実は，この実装方針では NumPy の利点は生かせませんが，後の :ref:`nbayes2` 章で，NumPy のいろいろな利点を順に紹介しながら，この実装を改良してゆきます．
 
+.. _nbayes1-fit1-const:
+
+定数の設定
+----------
+
+まず，メソッド内で利用する定数を定義します．
 このメソッドの引数は，訓練データの特徴ベクトル集合 :obj:`X` とクラスラベル集合 :obj:`y` であると :ref:`nabyes1-spec-class` で定義しました．
 最初に，この引数から特徴数や訓練事例数などの定数を抽出します．
 :obj:`X` は，行数が訓練事例数に，列数が特徴数に等しい行列に対応した2次元配列です．
@@ -32,7 +38,20 @@
        raise ValueError('Mismatched number of samples.')
 
 以上で，モデルパラメータを学習する準備ができました．
-まず :ref:`nbayes1-nbayes` の式(4)のモデルパラメータを求めます．
+
+.. only:: not latex
+
+   .. rubric:: 注釈
+
+.. [1]
+   2次元以上の NumPy 配列に :func:`len` を適用すると :attr:`shape` 属性の最初の要素を返します．
+
+.. _nbayes1-fit1-class:
+
+クラスの分布の学習
+------------------
+
+:ref:`nbayes1-nbayes` の式(4)のクラスの分布のパラメータを求めます．
 計算に必要な量は総事例数 :math:`N` とクラスラベルが :math:`y` である事例数 :math:`N[y_i=y]` です．
 :math:`N` はすでに :obj:`n_samples` として計算済みです．
 :math:`N[y_i=y]` は， :math:`y\in\{0,1\}` について計算する必要があります．
@@ -54,8 +73,12 @@
    for i in xrange(n_classes):
        self.pY_[i] = nY[i] / np.float(n_samples)
 
+.. _nbayes1-fit1-feature:
 
-次は :ref:`nbayes1-nbayes` の式(5)のモデルパラメータです．
+特徴の分布の学習
+----------------
+
+:ref:`nbayes1-nbayes` の式(5)の特徴の分布のパラメータを求めます．
 計算に必要な量のうち :math:`N[y_i=y]` は，すでに式(4)の計算で求めました．
 もう一つの量 :math:`N[x_{ij}=x_j, y_i=y]` は，特徴 :math:`j=1,\ldots,K` それぞれについて，特徴の値 :math:`x_j\in\{0,1\}` とクラス :math:`y\in\{0,1\}` について計算する必要があります．
 よって，この量を保持する配列は3次元で，その :attr:`shape` 属性は ``(n_features, n_fvalues, n_classes)`` とする必要があります．
@@ -75,15 +98,8 @@
    self.pXgY_ = np.empty((n_features, n_fvalues, n_classes),
                          dtype=np.float)
    for j in xrange(n_features):
-       for x in xrange(n_fvalues):
-           for y in xrange(n_classes):
-               self.pXgY_[j, x, y] = nXY[j, x, y] / np.float(nY[y])
+       for xi in xrange(n_fvalues):
+           for yi in xrange(n_classes):
+               self.pXgY_[j, xi, yi] = nXY[j, xi, yi] / np.float(nY[yi])
 
 以上で，単純ベイズのモデルパラメータの学習を完了しました．
-
-.. only:: not latex
-
-   .. rubric:: 注釈
-
-.. [1]
-   2次元以上の NumPy 配列に :func:`len` を適用すると :attr:`shape` 属性の最初の要素を返します．

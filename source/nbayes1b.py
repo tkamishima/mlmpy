@@ -3,18 +3,21 @@
 """
 NaiveBayes1 class
 
-Chapter "Naive Bayes: a Primary Course"
+Chapter "Naive Bayes: an Advanced Course"
 """
 
 # imports
+from abc import ABCMeta, abstractmethod
 import numpy as np
 
 # public symbols
-__all__ = ['NaiveBayes1']
+__all__ = ['BaseBinaryNaiveBayes',
+           'NaiveBayes1']
 
-class NaiveBayes1(object):
+class BaseBinaryNaiveBayes(object):
     """
-    Naive Bayes class (1)
+    Abstract Class for Naive Bayes whose classes and features are binary.
+
 
     Attributes
     ----------
@@ -24,13 +27,67 @@ class NaiveBayes1(object):
         pmf of feature values given a class
     """
 
+    __metaclass__ = ABCMeta
+
     def __init__(self):
         self.pY_ = None
         self.pXgY_ = None
 
+    @abstractmethod
+    def fit(self, X, y):
+        """
+        Abstract method for fitting model
+        """
+        pass
+
+    def predict(self, X):
+        """
+        Predict class
+
+        Parameters
+        ----------
+        X : array_like, shape=(n_samples, n_features), dtype=int
+            feature values of unseen samples
+
+        Returns
+        -------
+        y : array_like, shape=(n_samples), dtype=int
+            predicted class labels
+        """
+
+        # constants
+        n_samples = X.shape[0]
+        n_features = X.shape[1]
+
+        # memory for return values
+        y = np.empty(n_samples, dtype=np.int)
+
+        # for each feature in X
+        for i, xi in enumerate(X):
+
+            # calc joint probability
+            logpXY = np.log(self.pY_) + \
+                     np.sum(np.log(self.pXgY_[np.arange(n_features), xi, :]),
+                            axis=0)
+
+            # predict class
+            y[i] = np.argmax(logpXY)
+
+        return y
+
+class NaiveBayes1(BaseBinaryNaiveBayes):
+    """
+    Naive Bayes class (1)
+    """
+
+    def __init__(self):
+        super(NaiveBayes1, self).__init__()
+
     def fit(self, X, y):
         """
         Fitting model
+
+        Implementation using for loops.
 
         Parameters
         ----------
@@ -73,38 +130,3 @@ class NaiveBayes1(object):
             for xi in xrange(n_fvalues):
                 for yi in xrange(n_classes):
                     self.pXgY_[j, xi, yi] = nXY[j, xi, yi] / np.float(nY[yi])
-
-    def predict(self, X):
-        """
-        Predict class
-
-        Parameters
-        ----------
-        X : array_like, shape=(n_samples, n_features), dtype=int
-            feature values of unseen samples
-
-        Returns
-        -------
-        y : array_like, shape=(n_samples), dtype=int
-            predicted class labels
-        """
-
-        # constants
-        n_samples = X.shape[0]
-        n_features = X.shape[1]
-
-        # memory for return values
-        y = np.empty(n_samples, dtype=np.int)
-
-        # for each feature in X
-        for i, xi in enumerate(X):
-
-            # calc joint probability
-            logpXY = np.log(self.pY_) + \
-                     np.sum(np.log(self.pXgY_[np.arange(n_features), xi, :]),
-                            axis=0)
-
-            # predict class
-            y[i] = np.argmax(logpXY)
-
-        return y

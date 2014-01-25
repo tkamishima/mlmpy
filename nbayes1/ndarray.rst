@@ -108,8 +108,10 @@ np.array() 関数による生成
 
    Return a new array of given shape and type, filled with ones.
 
-``shape`` は，スカラーや，タプルによって配列の各次元の長さを表したものです．
-長さが 5 のベクトルはスカラー ``5`` によって， :math:`2 \times 3` の行列はタプル ``(2, 3)`` によって表現します．
+.. index:: ndarray; shape
+
+:attr:`shape` は，スカラーや，タプルによって配列の各次元の長さを表したものです．
+大きさが 5 のベクトルはスカラー ``5`` によって， :math:`2 \times 3` の行列はタプル ``(2, 3)`` によって表現します．
 
 長さが 3 の0ベクトルの例です:
 
@@ -208,12 +210,14 @@ NumPy 配列の属性と要素の参照
    :ivar ndim: Number of array dimensions
    :ivar shape: Tuple of array dimensions
 
+.. index:: ndarray; ndim
+
 最初の属性 :attr:`dtype` は配列の要素の型を表し，これまでに紹介した関数の引数でも使われていました．
 :class:`np.ndarray` は，配列の中の全要素の型は基本的に同じです [2]_ ．
 二番目の属性 :attr:`ndim` は，次元数を表します．
 ベクトルでは 1 に，配列では 2 になります．
 三番目の属性 :attr:`shape` は，各次元ごとの配列の大きさをまとめたタプルで指定します．
-例えば，長さが 5 のベクトルは ``(5,)`` [3]_ となり， :math:`2 \times 3` 行列では ``(2, 3)`` となります．
+例えば，大きさが 5 のベクトルは ``(5,)`` [3]_ となり， :math:`2 \times 3` 行列では ``(2, 3)`` となります．
 
 .. index:: ! dtype
 
