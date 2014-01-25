@@ -75,3 +75,76 @@
 
 以上で演算に必要な値を得ることができました．
 
+.. _distfeature-computation:
+
+要素ごとの演算と凝集演算
+------------------------
+
+まず要素ごとの比較演算 ``y[i] == yi and X[i, j] == xi`` を配列間で実行します．
+``y[i] == yi`` と ``X[i, j] == xi`` に対応する計算は， :obj:`==` がユニバーサル関数なので，次のように簡潔に実装できます．
+
+.. code-block:: python
+
+    cmp_X = (ary_X == ary_xi)
+    cmp_y = (ary_y == ary_yi)
+
+ここで， :obj:`and` は Python の組み込み関数で，ユニバーサル関数ではありません．
+そこで，ユニバーサル関数である :func:`np.logical_and` を用います [1]_ ．
+
+.. index:: logical_and
+
+.. function::  np.logical_and(x1, x2[, out]) = <ufunc 'logical_and'>
+
+    Compute the truth value of x1 AND x2 elementwise.
+
+実装結果は次のようになります．
+
+.. code-block:: python
+
+    cmp_Xandy = np.logical_and(cmp_X, cmp_y)
+
+つぎに，全ての事例についての総和を求める凝集演算を行います．
+総和を求める :func:`np.sum` を，事例に対応する第0次元に適用します [2]_ ．
+
+.. code-block:: python
+
+    nXY = np.sum(cmp_Xandy, axis=0)
+
+以上の配列の生成と，演算を全てをまとめると次のようになります．
+
+.. code-block:: python
+
+    ary_xi = np.arange(n_fvalues)[np.newaxis, np.newaxis, :, np.newaxis]
+    ary_yi = np.arange(n_classes)[np.newaxis, np.newaxis, np.newaxis, :]
+    ary_y = y[:, np.newaxis, np.newaxis, np.newaxis]
+    ary_X = X[:, :, np.newaxis, np.newaxis]
+
+    cmp_X = (ary_X == ary_xi)
+    cmp_y = (ary_y == ary_yi)
+    cmp_Xandy = np.logical_and(cmp_X, cmp_y)
+
+    nXY = np.sum(cmp_Xandy, axis=0)
+
+そして，中間変数への代入を適宜整理します．
+
+.. code-block:: python
+
+    cmp_X = (X[:, :, np.newaxis, np.newaxis] ==
+             np.arange(n_fvalues)[np.newaxis, np.newaxis, :, np.newaxis])
+    cmp_y = (y[:, np.newaxis, np.newaxis, np.newaxis] ==
+             np.arange(n_classes)[np.newaxis, np.newaxis, np.newaxis, :])
+    nXY = np.sum(np.logical_and(lX, ly), axis=0)
+
+以上で，各特徴，各特徴値，そして各クラスごとの事例数を数え上げることができました．
+
+.. [1]
+    同様の関数に， :obj:`or` ， :obj:`not` ，および :obj:`xor` の論理演算に，それぞれ対応するユニバーサル関数 :func:`logical_or` ，:func:`logical_not` ，および :func:`logical_xor` があります．
+
+.. [2]
+    もし同時に二つ以上の次元について同時に凝集演算をする必要がある場合には， :func:`np.apply_over_axes` を用います．
+
+    .. index:: apply_over_axes
+
+    .. function::  numpy.apply_over_axes(func, a, axes)
+
+        Apply a function repeatedly over multiple axes.
