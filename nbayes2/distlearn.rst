@@ -56,4 +56,40 @@
     大きさ, ``n_samples`` , ``n_classes``
     意味, 標本, クラス
 
+ループ変数に対応する配列の生成
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+手順の段階3により，各ループ変数がループ内で取り得る全ての値を要素に含む配列を生成します．
+これらの要素は，段階2で割り当てた次元に格納します．
+まずループ変数 :obj:`i` に関するループを見ます．
+
+.. code-block:: python
+
+    for i in xrange(n_samples):
+
+このループでループ変数 :obj:`i` は ``0`` から ``n_samples - 1`` までの整数をとります．
+これらの値を含む配列は ``np.arange(n_samples)`` により生成できます．
+次に，これらの値が，ループ変数 :obj:`i` に割り当てた次元 0 の要素になり，他の次元の大きさは 1 になるようにします．
+これは，:ref:`nbayes2-shape` で紹介した :attr:`shape` の操作技法を用いて次のように実装できます．
+
+.. code-block:: python
+
+    ary_i = np.arange(n_samples)[:, np.newaxis]
+
+第0次元の ``:`` により， ``np.arange(n_samples)`` の内容を第0次元に割り当て，第1次元には ``np.newaxis`` により大きさ 1 の次元を設定します．
+
+ループ変数 :obj:`yi` についての次のループも同様に処理します．
+
+.. code-block:: python
+
+    for yi in xrange(n_classes):
+
+この変数は ``0`` から ``n_classes - 1`` までの整数をとり，第1次元に割り当てられているので，この変数に対応する配列は次のようになります．
+
+.. code-block:: python
+
+    ary_yi = np.arange(n_classes)[np.newaxis, :]
+
+第0次元には大きさ 1 の次元を設定し，第1次元の要素には ``np.arange(n_classes)`` の内容を割り当てています．
+
                 axis=0)
