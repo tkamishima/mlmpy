@@ -14,6 +14,7 @@
    fit2
    shape
    broadcasting
-   distlearn
+   distclass
+   distfeature
    timeit
    summary
