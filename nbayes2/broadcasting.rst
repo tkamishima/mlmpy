@@ -1,6 +1,6 @@
-.. _nbayes2-broadcasting:
-
 .. index:: ! broadcasting
+
+.. _nbayes2-broadcasting:
 
 ブロードキャスト
 ================

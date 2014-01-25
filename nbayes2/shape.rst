@@ -45,9 +45,9 @@
 
 転置しても，縦ベクトルになることはありません．属性 :attr:`T` やメソッド :meth:`transpose` は，次元数 :attr:`ndim` が 1 以下であれば，元と同じ配列を返します．
 
-.. _nbayes2-shape-newaxis:
-
 .. index:: np.newaxis, newaxis
+
+.. _nbayes2-shape-newaxis:
 
 :const:`np.newaxis` による操作
 ------------------------------
@@ -125,9 +125,9 @@
     In [35]: e[np.newaxis, :, np.newaxis, :].shape
     Out[35]: (1, 2, 1, 3)
 
-.. _nbayes2-shape-reshape:
-
 .. index:: reshape
+
+.. _nbayes2-shape-reshape:
 
 :meth:`reshpe` による操作
 -------------------------

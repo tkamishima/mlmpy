@@ -81,7 +81,6 @@ NumPy 配列やリストを使って複数の要素を指定し，それらを�
    for i, xi in enumerate(X):
        pass
 
-.. _nbayes1-predict-jointprob:
 
 なお，リスト内包表記や :func:`np.apply_along_axis` を利用する方法もありますが，どの実装の実行速度が速いかは事例数や特徴数に依存するようです．
 

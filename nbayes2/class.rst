@@ -8,9 +8,9 @@
 学習メソッドの実装はいろいろ変えますが， :meth:`predict` メソッドはどの実装でも共通にする予定です．
 そこで，予測メソッドなど共通部分含む抽象クラスを新たに作成し，各クラスで異なる部分は，その抽象クラスを継承した下位クラスに実装することにします．
 
-.. _nbayes2-class-abstract:
-
 .. index:: BaseBinaryNaiveBayes
+
+.. _nbayes2-class-abstract:
 
 二値単純ベイズの抽象クラス
 --------------------------
@@ -46,9 +46,9 @@
 最後に今後の単純ベイズの実装で共通して使われるコンストラクタと :meth:`predict` メソッドを，今までの :class:`NaiveBayes1` からコピーしておきます．
 以上で，二値単純ベイズの抽象クラスは完成です．
 
-.. _nbayes2-class-nbayes1:
-
 .. index:: NaiveBayes1
+
+.. _nbayes2-class-nbayes1:
 
 新しい :class:`NaiveBayes1` クラス
 ----------------------------------
