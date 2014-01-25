@@ -182,4 +182,21 @@
 
     nY = np.sum(cmp_y, axis=0)
 
+まとめ
+^^^^^^
+
+以上の実装をまとめて書くと次のようになります．
+
+.. code-block:: python
+
+    ary_y = y[:, np.newaxis]
+    ary_yi = np.arange(n_classes)[np.newaxis, :]
+    cmp_y = (ary_y == ary_yi)
+    nY = np.sum(cmp_y, axis=0)
+
+途中で，変数への代入をしないようにすると次の1行のコードで同じ結果が得られます．
+
+.. code-block:: python
+
+    nY = np.sum(y[:, np.newaxis] == np.arange(n_classes)[np.newaxis, :],
                 axis=0)
