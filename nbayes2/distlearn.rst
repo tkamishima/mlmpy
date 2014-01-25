@@ -1,6 +1,6 @@
-.. _nbayes2-distlearn:
-
 .. index:: broadcasting
+
+.. _nbayes2-distlearn:
 
 分布の学習の実装
 ================
@@ -70,7 +70,7 @@
 このループでループ変数 :obj:`i` は ``0`` から ``n_samples - 1`` までの整数をとります．
 これらの値を含む配列は ``np.arange(n_samples)`` により生成できます．
 次に，これらの値が，ループ変数 :obj:`i` に割り当てた次元 0 の要素になり，他の次元の大きさは 1 になるようにします．
-これは，:ref:`nbayes2-shape` で紹介した :attr:`shape` の操作技法を用いて次のように実装できます．
+これは， :ref:`nbayes2-shape` で紹介した :attr:`shape` の操作技法を用いて次のように実装できます．
 
 .. code-block:: python
 

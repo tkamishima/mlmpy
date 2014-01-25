@@ -1,6 +1,6 @@
-.. _nbayes2-shape:
-
 .. index:: ! ndarray; shape, ! ndarray; ndim
+
+.. _nbayes2-shape:
 
 配列の次元数や大きさの操作
 ==========================
