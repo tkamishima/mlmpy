@@ -171,6 +171,8 @@
 集約演算
 ^^^^^^^^
 
+.. index:: aggregation
+
 最後の段階は集約演算です．
 集約 (aggregation) とは，複数の値の代表値，例えば総和，平均，最大などを求めることです．
 :ref:`nbayes2-fit2-fitif-ufunc` で述べたように，比較結果が真である組み合わせは :func:`np.sum` によって計算できます．
