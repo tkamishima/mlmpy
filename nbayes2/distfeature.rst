@@ -168,7 +168,7 @@
 実行
 ----
 
-.. index:: sample; nbayes2.py, sample; run_nbayes2.py
+.. index:: sample; nbayes2.py, sample; run_nbayes2.py, class; NaiveBayes2
 
 以上の，ブロードキャスト機能を活用した訓練メソッド :meth:`fit` を実装した :class:`NaiveBayes2` と，その実行スクリプトは，以下より取得できます．
 この :class:`NaiveBayes2` クラスの実行可能な状態のファイルは
