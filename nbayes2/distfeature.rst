@@ -129,11 +129,12 @@
 
 .. code-block:: python
 
-    cmp_X = (X[:, :, np.newaxis, np.newaxis] ==
-             np.arange(n_fvalues)[np.newaxis, np.newaxis, :, np.newaxis])
-    cmp_y = (y[:, np.newaxis, np.newaxis, np.newaxis] ==
-             np.arange(n_classes)[np.newaxis, np.newaxis, np.newaxis, :])
-    nXY = np.sum(np.logical_and(lX, ly), axis=0)
+    ary_xi = np.arange(n_fvalues)[np.newaxis, np.newaxis, :, np.newaxis]
+    ary_yi = np.arange(n_classes)[np.newaxis, np.newaxis, np.newaxis, :]
+    ary_y = y[:, np.newaxis, np.newaxis, np.newaxis]
+    ary_X = X[:, :, np.newaxis, np.newaxis]
+
+    nXY = np.sum(np.logical_and(ary_X == ary_xi, ary_y == ary_yi), axis=0)
 
 以上で，各特徴，各特徴値，そして各クラスごとの事例数を数え上げることができました．
 
