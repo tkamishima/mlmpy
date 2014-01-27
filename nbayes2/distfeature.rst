@@ -141,11 +141,11 @@
     同様の関数に， :obj:`or` ， :obj:`not` ，および :obj:`xor` の論理演算に，それぞれ対応するユニバーサル関数 :func:`logical_or` ，:func:`logical_not` ，および :func:`logical_xor` があります．
 
 .. [2]
-    もし同時に二つ以上の次元について同時に凝集演算をする必要がある場合には， :func:`np.apply_over_axes` を用います．
+    もし同時に二つ以上の次元について同時に集約演算をする必要がある場合には， :func:`np.apply_over_axes` を用います．
 
     .. index:: apply_over_axes
 
-    .. function::  numpy.apply_over_axes(func, a, axes)
+    .. function::  np.apply_over_axes(func, a, axes)
 
         Apply a function repeatedly over multiple axes.
 
