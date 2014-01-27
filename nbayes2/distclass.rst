@@ -125,7 +125,7 @@
 
     ary_y = y[np.arange(n_samples)[:, np.newaxis]]
 
-配列の :attr:`shape` を変えてから :obj:`y` 中の値を取り出す代わりに，先に :obj:`y` の値を取り出してｋだら :attr:`shape` を変更するようにすると次のようになります．
+配列の :attr:`shape` を変えてから :obj:`y` 中の値を取り出す代わりに，先に :obj:`y` の値を取り出してから :attr:`shape` を変更するようにすると次のようになります．
 
 .. code-block:: python
 
