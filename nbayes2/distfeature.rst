@@ -45,8 +45,17 @@
     3, :obj:`yi` , :obj:`n_classes` , クラス
 
 この割り当てで考慮すべきは，最終結果を格納する :obj:`nXY` です．
-この変数 :obj:`nXY` の第0次元は特徴，第1次元は特徴値，そして第3次元はクラスなので，この順序は同じになるように割り当てています．
+この変数 :obj:`nXY` の第0次元は特徴，第1次元は特徴値，そして第3次元はクラスなので，この順序は同じになるように割り当てています [1]_ ．
 最後に凝集演算をしたあとに，次元の入れ替えも可能ですが，入れ替えが不要で，実装が簡潔になるように予め割り当てておきます．
+
+.. [1]
+    もしも軸の順序を揃えることができない場合は， :func:`np.swapaxes` 関数を用いて軸の順序を入れ換えます．
+
+    .. index:: swapaxes
+
+    .. function::  np.swapaxes(a, axis1, axis2)
+
+        Interchange two axes of an array.
 
 .. _nbayes2-distfeature-arygen:
 
@@ -89,7 +98,7 @@
     cmp_y = (ary_y == ary_yi)
 
 ここで， :obj:`and` は Python の組み込み関数で，ユニバーサル関数ではありません．
-そこで，ユニバーサル関数である :func:`np.logical_and` を用います [1]_ ．
+そこで，ユニバーサル関数である :func:`np.logical_and` を用います [2]_ ．
 
 .. index:: logical_and
 
@@ -104,7 +113,7 @@
     cmp_Xandy = np.logical_and(cmp_X, cmp_y)
 
 つぎに，全ての事例についての総和を求める凝集演算を行います．
-総和を求める :func:`np.sum` を，事例に対応する第0次元に適用します [2]_ ．
+総和を求める :func:`np.sum` を，事例に対応する第0次元に適用します [3]_ ．
 
 .. code-block:: python
 
@@ -138,10 +147,10 @@
 
 以上で，各特徴，各特徴値，そして各クラスごとの事例数を数え上げることができました．
 
-.. [1]
+.. [2]
     同様の関数に， :obj:`or` ， :obj:`not` ，および :obj:`xor` の論理演算に，それぞれ対応するユニバーサル関数 :func:`logical_or` ，:func:`logical_not` ，および :func:`logical_xor` があります．
 
-.. [2]
+.. [3]
     もし同時に二つ以上の次元について同時に集約演算をする必要がある場合には， :func:`np.apply_over_axes` を用います．
 
     .. index:: apply_over_axes
