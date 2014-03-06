@@ -18,7 +18,7 @@
 
   * :const:`np.newaxis` による，配列の次元数と :attr:`shape` の変更
   * :meth:`reshape` メソッドや :func:`np.reshape` 関数による :attr:`shape` の変更
-  * :attr:`T` 属性や :func:`np.transepose` 関数による配列の転置
+  * :attr:`T` 属性や :func:`np.transepose` 関数による行列の転置
 
 * :ref:`nbayes2-broadcasting`
 
@@ -36,4 +36,4 @@
 
 * :ref:`nbayes2-timeit`
 
-  * ``ipython`` 内での， ``%timeit`` による関数の実行速度の計測
+  * ``ipython`` 内での， ``%timeit`` コマンドによる関数の実行速度の計測
