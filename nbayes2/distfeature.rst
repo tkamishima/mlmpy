@@ -110,7 +110,7 @@
 
     .. index:: ix_
 
-    .. function:: np.ix_(*args)[source]¶
+    .. function:: np.ix_(*args)[source]
 
         Construct an open mesh from multiple sequences.
 
