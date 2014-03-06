@@ -106,12 +106,7 @@
 以上で演算に必要な値を得ることができました．
 
 .. [#]
-    もし :const:`np.newaxis` による次元の追加が不要であれば， :func:`np.ix_` を用いた次のような記法が可能です．
-
-    .. code-block:: python
-
-        ary_ij = np.ix_(np.arange(n_samples), np.arange(n_features))
-        ary_X = X[ary_ij]
+    もし :const:`np.newaxis` による次元の追加が不要であれば， :func:`np.ix_` を用いて， ``ary_ij = np.ix_(np.arange(n_samples), np.arange(n_features))`` のような記述が可能です．
 
     .. index:: ix_
 
