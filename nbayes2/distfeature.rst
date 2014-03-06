@@ -45,15 +45,15 @@
     3, :obj:`yi` , :obj:`n_classes` , クラス
 
 この割り当てで考慮すべきは，最終結果を格納する :obj:`nXY` です．
-この変数 :obj:`nXY` の第0次元は特徴，第1次元は特徴値，そして第3次元はクラスなので，この順序は同じになるように割り当てています [1]_ ．
+この変数 :obj:`nXY` の第0次元は特徴，第1次元は特徴値，そして第3次元はクラスなので，この順序は同じになるように割り当てています [#]_ ．
 最後に凝集演算をしたあとに，次元の入れ替えも可能ですが，入れ替えが不要で，実装が簡潔になるように予め割り当てておきます．
 
-.. [1]
+.. [#]
     もしも軸の順序を揃えることができない場合は， :func:`np.swapaxes` 関数を用いて軸の順序を入れ換えます．
 
     .. index:: swapaxes
 
-    .. function::  np.swapaxes(a, axis1, axis2)
+    .. function:: np.swapaxes(a, axis1, axis2)
 
         Interchange two axes of an array.
 
@@ -63,6 +63,8 @@
 ----------------------
 
 ループ内での要素ごとの演算は ``y[i] == yi and X[i, j] == xi`` です．
+よって，必要な配列は ``y[i]`` ， :obj:`yi` ， ``X[i, j]`` ，および :obj:`xi` となります．
+
 ループ変数 :obj:`yi` と :obj:`xi` に対応する配列は次のようになります．
 
 .. code-block:: python
@@ -70,13 +72,32 @@
     ary_xi = np.arange(n_fvalues)[np.newaxis, np.newaxis, :, np.newaxis]
     ary_yi = np.arange(n_classes)[np.newaxis, np.newaxis, np.newaxis, :]
 
-``y[i]`` に対応する配列は，全事例の :obj:`y` の値を，事例に対応する第0次元に割り当て，その他の次元の大きさを1にした配列となります．
+``y[i]`` は， :ref:`nbayes2-distclass` の場合とは，次元数とループの次元への割り当てが異なるだけです．
+ループ変数 :obj:`i` は第0次元に対応するので，これに対応する変数は次のとおりです．
+
+.. code-block:: python
+
+    ary_i = np.arange(n_samples)[:, np.newaxis, np.newaxis, np.newaxis]
+
+すると， ``y[i]`` に対応する配列は次のようになります．
+
+.. code-block:: python
+
+    ary_y = y[ary_i]
+
+これは， :ref:`nbayes2-distclass` の場合と同様に次のように簡潔に実装できます．
 
 .. code-block:: python
 
     ary_y = y[:, np.newaxis, np.newaxis, np.newaxis]
 
-``X[i, j]`` に対応する配列は，全事例の ``X[:, j]`` の値を，事例に対応する第0次元に，そして全特徴の ``X[i, :]`` の値を，特徴に対応する第1次元に割り当て，その他の第2と第3次元の大きさを1にした配列となります．
+この実装では，全事例の :obj:`y` の値を，事例に対応する第0次元に割り当て，その他の次元の大きさを 1 である配列を求めています．
+
+``X[i, j]`` はループ変数を2個含んでいるので，これまでとは状況が異なります．
+``X[ary_ij]`` のような形式で，2個以上のインデックスを含み，かつ :const:`np.newaxis` による次元の追加が可能な :obj:`ary_ij` の作成方法を著者は知りません [#]_ ．
+そこで，ループ変数の値に対応した配列を考えず， :obj:`X` の要素を，ループを割り当てた次元に対応するように配置した配列を直接的に生成します．
+これは，全事例の ``X[:, j]`` の値を，事例に対応する第0次元に，そして全特徴の ``X[i, :]`` の値を，特徴に対応する第1次元に割り当て，その他の第2と第3次元の大きさを1にした配列となります．
+すなわち，ループ変数 :obj:`xi` と :obj:`yi` に対応する次元を :obj:`X` に追加します．
 
 .. code-block:: python
 
@@ -84,12 +105,26 @@
 
 以上で演算に必要な値を得ることができました．
 
+.. [#]
+    もし :const:`np.newaxis` による次元の追加が不要であれば， :func:`np.ix_` を用いた次のような記法が可能です．
+
+    .. code-block:: python
+
+        ary_ij = np.ix_(np.arange(n_samples), np.arange(n_features))
+        ary_X = X[ary_ij]
+
+    .. index:: ix_
+
+    .. function:: np.ix_(*args)[source]¶
+
+        Construct an open mesh from multiple sequences.
+
 .. _nbayes2-distfeature-computation:
 
 要素ごとの演算と凝集演算
 ------------------------
 
-まず要素ごとの比較演算 ``y[i] == yi and X[i, j] == xi`` を配列間で実行します．
+``y[i] == yi and X[i, j] == xi`` の式のうち，比較演算を実行します．
 ``y[i] == yi`` と ``X[i, j] == xi`` に対応する計算は， :obj:`==` がユニバーサル関数なので，次のように簡潔に実装できます．
 
 .. code-block:: python
@@ -97,8 +132,8 @@
     cmp_X = (ary_X == ary_xi)
     cmp_y = (ary_y == ary_yi)
 
-ここで， :obj:`and` は Python の組み込み関数で，ユニバーサル関数ではありません．
-そこで，ユニバーサル関数である :func:`np.logical_and` を用います [2]_ ．
+次にこれらの比較結果の論理積を求めますが， :obj:`and` は Python の組み込み関数で，ユニバーサル関数ではありません．
+そこで，ユニバーサル関数である :func:`np.logical_and` を用います [#]_ ．
 
 .. index:: logical_and
 
@@ -106,14 +141,14 @@
 
     Compute the truth value of x1 AND x2 elementwise.
 
-実装結果は次のようになります．
+実装は次のようになります．
 
 .. code-block:: python
 
     cmp_Xandy = np.logical_and(cmp_X, cmp_y)
 
-つぎに，全ての事例についての総和を求める凝集演算を行います．
-総和を求める :func:`np.sum` を，事例に対応する第0次元に適用します [3]_ ．
+最後に，全ての事例についての総和を求める凝集演算を行います．
+総和を求める :func:`np.sum` を，事例に対応する第0次元に適用します [#]_ ．
 
 .. code-block:: python
 
@@ -134,7 +169,7 @@
 
     nXY = np.sum(cmp_Xandy, axis=0)
 
-そして，中間変数への代入を適宜整理します．
+そして，中間変数への代入を整理します．
 
 .. code-block:: python
 
@@ -147,10 +182,10 @@
 
 以上で，各特徴，各特徴値，そして各クラスごとの事例数を数え上げることができました．
 
-.. [2]
+.. [#]
     同様の関数に， :obj:`or` ， :obj:`not` ，および :obj:`xor` の論理演算に，それぞれ対応するユニバーサル関数 :func:`logical_or` ，:func:`logical_not` ，および :func:`logical_xor` があります．
 
-.. [3]
+.. [#]
     もし同時に二つ以上の次元について同時に集約演算をする必要がある場合には， :func:`np.apply_over_axes` を用います．
 
     .. index:: apply_over_axes
