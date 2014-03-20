@@ -216,7 +216,7 @@
 
     self.pY_ = np.true_divide(nY, n_samples)
 
-Python では整数同士の割り算の解は切り捨ての整数になります．
+Python では整数同士の割り算の解は切り捨ての整数になります [#]_ ．
 しかし，ここでは実数の解を得たいので :func:`np.true_divide` 関数を用いて，切り捨てではない実数の解を得ます．
 
 .. index:: true_divide
@@ -226,3 +226,12 @@ Python では整数同士の割り算の解は切り捨ての整数になりま�
     Returns a true division of the inputs, element-wise.
 
 この関数はユニバーサル関数なので， :obj:`nY` の各要素は，それぞれ :obj:`n_samples` で割られます．
+
+.. [#]
+    逆に浮動小数点に対する場合でも，切り捨てした割り算の結果を得るには :func:`np.floor_divide` を用います．
+
+    .. index:: floor_divide
+
+    .. function:: np.floor_divide(x1, x2[, out]) = <ufunc 'floor_divide'>
+
+    Return the largest integer smaller or equal to the division of the inputs.
