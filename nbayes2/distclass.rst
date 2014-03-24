@@ -221,7 +221,7 @@ Python では整数同士の割り算の解は切り捨ての整数になりま�
 
 .. index:: true_divide
 
-.. function:: true_divide(x1, x2[, out]) = <ufunc 'true_divide'>
+.. function:: np.true_divide(x1, x2[, out]) = <ufunc 'true_divide'>
 
     Returns a true division of the inputs, element-wise.
 
