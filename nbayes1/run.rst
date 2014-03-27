@@ -12,7 +12,7 @@
    from nbayes1 import NaiveBayes1
 
 次にファイルからデータを読み込みます．
-NumPy と SciPy にはいろいろな形式のファイルを読み込む関数があります [1]_ が，テキスト形式のファイルの読み込みをする :func:`np.genfromtxt` [2]_ を用います．
+NumPy と SciPy にはいろいろな形式のファイルを読み込む関数があります [#]_ が，テキスト形式のファイルの読み込みをする :func:`np.genfromtxt` [#]_ を用います．
 
 .. index:: genfromtxt
 
@@ -31,7 +31,7 @@ NumPy と SciPy にはいろいろな形式のファイルを読み込む関数�
 引数の種類が非常に多い関数なので，ごく一部のみをここでは紹介しました．
 その他の機能については `Importing data with genfromtxt <http://docs.scipy.org/doc/numpy/user/basics.io.genfromtxt.html>`_ などを参照して下さい．
 
-:class:`NaiveBayes1` のテスト用データとして， ``vote_filled.tsv`` を用意しました [3]_ ．
+:class:`NaiveBayes1` のテスト用データとして， ``vote_filled.tsv`` を用意しました [#]_ ．
 
 .. index:: sample; vote_filled.tsv
 
@@ -96,15 +96,15 @@ NumPy と SciPy にはいろいろな形式のファイルを読み込む関数�
 
    .. rubric:: 注釈
 
-.. [1]
+.. [#]
    代表的な読み込み関数には，バイナリの npy 形式 :func:`np.load` ，matlab 形式 :func:`sp.io.loadmat` ，Weka の arff 形式 :func:`sp.io.loadarff` などがあります．
    ファイルの読み込みについては，Scipy.org にある `Cookbook / InputOutput <http://www.scipy.org/Cookbook/InputOutput>`_ が参考になります．
 
-.. [2]
+.. [#]
    :func:`np.loadtxt` という同様の機能をもつ関数もあります．
    :func:`np.genfromtxt` は， :func:`np.loadtxt` の機能に加えて，欠損値処理の機能が加えられているので，こちらを紹介します．
 
-.. [3]
+.. [#]
    ``vote_filled.tsv`` は UCI Repository の
    `Congressional Voting Records Data Set <http://archive.ics.uci.edu/ml/datasets/Congressional+Voting+Records>`_
    をタブ区切り形式にしたファイルです．
