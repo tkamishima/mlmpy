@@ -98,7 +98,3 @@
 .. only:: epub
 
    * :ref:`genindex`
-
-.. if todo_include_todos is True in conf.py, generate a ToDo list.
-
-.. todolist::

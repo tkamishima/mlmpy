@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
-PAPER         =
+PAPER         = a4
 BUILDDIR      = _build
 
 # User-friendly check for sphinx-build
@@ -96,9 +96,9 @@ qthelp:
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
 	      ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
-	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/MachineLeanringMeetsPython.qhcp"
+	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/mlmpyja.qhcp"
 	@echo "To view the help file:"
-	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/MachineLeanringMeetsPython.qhc"
+	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/mlmpyja.qhc"
 
 .PHONY: applehelp
 applehelp:
@@ -115,19 +115,21 @@ devhelp:
 	@echo
 	@echo "Build finished."
 	@echo "To view the help file:"
-	@echo "# mkdir -p $$HOME/.local/share/devhelp/MachineLeanringMeetsPython"
-	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/MachineLeanringMeetsPython"
+	@echo "# mkdir -p $$HOME/.local/share/devhelp/mlmpyja"
+	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/mlmpyja"
 	@echo "# devhelp"
 
 .PHONY: epub
 epub:
-	$(SPHINXBUILD) -b epub $(ALLSPHINXOPTS) $(BUILDDIR)/epub
+	@(export MY_MATH_MODE=sphinx.ext.imgmath; \
+	$(SPHINXBUILD) -b epub -t epub $(MATH_IMGMATH) $(ALLSPHINXOPTS) $(BUILDDIR)/epub)
 	@echo
 	@echo "Build finished. The epub file is in $(BUILDDIR)/epub."
 
 .PHONY: epub3
 epub3:
-	$(SPHINXBUILD) -b epub3 $(ALLSPHINXOPTS) $(BUILDDIR)/epub3
+	@(export MY_MATH_MODE=sphinx.ext.imgmath; \
+	$(SPHINXBUILD) -b epub3 -t epub $(MATH_IMGMATH) $(ALLSPHINXOPTS) $(BUILDDIR)/epub3)
 	@echo
 	@echo "Build finished. The epub3 file is in $(BUILDDIR)/epub3."
 
