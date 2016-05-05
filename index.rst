@@ -25,29 +25,20 @@
         href="http://b.hatena.ne.jp/entry/http://www.kamishima.net/mlmpyja/"
         class="hatena-bookmark-button"
         data-hatena-bookmark-title="{{ title }}"
-        data-hatena-bookmark-layout="standard"
+        data-hatena-bookmark-layout="simple-balloon"
         title="このエントリーをはてなブックマークに追加">
       <img
-        src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+        src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
         alt="このエントリーをはてなブックマークに追加"
         width="20" height="20"
         style="border: none;" />
       </a>
       <script
         type="text/javascript"
-        src="http://b.st-hatena.com/js/bookmark_button.js"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
         charset="utf-8"
         async="async">
       </script>
-      </td>
-      <!-- google+1 -->
-      <td>
-      <g:plusone
-        size="medium"
-        href="http://www.kamishima.net/mlmpyja/"></g:plusone>
-      </td><td>
-      <!-- facebook -->
-      <div class="fb-like" data-href="http://www.kamishima.net/mlmpyja/" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
       </td>
       <!-- Twitter -->
       <td>
@@ -55,8 +46,25 @@
         href="https://twitter.com/share"
         class="twitter-share-button"
         data-url="http://www.kamishima.net/mlmpyja/"
-        data-lang="ja">ツイート</a>
-      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        data-text="機械学習の Python との出会い"
+        data-via="shima__shima">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      </td>
+      <!-- facebook -->
+      <td>
+      <div
+        class="fb-like"
+        data-href="http://www.kamishima.net/mlmpyja/"
+        data-layout="button_count"
+        data-action="like"
+        data-show-faces="false"
+        data-share="false"></div>
+      </td>
+      <!-- google+1 -->
+      <td>
+      <div
+        class="g-plusone"
+        data-href="http://www.kamishima.net/mlmpyja/"></div>
       </td>
       <!-- end social buttions -->
       </tr></tbody></table>
