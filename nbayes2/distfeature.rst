@@ -215,11 +215,7 @@
 確率の計算では，総和が1になるような正規化は頻繁に行うので，この記述は便利です．
 
 .. [#]
-    Python3 のように割り算を整数ではなく実数で行う次の指定がある場合には :class:`np.ndarray` に対する割り算演算子 ``/`` でも，割り算の商は実数となります．
-
-    .. code-block:: python
-
-        from __future__ import division
+    Python3 のように割り算を整数ではなく実数で行う指定 ``from __future__ import division`` がある場合には :class:`np.ndarray` に対する演算子 ``/`` による割り算でも，その解は実数となります．
 
 .. _nbayes2-distfeature-run:
 
