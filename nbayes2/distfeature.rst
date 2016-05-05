@@ -49,7 +49,7 @@
 最後に集約演算をしたあとに，次元の入れ替えも可能ですが，入れ替えが不要で，実装が簡潔になるように予め割り当てておきます．
 
 .. [#]
-    もしも軸の順序を揃えることができない場合は， :func:`np.swapaxes` 関数を用いて軸の順序を入れ換えます．
+    もしも軸の順序を揃えることができない場合は， :func:`np.swapaxes` 関数を用いて次元の順序を入れ換えます．
 
     .. index:: swapaxes
 
@@ -181,7 +181,8 @@
     同様の関数に， :obj:`or` ， :obj:`not` ，および :obj:`xor` の論理演算に，それぞれ対応するユニバーサル関数 :func:`logical_or` ，:func:`logical_not` ，および :func:`logical_xor` があります．
 
 .. [#]
-    もし同時に二つ以上の次元について同時に集約演算をする必要がある場合には， :func:`np.apply_over_axes` を用います．
+    もし同時に二つ以上の次元について同時に集約演算をする必要がある場合には， ``axis=(1,2)`` のようにタプルを利用して複数の次元を指定できます．
+    また， :func:`np.apply_over_axes` を用いる方法もあります．
 
     .. index:: apply_over_axes
 
@@ -197,11 +198,28 @@
 最後に :obj:`nXY` と，クラスごとの事例数 :obj:`nY` を用いて，クラスが与えられたときの，各特徴値が生じる確率を計算します．
 それには :obj:`nXY` を，対応するクラスごとにクラスごとの総事例数 :obj:`nY` で割ります．
 :obj:`nY` を :obj:`nXY` と同じ次元数にし，そのクラスに対応する第2次元に割り当てるようにすると ``nY[np.newaxis, np.newaxis, :]`` となります．
-あとは，実数の結果を返す割り算のユニバーサル関数 :func:`np.true_divide` を適用すれば，特徴値の確率を計算できます．
+あとは，実数の結果を返す割り算のユニバーサル関数 :func:`np.true_divide` を適用すれば，特徴値の確率を計算できます [#]_ ．
 
 .. code-block:: python
 
     self.pXgY_ = np.true_divide(nXY, nY[np.newaxis, np.newaxis, :])
+
+計算済みの :obj:`nY` を使う代わりに，ここで総和を計算する場合は次のようになります．
+
+.. code-block:: python
+
+    self.pXgY_ = np.true_divide(nXY, nXY.sum(axis=1, keepdims=True))
+
+通常の :meth:`sum` では総和の対象とした次元は消去されるため，元の配列とはその大きさが一致しなくなります．
+そこで，``keepdims=True`` の指定を加えることで元の配列の次元が維持するようにすると，そのまま割り算できるようになります．
+確率の計算では，総和が1になるような正規化は頻繁に行うので，この記述は便利です．
+
+.. [#]
+    Python3 のように割り算を整数ではなく実数で行う次の指定がある場合には :class:`np.ndarray` に対する割り算演算子 ``/`` でも，割り算の商は実数となります．
+
+    .. code-block:: python
+
+        from __future__ import division
 
 .. _nbayes2-distfeature-run:
 
