@@ -93,6 +93,7 @@
    intro
    nbayes1/index
    nbayes2/index
+   lr/index
    ack
 
 .. only:: html and not epub
