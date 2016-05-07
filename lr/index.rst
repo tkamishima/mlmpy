@@ -10,7 +10,7 @@
 .. toctree::
    :maxdepth: 3
 
-   logistic_reg
+   lr
    sigmoid
    preparation
    loss
