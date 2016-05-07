@@ -21,7 +21,7 @@
 .. math::
    :label: eq-lr-model
 
-    \Pr[y | \mathbf{x}] = \mathrm{sig}(\mathbf{w}^\top \mathbf{x} + b)
+    \Pr[y{=}1 | \mathbf{x}; \mathbf{w}, b] = \mathrm{sig}(\mathbf{w}^\top \mathbf{x} + b)
 
 ただし， :math:`\mathbf{w}` は次元数 :math:`K` の重みパラメータ， :math:`b` はバイアスパラメータ（切片パラメータ）である．
 また， :math:`\mathrm{sig}(a)` は次のシグモイド関数である．
@@ -29,7 +29,50 @@
 .. math::
    :label: eq-lr-sigmoid
 
-   \mathrm{sig}(a) = \frac{1}{1 + \exp(-x)}
+    \mathrm{sig}(a) = \frac{1}{1 + \exp(-x)}
+
+学習には，正則化の度合いを決める超パラメータ :math:`\lambda` を導入した次の目的関数を用いる．
+
+.. math::
+   :label: eq-lr-objective
+
+    \mathcal{L}(\mathbf{w}, b; \mathcal{D}) & =
+    - \log \sum_{(\mathbf{x}_i, y_i) \in \mathcal{D}}
+    \Pr[y_i | \mathbf{x}_i; \mathbf{w}, b]
+    + \frac{\lambda}{2} \left({\|\mathbf{w}\|_2}^2 + b^2\right) \\
+    &= - \log \sum_{(\mathbf{x}_i, y_i) \in \mathcal{D}}
+    \left\{ (1 - \Pr[y_i{=}1 | \mathbf{x}_i])
+    \log(1 - \Pr[y_i{=}1 | \mathbf{x}_i]) +
+    \Pr[y_i{=}1 | \mathbf{x}_i] \log \Pr[y_i{=}1 | \mathbf{x}_i] \right\} \\
+    & \qquad
+    + \frac{\lambda}{2} \left({\|\mathbf{w}\|_2}^2 + b^2\right)
+
+なお， :math:`\Pr[y|\mathbf{x}]` 中のパラメータは簡潔のため省略している．
+この目的関数は，訓練データ集合 :math:`\mathcal{D}` に対する負の対数尤度に :math:`L_2` 正則化項を加えたものである．
+パラメータはこの目的関数を最小化することで学習する．
+
+.. math::
+   :label: eq-lr-learning
+
+    \{\mathbf{w}, b\} =
+    \arg \min_{\{\mathbf{w}, b\}} \mathcal{L}(\mathbf{w}, b; \mathcal{D})
+
+この最小化問題は反復再重み付け最小二乗法 (iteratively reweighted least squares method) により求めるのが一般的である．
+しかし，本章では `SciPy` の非線形最適化ルーチンを利用して解くことにする．
+非線形最適化では目的関数の勾配も利用するので，ここに記しておく．
+
+.. math::
+
+    \frac{\partial}{\partial\mathbf{w}}
+    \mathcal{L}(\mathbf{w}, b; \mathcal{D}) & =
+    \sum_{(\mathbf{x}_i, y) \in \mathcal{D}}
+    (\Pr[y_i{=}1 | \mathbf{x}_i] - y_i) \mathbf{x} + \lambda \, \mathbf{w} \\
+    \frac{\partial}{\partial b}
+    \mathcal{L}(\mathbf{w}, b; \mathcal{D}) & =
+    \sum_{(\mathbf{x}, y) \in \mathcal{D}}
+    (\Pr[y_i{=}1 | \mathbf{x}_i] - y_i) 1 + \lambda \, b
+
+後の実装上の便利さのため，パラメータ :math:`b` に対する勾配で :math:`1` を明示的に書いておく．
 
 学習したパラメータ :math:`\mathbf{w}` と :math:`b` を式 :eq:`eq-lr-model` に代入した分布 :math:`\Pr[y | \mathbf{x}]` 用いて，新規入力データ :math:`\mathbf{x}^\mathrm{new}` に対するラベル :math:`y` は次式で予測する．
 
