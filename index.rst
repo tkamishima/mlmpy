@@ -85,7 +85,6 @@
    intro
    nbayes1/index
    nbayes2/index
-   nbayes3/index
    ack
 
 .. only:: html and not epub
