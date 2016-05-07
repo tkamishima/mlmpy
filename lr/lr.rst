@@ -42,9 +42,9 @@
     + \frac{\lambda}{2} \left({\|\mathbf{w}\|_2}^2 + b^2\right) \\
     &= - \log \sum_{(\mathbf{x}_i, y_i) \in \mathcal{D}}
     \left\{ (1 - \Pr[y_i{=}1 | \mathbf{x}_i])
-    \log(1 - \Pr[y_i{=}1 | \mathbf{x}_i]) +
-    \Pr[y_i{=}1 | \mathbf{x}_i] \log \Pr[y_i{=}1 | \mathbf{x}_i] \right\} \\
-    & \qquad
+    \log(1 - \Pr[y_i{=}1 | \mathbf{x}_i]) + \right.\\
+    & \qquad\qquad\left.
+    \Pr[y_i{=}1 | \mathbf{x}_i] \log \Pr[y_i{=}1 | \mathbf{x}_i] \right\}
     + \frac{\lambda}{2} \left({\|\mathbf{w}\|_2}^2 + b^2\right)
 
 なお， :math:`\Pr[y|\mathbf{x}]` 中のパラメータは簡潔のため省略しました．
