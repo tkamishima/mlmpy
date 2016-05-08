@@ -91,11 +91,11 @@ class LogisticRegression(object):
         p = self.sigmoid(np.sum(X * coef[np.newaxis, :], axis=1) + intercept)
 
         # likelihood
-        # \sum_{x,s,y in D} y log(sigma) + (1 - y) log(1 - sigma)
-        l = np.sum(y * np.log(p) + (1.0 - y) * np.log(1.0 - p))
+        # \sum_{x,s,y in D} (1 - y) log(1 - sigma) + y log(sigma)
+        l = np.sum((1.0 - y) * np.log(1.0 - p) + y * np.log(p))
 
         # L2 regularizer
-        r = (np.sum(coef * coef) + intercept * intercept)
+        r = np.sum(coef * coef) + intercept * intercept
 
         return - l + 0.5 * self.C * r
 
@@ -126,10 +126,13 @@ class LogisticRegression(object):
         p = self.sigmoid(np.sum(X * coef[np.newaxis, :], axis=1) + intercept)
 
         # gradient of likelihood
-        dl = np.sum((y - p)[:, np.newaxis] *
+        dl = np.sum((p - y)[:, np.newaxis] *
                     np.c_[X, np.ones(self.n_samples_)], axis=0)
 
-        return -dl + self.C * args
+        # gradient of regularizer
+        dr = args
+
+        return dl + self.C * dr
 
     def fit(self, X, y):
         """
