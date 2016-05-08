@@ -5,7 +5,7 @@
 
 :ref:`nbayes1` の章では，単純ベイズ法の実装を通じて以下の内容を紹介しました．
 
-* :ref:`lr-logistic_reg`
+* :ref:`lr-lr`
 
   * NumPy 配列 :class:`np.ndarray` の特徴
   * :func:`np.array` による NumPy 配列の生成
