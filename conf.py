@@ -362,11 +362,14 @@ epub_exclude_files = [
     '_static/underscore.js',
     '_static/websupport.js',
     '_static/search.html',
+    '_downloads/iris2.tsv',
+    '_downloads/lr.py',
     '_downloads/nbayes1.py',
-    '_downloads/run_nbayes1.py',
     '_downloads/nbayes1b.py',
-    '_downloads/run_nbayes1b.py',
     '_downloads/nbayes2.py',
+    '_downloads/run_lr.py',
+    '_downloads/run_nbayes1.py',
+    '_downloads/run_nbayes1b.py',
     '_downloads/run_nbayes2.py',
     '_downloads/vote_filled.tsv'
 ]
