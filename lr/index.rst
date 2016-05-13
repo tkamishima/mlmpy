@@ -12,8 +12,8 @@
 
    lr
    sigmoid
-   preparation
    loss
    optimization
+   preparation
    run
    summary
