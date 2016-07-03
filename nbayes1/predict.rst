@@ -94,7 +94,7 @@ NumPy 配列やリストを使って複数の要素を指定し，それらを�
 方針（１）
 ^^^^^^^^^^
 
-.. index:: universal function, log
+.. index:: ! universal function, log
 
 次に，この未知データ :obj:`xi` のクラスラベルを， :ref:`nbayes1-nbayes` の式(6)を用いて予測します．
 すなわち， :obj:`xi` に対し， :math:`y` が 0 と 1 それぞれの場合の対数同時確率を計算し，その値が大きな方を予測クラスラベルとします．

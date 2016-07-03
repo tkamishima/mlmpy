@@ -85,7 +85,8 @@
 
 .. index:: seterr
 
-.. function:: np.seterr(all=None, divide=None, over=None, under=None, invalid=None)[source]
+.. function:: np.seterr(all=None, divide=None, over=None, under=None,
+    invalid=None)[source]
 
     Set how floating-point errors are handled.
 
@@ -108,7 +109,7 @@
 
     .. only:: html and not epub
 
-        :download:`LogisticRegresshon1a クラス：lr1.py <../source/lr1.py>`
+        :download:`LogisticRegresshon クラス：lr1.py <../source/lr1.py>`
 
 .. index:: e, pi, sp.constants
 
@@ -131,7 +132,7 @@
 * :math:`1 - 10^{-15}` より大きくなる場合では :math:`1 - 10^{-15}` の定数を出力．
 
 簡単な計算により， ``sigmoid_range = 34.538776394910684`` とすると，入力値が ``-sigmoid_range`` 以上， ``+sigmoid_range`` 以下の範囲であれば式 :eq:`eq-lr-sigmoid` に従って計算し，それ以外では適切な定数を出力すればよいことが分かる．
-これを実装すると次のようになります．
+これを実装すると次のようになります [#]_ ．
 
 .. code-block:: python
 
@@ -159,13 +160,119 @@
 今度は，大きな入力に対しては ``1`` よりわずかに小さな数，逆に，小さな入力に対しては ``0`` よりわずかに大きな数が得られるようになりました．
 こうして，シグモイド関数で浮動小数点エラーを生じないようにすることができました．
 
+.. [#]
+
+    .. only:: epub or latex
+
+        https://github.com/tkamishima/mlmpy/blob/master/source/lr2.py
+
+    .. only:: html and not epub
+
+        :download:`LogisticRegresshon クラス：lr2.py <../source/lr2.py>`
+
 .. _lr-sigmoid-ufunc:
 
 ユニバーサル関数の作成
 ----------------------
 
-ufunc デコレータ
+.. index:: universal function, ufunc
 
+ここでは，シグモイド関数をユニバーサル関数にする方法を紹介します．
+:ref:`nbayes1-predict-logjprob` で紹介しましたが， NumPy配列を引数に与えると，その要素ごとに関数を適用した結果を， :attr:`shape` が入力と同じ配列にまとめて返すのがユニバーサル関数です．
+
+前節で作成したシグモイド関数はユニバーサル関数としての機能がありません．
+このことを確認してみます．
+
+.. code-block:: ipython
+
+    In [40]: from lr2 import LogisticRegression
+    In [41]: x = np.array([ -1.0, 0.0, 1.0 ])
+    In [42]: LogisticRegression.sigmoid(x)
+
+    ... omission ...
+
+    ValueError: The truth value of an array with more than one element
+    is ambiguous. Use a.any() or a.all()
+
+if文は配列 :obj:`x` の要素を個別に処理しないので，このようにエラーとなってしまいます．
+
+.. index:: vectorize
+
+そこで，通常の関数をユニバーサル関数に変換する :func:`vectorize` があります．
+
+.. function:: np.vectorize(pyfunc, otypes='', doc=None, excluded=None,
+    cache=False)
+
+    Define a vectorized function which takes a nested sequence of objects or numpy arrays as inputs and returns a numpy array as output. The vectorized function evaluates *pyfunc* over successive tuples of the input arrays like the python map function, except it uses the broadcasting rules of numpy.
+
+この :func:`vectorize` は，通常の関数を入力すると，その関数を，引数の配列の各要素に適用するユニバーサル関数を返す関数です．
+簡単なステップ関数の例を見てみましょう．
+
+.. code-block:: ipython
+
+    In [50]: def step(x):
+   ...:     return 0.0 if x < 0.0 else 1.0
+   ...:
+
+三項演算子は入力配列の要素を個別に処理しないのでこの関数はユニバーサル関数ではありません．
+そこで次のように :func:`vectorize` を用いてユニバーサル関数に変換します．
+
+.. code-block:: ipython
+
+    In [51]: vstep = np.vectorize(step)
+    In [52]: x = np.arange(7) - 3
+    In [53]: x
+    Out[53]: array([-3, -2, -1,  0,  1,  2,  3])
+    In [54]: vstep(x)
+    Out[54]: array([ 0.,  0.,  0.,  1.,  1.,  1.,  1.])
+
+関数を入力として関数を返す関数は Python のデコレータとして使うことができます．
+
+.. code-block:: python
+
+    @staticmethod
+    @np.vectorize
+    def sigmoid(x):
+        sigmoid_range = 34.538776394910684
+
+        if x <= -sigmoid_range:
+            return 1e-15
+        if x >= sigmoid_range:
+            return 1.0 - 1e-15
+
+        return 1.0 / (1.0 + np.exp(-x))
+
+先ほど定義したシグモイド関数の， ``@staticmethod`` デコレータの下に，関数 :func:`vectorize` を ``@np.vectorize`` のような形式でデコレータとして与えます [#]_ ．
+これでユニバーサル関数となったかを確かめてみます．
+
+.. code-block:: ipython
+
+    In [60]: from lr3 import LogisticRegression
+    In [61]: x = np.array([-1.0, 0.0, 1.0])
+    In [62]: LogisticRegression.sigmoid(x)
+    Out[62]: array([ 0.26894142,  0.5       ,  0.73105858])
+
+配列 :obj:`x` の各要素にシグモイド関数を適用した結果を配列として得ることができました．
+このようにしてユニバーサル関数を定義することができました．
+
+.. index:: frompyfunc
+
+なお，入力引数が複数の関数をユニバーサル関数にする :func:`frompyfunc` もあります．
+
+.. function:: np..frompyfunc(func, nin, nout)
+
+    Takes an arbitrary Python function and returns a Numpy ufunc.
+
+
+.. [#]
+
+    .. only:: epub or latex
+
+        https://github.com/tkamishima/mlmpy/blob/master/source/lr3.py
+
+    .. only:: html and not epub
+
+        :download:`LogisticRegresshon クラス：lr3.py <../source/lr3.py>`
 
 .. _lr-sigmoid-utils:
 
