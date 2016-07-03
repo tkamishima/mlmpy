@@ -20,9 +20,9 @@
 ------------------------
 
 式 :eq:`eq-lr-sigmoid` をそのまま実装してみます．
-モジュール :mod:`lr1a` [#]_ 中のロジスティック回帰クラスの定義のうち，ここでは関数 :meth:`sigmoid` の部分のみを示します．
+モジュール :mod:`lr1` [#]_ 中のロジスティック回帰クラスの定義のうち，ここでは関数 :meth:`sigmoid` の部分のみを示します．
 
-.. index:: sample; lr1a.py
+.. index:: sample; lr1.py
 
 .. code-block:: python
 
@@ -40,7 +40,7 @@
 
 .. code-block:: ipython
 
-    In [10]: from lr1a import LogisticRegression
+    In [10]: from lr1 import LogisticRegression
     In [11]: LogisticRegression.sigmoid(0.0)
     Out[11]: 0.5
 
@@ -65,7 +65,7 @@
     Out[20]: 1.0
 
     In [21]: LogisticRegression.sigmoid(-1000.)
-    lr1a.py:62: RuntimeWarning: overflow encountered in exp
+    lr1.py:62: RuntimeWarning: overflow encountered in exp
       return 1.0 / (1.0 + np.exp(-x))
     Out[21]: 0.0
 
@@ -104,11 +104,11 @@
 
     .. only:: epub or latex
 
-        https://github.com/tkamishima/mlmpy/blob/master/source/lr1a.py
+        https://github.com/tkamishima/mlmpy/blob/master/source/lr1.py
 
     .. only:: html and not epub
 
-        :download:`LogisticRegresshon1a クラス：lr1a.py <../source/lr1a.py>`
+        :download:`LogisticRegresshon1a クラス：lr1.py <../source/lr1.py>`
 
 .. index:: e, pi, sp.constants
 
@@ -117,12 +117,47 @@
     NumPy には，このネピアの数を表す :const:`np.e` の他に，円周率を表す :const:`np.pi` の定数があります．
     SciPy の :mod:`sp.consants` モジュール内には，光速や重力定数などの物理定数が定義されています．
 
-.. _lr-sigmoid-icheck:
+.. _lr-sigmoid-fpcheck:
 
-入力を検査した実装
-------------------
+浮動小数点の制限を考慮した実装
+------------------------------
 
-isfinite
+それでは，浮動小数点エラーを生じないシグモイド関数の実装に戻ります．
+ここでは，シグモイド関数の入力が小さすぎる場合や，大きすぎる場合に処理を分けることでエラーを生じないようにします．
+シグモイド関数の出力値の範囲を次のような区間に分けて処理することにします．
+
+* :math:`10^{-15}` より小さくなる場合では :math:`10^{-15}` の定数を出力．
+* :math:`10^{-15}` 以上 :math:`1 - 10^{-15}` 以下の場合では式 :eq:`eq-lr-sigmoid` のとおりの値を出力．
+* :math:`1 - 10^{-15}` より大きくなる場合では :math:`1 - 10^{-15}` の定数を出力．
+
+簡単な計算により， ``sigmoid_range = 34.538776394910684`` とすると，入力値が ``-sigmoid_range`` 以上， ``+sigmoid_range`` 以下の範囲であれば式 :eq:`eq-lr-sigmoid` に従って計算し，それ以外では適切な定数を出力すればよいことが分かる．
+これを実装すると次のようになります．
+
+.. code-block:: python
+
+    @staticmethod
+    def sigmoid(x):
+        sigmoid_range = 34.538776394910684
+
+        if x <= -sigmoid_range:
+            return 1e-15
+        if x >= sigmoid_range:
+            return 1.0 - 1e-15
+
+        return 1.0 / (1.0 + np.exp(-x))
+
+それでは，大きな値や小さな値を入力してみます．
+
+.. code-block:: ipython
+
+    In [30]: from lr1 import LogisticRegression
+    In [31]: LogisticRegression.sigmoid(1000.)
+    Out[31]: 0.999999999999999
+    In [32]: LogisticRegression.sigmoid(-1000.)
+    Out[32]: 1e-15
+
+今度は，大きな入力に対しては ``1`` よりわずかに小さな数，逆に，小さな入力に対しては ``0`` よりわずかに大きな数が得られるようになりました．
+こうして，シグモイド関数で浮動小数点エラーを生じないようにすることができました．
 
 .. _lr-sigmoid-ufunc:
 

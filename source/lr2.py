@@ -5,7 +5,7 @@ LogisticRegression class
 
 Chapter "Logistic Regression"
 
-Straightforward implementation of :meth:`sigmoid` function.
+Checking a range of inputs to a :meth:`sigmoid` function.
 """
 
 # imports
@@ -48,6 +48,9 @@ class LogisticRegression(object):
     @staticmethod
     def sigmoid(x):
         """
+        sigmoid function
+
+        implementation with input range check
 
         Parameters
         ----------
@@ -59,6 +62,13 @@ class LogisticRegression(object):
         sig : array, shape=(n_data), dtype=float
             1.0 / (1.0 + exp(- x))
         """
+        sigmoid_range = 34.538776394910684
+
+        if x <= -sigmoid_range:
+            return 1e-15
+        if x >= sigmoid_range:
+            return 1.0 - 1e-15
+
         return 1.0 / (1.0 + np.exp(-x))
 
     def loss(self, args, X, y):
