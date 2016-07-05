@@ -279,5 +279,75 @@ if文は配列 :obj:`x` の要素を個別に処理しないので，このよ�
 便利な関数を用いた実装
 ----------------------
 
-clip
+ここまで，他の数学関数の実装にも使える汎用的な手法を紹介しました．
+さらに，NumPy にはシグモイド関数の実装に使える便利な関数があり，これらを使って実装することもできます．
+そうした関数として :func:`pieceswise` と :func:`clip` を紹介します．
+
 piecewise
+^^^^^^^^^
+
+.. index:: piecewise
+
+:func:`piecewise` はHuber関数や三角分布・切断分布の密度関数など，入力の範囲ごとに異なる数式でその出力が定義される区分関数を実装するのに便利です．
+
+.. function:: np.piecewise(x, condlist, funclist, *args, **kw)
+
+    Evaluate a piecewise-defined function.
+
+:ref:`_lr-sigmoid-fpcheck` で実装したシグモイド関数は，浮動小数点エラーを防ぐために入力の範囲に応じて出力を変えています．
+:func:`piecewise` を用いて実装したシグモイド関数は次のようになります [#]_ ．
+
+.. code-block:: python
+
+    @staticmethod
+    def sigmoid(x):
+        sig_r = 34.538776394910684
+        condlist = [x < -sig_r, (x >= -sig_r) & (x < sig_r), x >= sig_r]
+        funclist = [1e-15, lambda a: 1.0 / (1.0 + np.exp(-a)), 1.0 - 1e-15]
+
+        return np.piecewise(x, condlist, funclist)
+
+:func:`piecewise` の，第2引数は区間を定義する条件のリスト [#]_ で，第3引数はそれらの区間ごとの出力のリストを定義します．
+条件のリストで :const:`True` になった位置に対応する出力値が :func:`piecewise` の出力になります．
+出力リストが条件のリストより一つだけ長い場合は，出力リストの最後はデフォルト値となります．
+条件リストが全て :const:`False` であるときに，このデフォルト値が出力されます．
+
+.. [#]
+
+    複数の条件に対して対応する値を出力する関数は他にも :func:`select` などがあります．
+
+    .. function::  numpy.select(condlist, choicelist, default=0)
+
+    Return an array drawn from elements in choicelist, depending on conditions.
+
+    しかし，条件が満たされるかどうかに関わらず，全ての場合の出力値を計算するため，この場合は浮動小数点エラーを生じてしまいます．
+
+.. [#]
+
+    条件リスト中で ``and`` や ``or`` を使うと，これらはユニバーサル関数ではないため，x が配列の場合にうまく動作しません．
+    代わりに NumPy の :func:`logical_and` や :func:`logical_or` を使うこともできます．
+
+.. index:: clip
+
+clip
+^^^^
+
+:func:`clip` は，区間の最大値大きい入力はその最大値に，逆に最小値より小さい入力はその最小値にする関数です [#]_ ．
+シグモイド関数はこの :func:`clip` を用いると容易に実装できます．
+
+.. code-block:: python
+
+    @staticmethod
+    def sigmoid(x):
+        # restrict domain of sigmoid function within [1e-15, 1 - 1e-15]
+        sigmoid_range = 34.538776394910684
+        x = np.clip(x, -sigmoid_range, sigmoid_range)
+
+        return 1.0 / (1.0 + np.exp(-x))
+
+ユニバーサル関数であるため，特に :func:`vectorize` を用いる必要もありません．
+以後は，この実装を用います．
+
+.. [#]
+
+    最大値か最小値の一方だけで良い場合はそれぞれ :func:`min` や :func:`max` を用います．
