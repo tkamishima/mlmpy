@@ -27,9 +27,8 @@
 また， :math:`\mathrm{sig}(a)` は次のシグモイド関数です．
 
 .. math::
-   :label: eq-lr-sigmoid
 
-    \mathrm{sig}(a) = \frac{1}{1 + \exp(-x)}
+    \mathrm{sig}(a) = \frac{1}{1 + \exp(-a)}
 
 学習には，正則化の度合いを決める超パラメータ :math:`\lambda` を導入した次の目的関数を用います．
 

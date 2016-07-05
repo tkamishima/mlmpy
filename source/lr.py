@@ -44,12 +44,13 @@ class LogisticRegression(object):
         self.n_samples_ = 0
 
     @staticmethod
-    def sigmoid(args):
+    def sigmoid(x):
         """
+        sigmoid function
 
         Parameters
         ----------
-        args : array_like, shape=(n_data), dtype=float
+        x : array_like, shape=(n_data), dtype=float
             arguments of function
 
         Returns
@@ -60,9 +61,9 @@ class LogisticRegression(object):
 
         # restrict domain of sigmoid function within [1e-15, 1 - 1e-15]
         sigmoid_range = 34.538776394910684
-        sig = np.clip(args, -sigmoid_range, sigmoid_range)
+        x = np.clip(x, -sigmoid_range, sigmoid_range)
 
-        return 1.0 / (1.0 + np.exp(-sig))
+        return 1.0 / (1.0 + np.exp(-x))
 
     def loss(self, args, X, y):
         """
