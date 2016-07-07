@@ -8,7 +8,7 @@ Chapter "Logistic Regression"
 
 # imports
 import numpy as np
-from sklearn.linear_model import LogisticRegression
+from lr import LogisticRegression
 
 # load data
 data = np.genfromtxt('iris2.tsv',
@@ -28,3 +28,8 @@ for i in xrange(0, 100, 10):
 # print accuracy
 print "Accuracy =",
 print np.sum(data['y'] == predict_y, dtype=float) / predict_y.shape[0]
+
+# print parameters
+print "coef =", clr.coef_
+print "intercept_ =", clr.intercept_
+print clr.coef_.shape

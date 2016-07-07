@@ -65,12 +65,12 @@ class LogisticRegression(object):
 
         return 1.0 / (1.0 + np.exp(-x))
 
-    def loss(self, args, X, y):
+    def loss(self, params, X, y):
         """
 
         Parameters
         ----------
-        args : array, shape=(n_features + 1), dtype=float
+        params : array, shape=(n_features + 1), dtype=float
             arguments of loss function
         X : array, shape=(n_samples, n_features), dtype=float
             feature values of training samples
@@ -83,13 +83,13 @@ class LogisticRegression(object):
             return value loss function
         """
 
-        # fist n_features of elements in args are weight coefficients
-        # the last element of args is an intercept parameter
-        coef = args[:self.n_features_]
-        intercept = args[-1]
+        # fist n_features of elements in params are weight coefficients
+        # the last element of params is an intercept parameter
+        coef = params[:self.n_features_]
+        intercept = params[-1]
 
         # predicted probabilities of data
-        p = self.sigmoid(np.sum(X * coef[np.newaxis, :], axis=1) + intercept)
+        p = self.sigmoid(np.dot(X, coef) + intercept)
 
         # likelihood
         # \sum_{x,s,y in D} (1 - y) log(1 - sigma) + y log(sigma)
@@ -100,12 +100,12 @@ class LogisticRegression(object):
 
         return - l + 0.5 * self.C * r
 
-    def grad_loss(self, args, X, y):
+    def grad_loss(self, params, X, y):
         """
 
         Parameters
         ----------
-        args : array, shape=(n_features + 1), dtype=float
+        params : array, shape=(n_features + 1), dtype=float
             arguments of loss function
         X : array, shape=(n_samples, n_features), dtype=float
             feature values of training samples
@@ -118,22 +118,25 @@ class LogisticRegression(object):
             return value loss function
         """
 
-        # fist n_features of elements in args are weight coefficients
-        # the last element of args is an intercept parameter
-        coef = args[:self.n_features_]
-        intercept = args[-1]
+        # decompose parameters
+        coef = params.view(self._param_dtype)['coef'][0]
+        intercept = params.view(self._param_dtype)['intercept'][0]
+
+        # create empty gradient
+        grad = np.empty_like(params)
+        grad_coef = grad.view(self._param_dtype)['coef']
+        grad_intercept = grad.view(self._param_dtype)['intercept']
 
         # predicted probabilities of data
-        p = self.sigmoid(np.sum(X * coef[np.newaxis, :], axis=1) + intercept)
+        p = self.sigmoid(np.dot(X, coef) + intercept)
 
-        # gradient of likelihood
-        dl = np.sum((p - y)[:, np.newaxis] *
-                    np.c_[X, np.ones(self.n_samples_)], axis=0)
+        # gradient of weight coefficients
+        grad_coef[0] = np.dot(p - y, X) + self.C * coef
 
-        # gradient of regularizer
-        dr = args
+        # gradient of an intecept
+        grad_intercept[0] = np.sum(p - y) + self.C * intercept
 
-        return dl + self.C * dr
+        return grad
 
     def fit(self, X, y):
         """
@@ -151,11 +154,20 @@ class LogisticRegression(object):
         self.n_samples_ = X.shape[0]
         self.n_features_ = X.shape[1]
 
+        # dtype for model parameters to optimize
+        # the top n_features of elements in parameters are weight coefficients
+        # the last element of parameters is an intercept
+        self._param_dtype = np.dtype([
+            ('coef', float, self.n_features_),
+            ('intercept', float)
+        ])
+
         # check the size of y
         if self.n_samples_ != len(y):
             raise ValueError('Mismatched number of samples.')
 
         # optimize
+        print self._param_dtype.itemsize
         res = minimize(self.loss,
                        x0=np.zeros(self.n_features_ + 1, dtype=float),
                        jac=self.grad_loss,
@@ -163,8 +175,8 @@ class LogisticRegression(object):
                        method='CG')
 
         # get result
-        self.coef_ = res.x[:self.n_features_].copy()
-        self.intercept_ = res.x[-1]
+        self.coef_ = res.x.view(self._param_dtype)['coef'][0].copy()
+        self.intercept_ = res.x.view(self._param_dtype)['intercept'][0]
 
     def predict(self, X):
         """
