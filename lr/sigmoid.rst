@@ -291,7 +291,7 @@ if文は配列 :obj:`x` の要素を個別に処理しないので，このよ�
 
     Evaluate a piecewise-defined function.
 
-:ref:`_lr-sigmoid-fpcheck` で実装したシグモイド関数は，浮動小数点エラーを防ぐために入力の範囲に応じて出力を変えています．
+:ref:`lr-sigmoid-fpcheck` で実装したシグモイド関数は，浮動小数点エラーを防ぐために入力の範囲に応じて出力を変えています．
 :func:`piecewise` を用いて実装したシグモイド関数は次のようになります [#]_ ．
 
 .. code-block:: python
