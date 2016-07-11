@@ -73,6 +73,23 @@
 しかし， NumPy での実数演算は，有限精度の浮動小数点を用いて行っているため，絶対値が大きすぎるオーバーフローや，小さすぎるアンダーフローといった浮動小数点エラーを生じ，意図したとおりの計算結果を得ることができません．
 そのため，浮動小数点演算の制限を意識してプログラミングする必要があります．
 
+.. [#]
+
+    .. only:: epub or latex
+
+        https://github.com/tkamishima/mlmpy/blob/master/source/lr1.py
+
+    .. only:: html and not epub
+
+        :download:`LogisticRegresshon クラス：lr1.py <../source/lr1.py>`
+
+.. index:: e, pi, sp.constants
+
+.. [#]
+
+    NumPy には，このネピアの数を表す :const:`np.e` の他に，円周率を表す :const:`np.pi` の定数があります．
+    SciPy の :mod:`sp.consants` モジュール内には，光速や重力定数などの物理定数が定義されています．
+
 .. _lr-sigmoid-errhandling:
 
 浮動小数点エラーの処理
@@ -100,23 +117,6 @@
 * :const:`raise`: 例外 :exc:`FloatingPointError` を送出します．
 
 その他 :const:`call` ， :const:`print` ，および :const:`log` の値を設定できます．
-
-.. [#]
-
-    .. only:: epub or latex
-
-        https://github.com/tkamishima/mlmpy/blob/master/source/lr1.py
-
-    .. only:: html and not epub
-
-        :download:`LogisticRegresshon クラス：lr1.py <../source/lr1.py>`
-
-.. index:: e, pi, sp.constants
-
-.. [#]
-
-    NumPy には，このネピアの数を表す :const:`np.e` の他に，円周率を表す :const:`np.pi` の定数があります．
-    SciPy の :mod:`sp.consants` モジュール内には，光速や重力定数などの物理定数が定義されています．
 
 .. _lr-sigmoid-fpcheck:
 
