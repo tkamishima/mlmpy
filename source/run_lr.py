@@ -32,4 +32,3 @@ print np.sum(data['y'] == predict_y, dtype=float) / predict_y.shape[0]
 # print parameters
 print "coef =", clr.coef_
 print "intercept_ =", clr.intercept_
-print clr.coef_.shape

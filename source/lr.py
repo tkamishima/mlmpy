@@ -167,7 +167,6 @@ class LogisticRegression(object):
             raise ValueError('Mismatched number of samples.')
 
         # optimize
-        print self._param_dtype.itemsize
         res = minimize(self.loss,
                        x0=np.zeros(self.n_features_ + 1, dtype=float),
                        jac=self.grad_loss,
