@@ -103,7 +103,7 @@
 .. index:: seterr
 
 .. function:: np.seterr(all=None, divide=None, over=None, under=None,
-    invalid=None)[source]
+    invalid=None)
 
     Set how floating-point errors are handled.
 
