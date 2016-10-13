@@ -3,9 +3,10 @@
 非線形最適化関数
 ================
 
-ロジスティック回帰を解くには， :ref:`lr-lr` の式(3)の最適化問題を解く必要があります．
-ここでは，この最適化問題を :mod:`scipy.optimize` モジュールに含まれる関数 :func:`minimize` を用いて解きます．
-:func:`minimize` などの最適化関数について俯瞰した後で，  これらを使ってロジスティック回帰を実装します．
+ロジスティック回帰を解くには， :ref:`lr-lr` の式(3)の非線形最適化問題を解く必要があります．
+ここでは，この最適化問題を :mod:`scipy.optimize` モジュールに含まれる関数 :func:`minimize` を用いて実装します．
+そこで，この節では :func:`minimize` などの最適化関数について俯瞰します．
+そして，ロジスティック回帰モデルをあてはめるメソッドを，次の :ref:`lr-fit` で実装します．
 
 .. _lr-optimization-func:
 
@@ -120,52 +121,3 @@ SciPy の非線形最適化関数には， :func:`minimize_scalar` と :func:`mi
 等式・不等式制約は， ``type`` ， ``fun`` ， ``jac`` の要素を含む辞書の系列で指定します．
 ``type`` には，等式制約なら文字列定数 ``eq`` を，不等式制約なら ``ineq`` を指定します．
 ``fun`` には制約式の関数を， ``jac`` にはその勾配を指定します．
-
-.. _lr-optimization-implementation:
-
-ロジスティック回帰の実装
-------------------------
-
-それではロジスティック回帰でのあてはめを :func:`minimize` を用いて実装します．
-あてはめを行う :meth:`fit` メソッドでは，まずデータ数と特徴数を設定しておきます．
-
-.. code-block:: python
-
-    def fit(self, X, y):
-        """
-        Fitting model
-        """
-
-        # constants
-        self.n_samples_ = X.shape[0]
-        self.n_features_ = X.shape[1]
-
-そして，最適化関数 :func:`mimimze` で最適なパラメータを求めます．
-
-.. code-block:: python
-
-    # optimize
-    res = minimize(fun=self.loss,
-                   x0=np.zeros(self.n_features_ + 1, dtype=float),
-                   jac=self.grad_loss,
-                   args=(X, y),
-                   method='CG')
-
-    # get result
-    self.coef_ = res.x.view(self._param_dtype)['coef'][0].copy()
-    self.intercept_ = res.x.view(self._param_dtype)['intercept'][0]
-
-:func:`minimize` を呼び出して，ロジスティック回帰モデルをあてはめてて，その結果を:class:`OptimizeResult` のインスタンスとして受け取り， :obj`res` に保持しています．
-最適化手法は ``method`` で，
-:func:`minimize` の引数 ``fun`` と ``jac`` には，それぞれロジスティック回帰の目的関数とその勾配ベクトル，すなわち :ref:`lr-lr` の式(2)と式(4)を計算するメソッドを与えています．
-これらのメソッドについては次の :ref:`lr-loss` で詳しく述べます．
-最適解を探索する初期値 ``x0`` には :func:`np.zeros` で生成した実数の0ベクトルを与えています．
-パラメータの総数は，特徴数に切片 (intercept) の分を加えた数にしています．
-目的関数と勾配ベクトルを計算するにはモデルのパラメータの他にも訓練データの情報が必要です．
-そこで，これらの情報を ``args`` に指定して，目的関数・勾配ベクトルを計算するメソッドに引き渡されるようにしています．
-
-最適化が終わったら， :obj:`res` の属性 :attr:`x` に格納されているパラメータを取り出します．
-ロジスティック回帰のクラスでは，重みベクトル :math:`\mathbf{w}` と切片 :math:`b` のパラメータを，それぞれ属性 :attr:`coef_` と :attr:`intercept_` に保持します．
-しかし， これらのパラメータはまとめて1次元配列 :obj:`res.x` に格納されているので，それを :meth:`view` を使って分離しています．
-この処理については次の :ref:`lr-loss` で詳しく述べます．
-なお，ローカル変数である :obj:`res.x` は :meth:`fit` メソッドの終了時にその内容が失われるので， :meth:`copy` メソッドで実体をコピーしていることに注意して下さい．

@@ -8,12 +8,13 @@
 この実装を通じて， NumPy / SciPy の特徴を利用した数学の関数の実装，便利な配列操作，最適化ルーチンの利用法などを説明します．
 
 .. toctree::
-   :maxdepth: 3
+    :maxdepth: 3
 
-   lr
-   sigmoid
-   optimization
-   loss
-   preparation
-   run
-   summary
+    lr
+    sigmoid
+    optimization
+    fit
+    loss
+    preparation
+    run
+    summary
