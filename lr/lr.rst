@@ -60,6 +60,7 @@
 非線形最適化では目的関数の勾配も利用するので，ここに追記しておきます．
 
 .. math::
+   :label: eq-lr-gradient
 
     \frac{\partial}{\partial\mathbf{w}}
     \mathcal{L}(\mathbf{w}, b; \mathcal{D}) & =
