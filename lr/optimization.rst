@@ -1,7 +1,7 @@
 .. _lr-optimization:
 
-最適化
-======
+非線形最適化関数
+================
 
 ロジスティック回帰を解くには， :ref:`lr-lr` の式(3)の最適化問題を解く必要があります．
 ここでは，この最適化問題を :mod:`scipy.optimize` モジュールに含まれる関数 :func:`minimize` を用いて解きます．
@@ -9,8 +9,8 @@
 
 .. _lr-optimization-func:
 
-SciPy の最適化関数
-------------------
+SciPy の非線形最適化関数
+------------------------
 
 .. index:: non-linear optimization, optimization
 
