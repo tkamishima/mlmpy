@@ -5,6 +5,9 @@
 
 .. _lr-fit-fit:
 
+それでは，前節の :ref:`lr-optimization` で紹介した :func:`minimize` を用いて，学習メソッド :meth:`fit` を実装します．
+:func:`minimize` とパラメータをやりとりするために，構造化配列を用いる方法についても紹介します．
+
 学習メソッド
 ------------
 
