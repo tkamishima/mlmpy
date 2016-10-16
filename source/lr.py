@@ -171,7 +171,7 @@ class LogisticRegression(object):
                        method='CG')
 
         # get result
-        self.coef_ = res.x.view(self._param_dtype)['coef'][0].copy()
+        self.coef_ = res.x.view(self._param_dtype)['coef'][0, :].copy()
         self.intercept_ = res.x.view(self._param_dtype)['intercept'][0]
 
     def predict(self, X):
