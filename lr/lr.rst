@@ -23,7 +23,7 @@
 
     \Pr[y{=}1 | \mathbf{x}; \mathbf{w}, b] = \mathrm{sig}(\mathbf{w}^\top \mathbf{x} + b)
 
-ただし， :math:`\mathbf{w}` は次元数 :math:`K` の重みパラメータ， :math:`b` はバイアスパラメータ（切片パラメータ）です．
+ただし， :math:`\mathbf{w}` は次元数 :math:`K` の重みベクトル， :math:`b` は切片（バイアス）と呼ばれるパラメータです．
 また， :math:`\mathrm{sig}(a)` は次のシグモイド関数です．
 
 .. math::
@@ -47,16 +47,16 @@
 
 なお， :math:`\Pr[y|\mathbf{x}]` 中のパラメータは簡潔のため省略しました．
 この目的関数は，訓練データ集合 :math:`\mathcal{D}` に対する負の対数尤度に :math:`L_2` 正則化項を加えたものです．
-パラメータ :math:`\mathbf{w}` と :math:`b` はこの目的関数を最小化することで学習します．
+ロジスティック回帰モデルでの学習は，この目的関数を最小にするパラメータ :math:`\mathbf{w}` と :math:`b` を求めることです．
 
 .. math::
    :label: eq-lr-learning
 
-    \{\mathbf{w}, b\} =
+    \{ \mathbf{w}^\ast, b^\ast \} =
     \arg \min_{\{\mathbf{w}, b\}} \mathcal{L}(\mathbf{w}, b; \mathcal{D})
 
 この最小化問題は反復再重み付け最小二乗法 (iteratively reweighted least squares method) により求めるのが一般的です．
-しかし，本章では，他の多くの最適化問題として定式化された機械学習手法の実装の参考となるように， `SciPy` の非線形最適化用の関数を利用して解きます．
+しかし，本章では，他の多くの最適化問題として定式化された機械学習手法の実装の参考となるように， SciPyの非線形最適化用の関数を利用して解きます．
 非線形最適化では目的関数の勾配も利用するので，ここに追記しておきます．
 
 .. math::
@@ -69,17 +69,15 @@
     \frac{\partial}{\partial b}
     \mathcal{L}(\mathbf{w}, b; \mathcal{D}) & =
     \sum_{(\mathbf{x}, y) \in \mathcal{D}}
-    (\Pr[y_i{=}1 | \mathbf{x}_i] - y_i) 1 + \lambda \, b
+    (\Pr[y_i{=}1 | \mathbf{x}_i] - y_i) + \lambda \, b
 
-パラメータ :math:`b` に対する勾配で :math:`1` を明示しているのは，後の実装上の有利になるためです．
-
-学習したパラメータ :math:`\mathbf{w}` と :math:`b` を式 :eq:`eq-lr-model` に代入した分布 :math:`\Pr[y | \mathbf{x}]` 用いて，新規入力データ :math:`\mathbf{x}^\mathrm{new}` に対するラベル :math:`y` は次式で予測できます．
+学習したパラメータ :math:`\mathbf{w}^\ast` と :math:`b^\ast` を式 :eq:`eq-lr-model` に代入した分布 :math:`\Pr[y | \mathbf{x}; \mathbf{w}^\ast, b^\ast]` 用いて，新規入力データ :math:`\mathbf{x}^\mathrm{new}` に対するクラス :math:`y` は次式で予測できます．
 
 .. math::
    :label: eq-lr-class-dist
 
    y =
    \begin{cases}
-        1, \text{ if } \Pr[y | \mathbf{x}] \ge 0.5 \\
+        1, \text{ if } \Pr[y | \mathbf{x}; \mathbf{w}^\ast, b^\ast] \ge 0.5 \\
         0, \text{otherwise}
    \end{cases}
