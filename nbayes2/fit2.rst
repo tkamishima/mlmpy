@@ -40,7 +40,7 @@
 
 .. code-block:: python
 
-    nY = np.zeros(n_classes, dtype=np.int)
+    nY = np.zeros(n_classes, dtype=int)
     for i in xrange(n_samples):
         nY[y[i]] += 1
 
@@ -49,7 +49,7 @@
 
 .. code-block:: python
 
-    nY = np.zeros(n_classes, dtype=np.int)
+    nY = np.zeros(n_classes, dtype=int)
     for yi in xrange(n_classes):
         for i in xrange(n_samples):
             if y[i] == yi:
@@ -87,7 +87,7 @@
 
 .. code-block:: python
 
-    nY = np.empty(n_classes, dtype=np.int)
+    nY = np.empty(n_classes, dtype=int)
     for yi in xrange(n_classes):
         nY[yi] = np.sum(y ==yi)
 

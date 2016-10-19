@@ -49,7 +49,7 @@ NumPy と SciPy にはいろいろな形式のファイルを読み込む関数�
 
 .. code-block:: python
 
-   data = np.genfromtxt('vote_filled.tsv', dtype=np.int)
+   data = np.genfromtxt('vote_filled.tsv', dtype=int)
 
 このファイルは，最終列がクラスラベル，それ以外に特徴量を格納しています．
 このため，変数 :obj:`data` の最終列をクラスラベルの配列 :obj:`y` に，それ以外を特徴量の配列 :obj:`X` に格納します．

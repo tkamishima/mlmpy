@@ -11,7 +11,7 @@
 
 .. code-block:: python
 
-    nY = np.zeros(n_classes, dtype=np.int)
+    nY = np.zeros(n_classes, dtype=int)
     for yi in xrange(n_classes):
         for i in xrange(n_samples):
             if y[i] == yi:
@@ -206,9 +206,9 @@
 
 .. code-block:: python
 
-    self.pY_ = np.empty(n_classes, dtype=np.float)
+    self.pY_ = np.empty(n_classes, dtype=float)
     for i in xrange(n_classes):
-        self.pY_[i] = nY[i] / np.float(n_samples)
+        self.pY_[i] = nY[i] / float(n_samples)
 
 この処理も，ユニバーサル関数の機能を使うと次のように簡潔に実装できます．
 

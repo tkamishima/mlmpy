@@ -248,7 +248,7 @@ Unicode文字列の場合は，この ``S`` を ``U`` に置き換えます．
    In [41]: a = np.array([1, 2, 3])
    In [42]: a.dtype
    Out[42]: dtype('int64')
-   In [43]: a = np.array([1, 2, 3], dtype=np.float)
+   In [43]: a = np.array([1, 2, 3], dtype=float)
    In [44]: a.dtype
    Out[44]: dtype('float64')
 
@@ -275,7 +275,7 @@ Unicode文字列の場合は，この ``S`` を ``U`` に置き換えます．
    In [50]: a = np.array([1, 2, 3])
    In [51]: a.dtype
    Out[51]: dtype('int64')
-   In [52]: a = a.astype(np.float)
+   In [52]: a = a.astype(float)
    In [53]: a.dtype
    Out[53]: dtype('float64')
    In [54]: a
