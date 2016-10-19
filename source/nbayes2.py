@@ -60,7 +60,7 @@ class BaseBinaryNaiveBayes(object):
         n_features = X.shape[1]
 
         # memory for return values
-        y = np.empty(n_samples, dtype=np.int)
+        y = np.empty(n_samples, dtype=int)
 
         # for each feature in X
         for i, xi in enumerate(X):
@@ -108,28 +108,28 @@ class NaiveBayes1(BaseBinaryNaiveBayes):
             raise ValueError('Mismatched number of samples.')
 
         # count up n[yi=y]
-        nY = np.zeros(n_classes, dtype=np.int)
+        nY = np.zeros(n_classes, dtype=int)
         for i in xrange(n_samples):
             nY[y[i]] += 1
 
         # calc pY_
-        self.pY_ = np.empty(n_classes, dtype=np.float)
+        self.pY_ = np.empty(n_classes, dtype=float)
         for i in xrange(n_classes):
-            self.pY_[i] = nY[i] / np.float(n_samples)
+            self.pY_[i] = nY[i] / float(n_samples)
 
         # count up n[x_ij=xj, yi=y]
-        nXY = np.zeros((n_features, n_fvalues, n_classes), dtype=np.int)
+        nXY = np.zeros((n_features, n_fvalues, n_classes), dtype=int)
         for i in xrange(n_samples):
             for j in xrange(n_features):
                 nXY[j, X[i, j], y[i]] += 1
 
         # calc pXgY_
         self.pXgY_ = np.empty((n_features, n_fvalues, n_classes),
-                              dtype=np.float)
+                              dtype=float)
         for j in xrange(n_features):
             for xi in xrange(n_fvalues):
                 for yi in xrange(n_classes):
-                    self.pXgY_[j, xi, yi] = nXY[j, xi, yi] / np.float(nY[yi])
+                    self.pXgY_[j, xi, yi] = nXY[j, xi, yi] / float(nY[yi])
 
 class NaiveBayes2(BaseBinaryNaiveBayes):
     """
