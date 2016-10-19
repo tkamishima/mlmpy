@@ -11,7 +11,7 @@ import numpy as np
 from nbayes1b import NaiveBayes1
 
 # load data
-data = np.genfromtxt('vote_filled.tsv', dtype=np.int)
+data = np.genfromtxt('vote_filled.tsv', dtype=int)
 
 # split data
 X = data[:, :-1]

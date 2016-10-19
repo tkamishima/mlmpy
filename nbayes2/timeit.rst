@@ -10,7 +10,7 @@
 
 .. code-block:: ipython
 
-    In [10]: data = np.genfromtxt('vote_filled.tsv', dtype=np.int)
+    In [10]: data = np.genfromtxt('vote_filled.tsv', dtype=int)
     In [11]: X = data[:, :-1]
     In [12]: y = data[:, -1]
 

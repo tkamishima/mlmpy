@@ -8,7 +8,7 @@
 
 .. code-block:: python
 
-   nXY = np.zeros((n_features, n_fvalues, n_classes), dtype=np.int)
+   nXY = np.zeros((n_features, n_fvalues, n_classes), dtype=int)
    for i in xrange(n_samples):
        for j in xrange(n_features):
            nXY[j, X[i, j], y[i]] += 1
@@ -17,7 +17,7 @@
 
 .. code-block:: python
 
-    nXY = np.zeros((n_features, n_fvalues, n_classes), dtype=np.int)
+    nXY = np.zeros((n_features, n_fvalues, n_classes), dtype=int)
     for i in xrange(n_samples):
         for j in xrange(n_features):
             for yi in xrange(n_classes):
