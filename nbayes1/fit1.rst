@@ -59,19 +59,21 @@
 
 .. code-block:: python
 
-   nY = np.zeros(n_classes, dtype=np.int)
+   nY = np.zeros(n_classes, dtype=int)
    for i in xrange(n_samples):
        nY[y[i]] += 1
 
 モデルパラメータ :obj:`self.pY_` は式(4)に従って計算します．
 なお，後で値を書き換えるので :func:`np.empty` で初期化します．
-また，割り算の結果を実数で得るため， :class:`np.float` 型への変換も行います．
+また，割り算の結果を実数で得るため， :class:`float` 型への変換も行います．
+
+.. todo: python3 対応の時に割り算での型変換は無視
 
 .. code-block:: python
 
-   self.pY_ = np.empty(n_classes, dtype=np.float)
+   self.pY_ = np.empty(n_classes, dtype=float)
    for i in xrange(n_classes):
-       self.pY_[i] = nY[i] / np.float(n_samples)
+       self.pY_[i] = nY[i] / float(n_samples)
 
 .. _nbayes1-fit1-feature:
 
@@ -86,7 +88,7 @@
 
 .. code-block:: python
 
-   nXY = np.zeros((n_features, n_fvalues, n_classes), dtype=np.int)
+   nXY = np.zeros((n_features, n_fvalues, n_classes), dtype=int)
    for i in xrange(n_samples):
        for j in xrange(n_features):
            nXY[j, X[i, j], y[i]] += 1
@@ -96,10 +98,10 @@
 .. code-block:: python
 
    self.pXgY_ = np.empty((n_features, n_fvalues, n_classes),
-                         dtype=np.float)
+                         dtype=float)
    for j in xrange(n_features):
        for xi in xrange(n_fvalues):
            for yi in xrange(n_classes):
-               self.pXgY_[j, xi, yi] = nXY[j, xi, yi] / np.float(nY[yi])
+               self.pXgY_[j, xi, yi] = nXY[j, xi, yi] / float(nY[yi])
 
 以上で，単純ベイズのモデルパラメータの学習を完了しました．

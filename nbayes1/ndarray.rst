@@ -221,9 +221,16 @@ NumPy 配列の属性と要素の参照
 
 .. index:: ! dtype
 
-これらの属性のうち :attr:`dtype` について詳しく述べます．
-よく使われる型は Python のビルトイン型の真理値型，整数型，浮動小数点型，複素数型に対応する :obj:`np.bool` ， :obj:`np.int` ， :obj:`np.float` ， :obj:`np.complex` です．
-メモリのビット数を明示的に表す :obj:`np.int32` や :obj:`np.float64` などもありますが，メモリを特に節約したい場合や，C や Fortran で書いた関数とリンクするといった場合以外はあまり使わないでしょう．
+これらの属性のうち，型を表す :attr:`dtype` について詳しく述べます．
+まず，Python のビルトイン型の真理値型 ，整数型，浮動小数点型，複素数型に対応する型があります．
+加えて，これらの型については，それを格納するのに必要なメモリをビット数で明示的に指定するものもあります．
+例えば， :obj:`np.uint8` は8ビットの符号なし整数で :math:`0, \dotsc, 255` の値を， :obj:`np.float32` は32bit，いわゆる単精度の浮動小数点数を表します．
+ビット数を指定する型は，GPU 利用のために32bitの浮動小数点数を用いる，メモリを特に節約したい，また C や Fortran で書いた関数とリンクするといった場合に用います．
+これらの基本的な型についてまとめておきます．
+
+* Pythonのビルトインの :obj:`bool` ， :obj:`int` ， :obj:`float` ，および :obj:`complex` に対応するのは，それぞれ :obj:`np.bool` ， :obj:`np.int` ， :obj:`np.float` ，および :obj:`np.complex` です．これらは同じオブジェクトなので，ビルトイン型のものを用いておけばよいでしょう．
+* 最後に ``_`` が付いた型は，ビット数を指定した型に対応します．:obj:`int` はC言語のlong型に対応し :obj:`np.int32` か :obj:`np.int64` と同じものです． :obj:`np.float_` と :obj:`np.complex_` は，それぞれ :obj:`np.float64` と :obj:`np.complex128` と同じものです．
+* :func:`np.dtype` でビルトイン型を変換すると ``_`` の付いた型になります．例えば， ``np.dtype(float).type`` は :obj:`np.float_` と同じオブジェクトになります．
 
 文字列型については，ビルトイン型の :obj:`str` とは，少し異なります．
 :class:`np.ndarray` では，要素の大きさが同じである必要があるため，文字列は固定長になります．
@@ -241,7 +248,7 @@ Unicode文字列の場合は，この ``S`` を ``U`` に置き換えます．
    In [41]: a = np.array([1, 2, 3])
    In [42]: a.dtype
    Out[42]: dtype('int64')
-   In [43]: a = np.array([1, 2, 3], dtype=np.float)
+   In [43]: a = np.array([1, 2, 3], dtype=float)
    In [44]: a.dtype
    Out[44]: dtype('float64')
 
@@ -268,7 +275,7 @@ Unicode文字列の場合は，この ``S`` を ``U`` に置き換えます．
    In [50]: a = np.array([1, 2, 3])
    In [51]: a.dtype
    Out[51]: dtype('int64')
-   In [52]: a = a.astype(np.float)
+   In [52]: a = a.astype(float)
    In [53]: a.dtype
    Out[53]: dtype('float64')
    In [54]: a
