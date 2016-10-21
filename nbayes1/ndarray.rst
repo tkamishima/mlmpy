@@ -199,7 +199,7 @@ NumPy 配列の属性と要素の参照
 三番目の属性 :attr:`shape` は，各次元ごとの配列の大きさをまとめたタプルで指定します．
 例えば，大きさが 5 のベクトルは ``(5,)`` [#]_ となり， :math:`2 \times 3` 行列では ``(2, 3)`` となります．
 
-.. index:: ! dtype
+.. index:: ! ndarray; dtype, np.dtype
 
 これらの属性のうち，型を表す :attr:`dtype` について詳しく述べます．
 まず，Python のビルトイン型の真理値型 ，整数型，浮動小数点型，複素数型に対応する型があります．
@@ -214,7 +214,7 @@ NumPy 配列の属性と要素の参照
 
 文字列型については，ビルトイン型の :obj:`str` とは，少し異なります．
 :class:`np.ndarray` では，要素の大きさが同じである必要があるため，文字列は固定長になります．
-Python の文字列型に対応する NumPy での文字列型は，NumPy の型を返す関数 :func:`np.dtype` を用いて， ``np.dtype('S<文字列長>')`` [#]_ のように指定します．
+Python の文字列型に対応する NumPy での文字列型は，NumPy の型を表すクラス :class:`np.dtype` のコンストラクタを用いて， ``np.dtype('S<文字列長>')`` [#]_ のように指定します．
 例えば，最大長が16である文字列を扱う場合は ``np.dtype("S16")`` のように指定します．
 Unicode文字列の場合は，この ``S`` を ``U`` に置き換えます．
 
@@ -239,7 +239,7 @@ Unicode文字列の場合は，この ``S`` を ``U`` に置き換えます．
    In [45]: a = np.array([1.0, 1.5, 2.0])
    In [46]: a.dtype
    Out[46]: dtype('float64')
-   In [47]: a = np.array(a, dtype=np.complex)
+   In [47]: a = np.array(a, dtype=complex)
    In [48]: a.dtype
    Out[48]: dtype('complex128')
    In [49]: a
