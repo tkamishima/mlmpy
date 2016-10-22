@@ -134,6 +134,8 @@
 簡単な計算により， ``sigmoid_range = 34.538776394910684`` とすると，入力値が ``-sigmoid_range`` 以上， ``+sigmoid_range`` 以下の範囲であれば式 :eq:`eq-lr-sigmoid` に従って計算し，それ以外では適切な定数を出力すればよいことが分かる．
 これを実装すると次のようになります [#]_ ．
 
+.. index:: sample; lr2.py
+
 .. code-block:: python
 
     @staticmethod
@@ -228,6 +230,10 @@ if文は配列 :obj:`x` の要素を個別に処理しないので，このよ�
 
 関数を入力として関数を返す関数は Python のデコレータとして使うことができます．
 
+先ほど定義したシグモイド関数の， ``@staticmethod`` デコレータの下に，関数 :func:`vectorize` を ``@np.vectorize`` のような形式でデコレータとして与えます [#]_ ．
+
+.. index:: sample; lr3.py
+
 .. code-block:: python
 
     @staticmethod
@@ -242,8 +248,7 @@ if文は配列 :obj:`x` の要素を個別に処理しないので，このよ�
 
         return 1.0 / (1.0 + np.exp(-x))
 
-先ほど定義したシグモイド関数の， ``@staticmethod`` デコレータの下に，関数 :func:`vectorize` を ``@np.vectorize`` のような形式でデコレータとして与えます [#]_ ．
-これでユニバーサル関数となったかを確かめてみます．
+これでユニバーサル関数になっているかを確かめてみます．
 
 .. code-block:: ipython
 

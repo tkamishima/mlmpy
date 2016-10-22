@@ -43,6 +43,8 @@ class LogisticRegression(object):
         self.n_features_ = 0
         self.n_samples_ = 0
 
+        self._param_dtype = np.dtype([])
+
     @staticmethod
     def sigmoid(x):
         """
@@ -83,10 +85,9 @@ class LogisticRegression(object):
             return value loss function
         """
 
-        # fist n_features of elements in params are weight coefficients
-        # the last element of params is an intercept parameter
-        coef = params[:self.n_features_]
-        intercept = params[-1]
+        # decompose parameters
+        coef = params.view(self._param_dtype)['coef'][0, :]
+        intercept = params.view(self._param_dtype)['intercept'][0]
 
         # predicted probabilities of data
         p = self.sigmoid(np.dot(X, coef) + intercept)
@@ -105,7 +106,7 @@ class LogisticRegression(object):
 
         Parameters
         ----------
-        params : array, shape=(n_features + 1), dtype=float
+        params : array, shape=(n_params,), dtype=float
             arguments of loss function
         X : array, shape=(n_samples, n_features), dtype=float
             feature values of training samples
@@ -114,12 +115,12 @@ class LogisticRegression(object):
 
         Returns
         -------
-        loss : float
-            return value loss function
+        grad : array, shape=(n_params,), dtype=float
+            return a gradient vector of a loss function
         """
 
         # decompose parameters
-        coef = params.view(self._param_dtype)['coef'][0]
+        coef = params.view(self._param_dtype)['coef'][0, :]
         intercept = params.view(self._param_dtype)['intercept'][0]
 
         # create empty gradient
@@ -131,9 +132,9 @@ class LogisticRegression(object):
         p = self.sigmoid(np.dot(X, coef) + intercept)
 
         # gradient of weight coefficients
-        grad_coef[0] = np.dot(p - y, X) + self.C * coef
+        grad_coef[0, :] = np.dot(p - y, X) + self.C * coef
 
-        # gradient of an intecept
+        # gradient of an intercept
         grad_intercept[0] = np.sum(p - y) + self.C * intercept
 
         return grad
@@ -162,10 +163,6 @@ class LogisticRegression(object):
             ('intercept', float)
         ])
 
-        # check the size of y
-        if self.n_samples_ != len(y):
-            raise ValueError('Mismatched number of samples.')
-
         # optimize
         res = minimize(fun=self.loss,
                        x0=np.zeros(self.n_features_ + 1, dtype=float),
@@ -174,7 +171,7 @@ class LogisticRegression(object):
                        method='CG')
 
         # get result
-        self.coef_ = res.x.view(self._param_dtype)['coef'][0].copy()
+        self.coef_ = res.x.view(self._param_dtype)['coef'][0, :].copy()
         self.intercept_ = res.x.view(self._param_dtype)['intercept'][0]
 
     def predict(self, X):
