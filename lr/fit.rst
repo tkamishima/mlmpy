@@ -141,7 +141,13 @@
     その他，構造化配列の :attr:`dtype` を指定する方法は他にも用意されています．
     詳細はNumPyマニュアルの `Structured Array <https://docs.scipy.org/doc/numpy/user/basics.rec.html>`_ の項目を参照して下さい．
 
+.. _lr-fit-implementation:
 
+構造化配列を用いた実装
+----------------------
+
+それでは，この構造化配列を使って，ロジスティック回帰のパラメータを表してみます．
+:meth:`fit` メソッドで， 最適化を実行する前に，次のように実装しました．
 
 .. code-block:: python
 
@@ -151,3 +157,35 @@
         ('intercept', float)
     ])
 
+第1列目の ``coef`` は重みベクトル :math:`\mathbf{w}` を表すものです．
+1次元で大きさが特徴数 :attr:`n_features_` に等しい実数ベクトルとして定義しています．
+第2列目の ``intercept`` は切片 :math:`b` に相当し，スカラーの実数値としています．
+この構造化配列の型を :class:`np.dtype` クラスのインスタンスとしてロジスティック回帰クラスの属性 :attr:`_param_dtype` 保持しておきます．
+
+.. class:: np.dtype
+
+    Create a data type object.
+
+    :ivar obj: Object to be converted to a data type object.
+
+それでは， :func:`minimize` の結果を格納した :obj:`res.x` から，構造化配列を使ってパラメータを分離する次のコードをもう一度見てみます．
+
+.. index:: ndarray ; view
+
+.. code-block:: python
+
+    # get result
+    self.coef_ = res.x.view(self._param_dtype)['coef'][0, :].copy()
+    self.intercept_ = res.x.view(self._param_dtype)['intercept'][0]
+
+:meth:`view` は，配列自体は変更や複製をすることなく，異なる型の配列として参照するメソッドです．
+C言語などの共用体と同様の動作をします．
+:obj:`res.x` は大きさが ``n_features_ + 1`` の実数配列ですが，重みベクトルと切片のパラメータをまとめた :attr:`_param_dtype` 型の構造化配列として参照できます．
+
+:attr:`_param_dtype` 型では，列 ``coef`` は大きさが ``n_features_`` の1次元配列です．
+よって， ``res.x.view(self._param_dtype)['coef']`` によって :attr:`shape` が ``(1, n_features_)`` の配列を得ることができます．
+その後の ``[0, :]`` によって，この配列の1行目の内容を参照し，これを重みベクトルとして取り出しています．
+もう一方の列 ``intercept`` はスカラーの実数なので， ``res.x.view(self._param_dtype)['intercept']`` によって大きさが1の1次元実数配列を参照できます．
+この配列の最初の要素を参照し，これを切片として取り出しています．
+
+以上で， :ref:`lr-lr` の式(3)を解いて，得られた重みベクトル :math:`mathbf{w}` と切片 :math:`b` を，ロジスティック回帰の属性 :attr:`coef_` と :attr:`intercept_` とにそれぞれ格納することができました．
