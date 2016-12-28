@@ -29,7 +29,7 @@ SciPy の非線形最適化関数には， :func:`minimize_scalar` と :func:`mi
 最適化の方法は ``method`` で指定します．
 通常は，最小化するパラメータの範囲に制約がないときは ``brent`` を，制約がある場合は ``bounded`` を指定します．
 
-.. index:: minimize
+.. index:: ! minimize
 
 .. function:: sp.optimize.minimize(fun, x0, args=(), method=None, jac=None, hess=None, hessp=None, bounds=None, constraints=(), tol=None, options=None)
 

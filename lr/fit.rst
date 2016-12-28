@@ -27,6 +27,8 @@
 
 そして，最適化関数 :func:`mimimze` で最適なパラメータを求めます．
 
+.. index:: minimize
+
 .. code-block:: python
 
     # optimize
@@ -64,7 +66,9 @@
 
 .. _lr-fit-sarray:
 
-.. index:: structured array
+.. index::
+    single: structured array
+    pair: ndarray; dtype
 
 構造化配列
 ----------
