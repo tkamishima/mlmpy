@@ -12,6 +12,10 @@
 損失関数
 --------
 
+まず :ref:`lr-lr` の式(2)で示した損失関数を実装します．
+この損失関数を :func:`minimize` に引数 ``fun`` として渡すことで，この関数値が最小になるようなパラメータを求めます．
+
+関数は，次のようにメソッドとして定義します．
 
 .. code-block:: python
 
@@ -19,15 +23,33 @@
         """ A loss function
         """
 
+この関数は :func:`minimze` から呼び出されます．
+このとき，``self`` の次の第1引数には目的関数のパラメータが渡されます．
+このパラメータは :func:`minimize` の初期値パラメータ ``x0`` と同じ大きさの実数型の1次元配列です．
+2番目以降の引数は :func:`minimize` で引数 ``args`` で指定したものが渡されます．
+損失関数の計算には訓練データが必要なので， :func:`minimize` では :obj:`X` と :obj:`y` を :meth:`fit` では渡していましたので，これらがこの損失関数に引き渡されています．
+
+:meth:`fit` メソッドでは，ロジスティック回帰モデルのパラメータは，構造化配列を使って1次元配列にまとめていました．
+これを再び，重みベクトル :math:`mathbf{w}` と 切片 :math:`b` それぞれに相当する :obj:`coef` と :obj:`intercept` に分けます．
+
+.. code-block:: python
+
         # decompose parameters
         coef = params.view(self._param_dtype)['coef'][0, :]
         intercept = params.view(self._param_dtype)['intercept'][0]
+
+このように， :meth:`view` メソッドを使って :ref:`lr-fit-implementation` で紹介したのと同じ方法で分けることができます．
+
+
+これで損失関数の計算に必要なデータやパラメータが揃いました．
+あとは， :ref:`lr-lr` の式(2)に従って損失を計算し， メソッドの返り値としてその値を返せば完成です．
+
+.. code-block:: python
 
         # predicted probabilities of data
         p = self.sigmoid(np.dot(X, coef) + intercept)
 
         # likelihood
-        # \sum_{x,s,y in D} (1 - y) log(1 - sigma) + y log(sigma)
         l = np.sum((1.0 - y) * np.log(1.0 - p) + y * np.log(p))
 
         # L2 regularizer
@@ -35,11 +57,7 @@
 
         return - l + 0.5 * self.C * r
 
-
-
-
-
-
+``p`` は， :math:`\Pr[y | \mathbf{x}; \mathbf{w}, b]` ， ``l`` は大数尤度，そして ``r`` は :math:`L_2` 正則化項にそれぞれ該当します．
 
 .. _lr-loss-grad:
 
