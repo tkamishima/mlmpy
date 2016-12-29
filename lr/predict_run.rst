@@ -44,5 +44,46 @@
 
 .. _lr-predict_run-run:
 
-実行と速度比較
---------------
+実行
+----
+
+実行可能な状態の :class:`LogisticRegression` の実行スクリプトは，以下の場所から取得できます．
+実行時には ``lr.py`` と ``iris2.tsv`` [#]_ がカレントディレクトリに必要です．
+
+.. index:: sample; run_lr.py
+
+.. only:: epub or latex
+
+  https://github.com/tkamishima/mlmpy/blob/master/source/run_lr.py
+
+.. only:: html and not epub
+
+  :download:`LogisticRegression 実行スクリプト：run_lr.py <../source/run_lr.py>`
+
+.. index:: structured array, genfromtxt
+
+このスクリプトでは，データを :func:`np.genfromtxt` で読み込むときに，構造化配列を利用しました．
+
+.. code-block:: python
+
+    # load data
+    data = np.genfromtxt('iris2.tsv',
+                         dtype=[('X', float, 4), ('y', int)])
+
+最初の4列は実数型の特徴ベクトルとして ``X`` で参照できるように，残りの1列は整数型のクラスとして ``y`` で参照できるようにしています．
+すると，次のように特徴ベクトルとクラスを分けて :meth:`fit` メソッドに渡すことができます．
+
+.. code-block:: python
+
+    clr.fit(data['X'], data['y'])
+
+.. only:: not latex
+
+   .. rubric:: 注釈
+
+.. [#]
+    ``iris2.tsv`` は UCI Repository の
+    `Iris Data Set <https://archive.ics.uci.edu/ml/datasets/Iris>`_
+    をもとに作成したものです．
+    Fisherの判別分析の論文で用いられた著名なデータです．
+    3種類のアヤメのうち， Iris Versicolour と Iris Virginica の2種類を取り出しています．

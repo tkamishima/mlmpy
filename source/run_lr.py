@@ -12,7 +12,7 @@ from lr import LogisticRegression
 
 # load data
 data = np.genfromtxt('iris2.tsv',
-                     dtype=[('X', 'f', 4), ('y', 'i')])
+                     dtype=[('X', float, 4), ('y', int)])
 
 # learn model
 clr = LogisticRegression()
