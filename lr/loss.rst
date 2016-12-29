@@ -66,36 +66,22 @@
 損失関数の勾配
 --------------
 
+今度は :ref:`lr-lr` の式(4)で示した損失関数の勾配を実装し，これを :func:`minimize` に引数 ``jac`` として渡します．
+勾配関数に引き渡される引数は，損失関数のそれと同じになります．
+また，パラメータは重みベクトルと切片に，損失関数と同じ方法で分けます．
+
+スカラーである損失とは異なり，勾配はパラメータと同じ大きさの配列です．
+そこでパラメータと同じ大きさの1次元配列を用意し，そこに重みベクトルと切片のための領域を割り当てます．
+
 .. code-block:: python
-
-    def grad_loss(self, params, X, y):
-        """ A gradient of a loss function
-        """
-
-        # decompose parameters
-        coef = params.view(self._param_dtype)['coef'][0, :]
-        intercept = params.view(self._param_dtype)['intercept'][0]
 
         # create empty gradient
         grad = np.empty_like(params)
         grad_coef = grad.view(self._param_dtype)['coef']
         grad_intercept = grad.view(self._param_dtype)['intercept']
 
-        # predicted probabilities of data
-        p = self.sigmoid(np.dot(X, coef) + intercept)
-
-        # gradient of weight coefficients
-        grad_coef[0, :] = np.dot(p - y, X) + self.C * coef
-
-        # gradient of an intercept
-        grad_intercept[0] = np.sum(p - y) + self.C * intercept
-
-        return grad
-
-
-
-
-:func:`np.zeros` ， :func:`np.ones` ，および :func:`np.empty` には，それぞれ今までに生成した配列と同じ大きさの配列を生成する関数 :func:`np.zeros_like` ， :func:`np.ones_like` ，および :func:`np.empty_like` があります．
+入力パラメータ ``params`` と同じ大きさの配列を確保するのに，ここでは :func:`np.empty_like` を用います．
+:func:`np.zeros_like` ， :func:`np.ones_like` ，および :func:`np.empty_like` は，今までに生成した配列と同じ大きさの配列を生成する関数で，それぞれ :func:`np.zeros` ， :func:`np.ones` ，および :func:`np.empty` に対応しています．
 
 .. index:: zeros_like
 
@@ -115,3 +101,78 @@
 
    Return a new array with the same shape and type as a given array.
 
+この確保した領域 ``grad`` を，重みベクトルと切片にそれぞれ対応する， :obj:`grad_coef` と :obj:`grad_intercept` に分けます．
+これには :meth:`view` メソッドを用いますが，今までのパラメータ値の読み出しだけの場合と異なり，値を後で代入する必要があります．
+そのため，最初の要素を取り出すことはせず，配列のまま保持します．
+
+これで勾配の計算に必要なものが揃いましたので，  :ref:`lr-lr` の式(4)に従って勾配を計算します．
+
+.. code-block:: python
+
+        # predicted probabilities of data
+        p = self.sigmoid(np.dot(X, coef) + intercept)
+
+        # gradient of weight coefficients
+        grad_coef[0, :] = np.dot(p - y, X) + self.C * coef
+
+        # gradient of an intercept
+        grad_intercept[0] = np.sum(p - y) + self.C * intercept
+
+        return grad
+
+``p`` は，損失関数と同じく :math:`\Pr[y | \mathbf{x}; \mathbf{w}, b]` です．
+重みベクトルについての勾配を計算したあと，保持していた配列 ``grad_coef`` の第1行目に代入しています．
+切片についての勾配も，同様に ``grad_intercept`` の最初の要素に代入します．
+これら二つの勾配は ``grad`` にまとめて格納できているので，これを返します．
+
+この勾配を計算するのに， :func:`np.dot` を用いていますので，この関数を最後に紹介します．
+
+.. index:: dot
+
+.. function:: np.dot(a, b)
+
+    Dot product of two arrays.
+
+3次元以上の配列についても動作が定義されていますが，ここでは2次元までの配列についての動作について紹介します．
+1次元配列同士では，ベクトルの内積になります．
+
+.. code-block:: ipython
+
+    In [10]: a = np.array([10, 20])
+    In [10]: b = np.array([[1, 2], [3, 4]])
+    In [11]: np.dot(a, a)
+    Out[11]: 500
+
+2次元配列同士では行列積になります．
+
+.. code-block:: ipython
+
+    In [12]: np.dot(b, b)
+    Out[12]:
+    array([[ 7, 10],
+           [15, 22]])
+
+1次元配列と2次元配列では，横ベクトルと行列の積になります．
+
+.. code-block:: ipython
+
+    In [13]: np.dot(a, b)
+    Out[13]: array([ 70, 100])
+
+2次元配列と1次元配列では，行列と縦ベクトルの積になります．
+
+.. code-block:: ipython
+
+    In [14]: np.dot(b, a)
+    Out[14]: array([ 50, 110])
+
+以上で，損失関数とその勾配を求めるメソッドが実装できました．
+これにより :ref:`lr-fit` で実装した :meth:`fit` メソッドでロジスティック回帰モデルの学習ができるようになりました．
+
+.. index:: matmul
+
+.. [#]
+
+    Python 3.5 以上では，行列積演算子 ``@`` が利用できますが， :func:`np.dot` とは若干異なる :func:`np.matmul` が適用されます．
+    すなわち ``a @ b`` は ``np.matmul(a, b)`` と等価です．
+    3次元の配列での挙動と，スカラー同士の演算が許されない点が異なります．
