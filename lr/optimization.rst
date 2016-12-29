@@ -60,6 +60,10 @@ SciPy の非線形最適化関数には， :func:`minimize_scalar` と :func:`mi
 :attr:`fun` と :attr:`x` は，それぞれ関数の最小値と，そのときのパラメータの値です．
 :attr:`success` は最適化が成功したかどうか，:attr:`nit` は収束するまでの反復数です．
 
+.. only:: not latex
+
+   .. rubric:: 注釈
+
 .. [#]
 
     .. index:: brute, basinhopping
