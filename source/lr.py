@@ -69,6 +69,7 @@ class LogisticRegression(object):
 
     def loss(self, params, X, y):
         """
+        A loss function
 
         Parameters
         ----------
@@ -103,6 +104,7 @@ class LogisticRegression(object):
 
     def grad_loss(self, params, X, y):
         """
+        A gradient of a loss function
 
         Parameters
         ----------
@@ -141,7 +143,7 @@ class LogisticRegression(object):
 
     def fit(self, X, y):
         """
-        Fitting model
+        fitting model
 
         Parameters
         ----------
