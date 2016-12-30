@@ -3,42 +3,42 @@
 まとめ
 ======
 
-:ref:`nbayes1` の章では，単純ベイズ法の実装を通じて以下の内容を紹介しました．
+:ref:`lr` の章では，ロジスティック回帰法の実装を通じて以下の内容を紹介しました．
 
 * :ref:`lr-lr`
 
-  * NumPy 配列 :class:`np.ndarray` の特徴
-  * :func:`np.array` による NumPy 配列の生成
-  * :func:`np.zeros` など，その他の関数による NumPy 配列の生成
-  * NumPy 配列 :class:`np.ndarray` クラスの属性
-  * NumPy 値の型 :class:`np.dtype`
-  * NumPy 配列の値の参照方法
-  * NumPy 配列と，数学のベクトルや行列との対応
+    * ロジスティック回帰法
 
 * :ref:`lr-sigmoid`
 
-  * 特徴がカテゴリ変数である場合の単純ベイズ法
-
-* :ref:`lr-preparation`
-
-  * 入力データの仕様例
-  * 機械学習アルゴリズムをクラスとして実装する利点
-  * scikit-learn モジュールのAPI基本仕様
-  * 機械学習アルゴリズムのクラスの仕様例
-
-* :ref:`lr-loss`
-
-  * NumPy 配列の基本的な参照を用いたアルゴリズムの実装
+    * 静的メソッドによる数値関数の実装
+    * ネピアの数や円周率などの定数
+    * :func:`seterr` による浮動小数点エラーの処理方法の設定
+    * 浮動小数点エラー対策
+    * :func:`vectorize` を用いたユニバーサル関数への変換
+    * :func:`piecewize` による区分関数の定義
+    * 数値を一定の範囲に収める :func:`clip` 関数
 
 * :ref:`lr-optimization`
 
-  * NumPy 配列のスライスを使った参照
-  * ユニバーサル関数によるベクトル化演算
-  * :obj:`for` ループを用いない実装の例
-  * :func:`np.sum` の紹介．特に， ``axis`` 引数について
-  * :func:`np.argmax` ， :func:`np.argmin`
+    * SciPy の非線形最適化関数 :func:`minimize_scalar` と :func:`minimize` の紹介
+    * 最適化の結果を返すためのクラス :class:`OptimizeResult` の紹介
+    * 各種の最適化手法特徴
 
-* :ref:`lr-run`
+* :ref:`lr-fit`
 
-  * :func:`np.genfromtxt` を用いたテキスト形式ファイルの読み込み
-  * scikit-learn API基本仕様に基づくクラスの利用
+    * 最適化関数を用いた，モデルのパラメータの学習
+    * 構造化配列
+    * 構造化配列と :meth:`view` メソッドによる同一領域の異なる参照方法
+
+* :ref:`lr-loss`
+
+    * :func:`minimize` からのコールバック関数
+    * :func:`empty_like` などを用いた行列の生成
+    * :func:`dot` による内積と行列積
+
+* :ref:`predict_run`
+
+    * 3項演算を行う :func:`where` 関数
+    * 構造化配列を用いたデータの読み込み
+    * 最適化手法の実行結果の比較
