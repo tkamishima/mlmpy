@@ -105,7 +105,7 @@
    nbayes1/index
    nbayes2/index
    lr/index
-   ack
+   epilogue
 
 .. only:: html and not epub
 
