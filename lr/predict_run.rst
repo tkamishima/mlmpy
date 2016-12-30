@@ -87,3 +87,76 @@
     をもとに作成したものです．
     Fisherの判別分析の論文で用いられた著名なデータです．
     3種類のアヤメのうち， Iris Versicolour と Iris Virginica の2種類を取り出しています．
+
+.. index:: optimization
+
+.. _lr-predict_run-compare:
+
+最適化手法の比較
+----------------
+
+最後に最適化手法の違いについて調べてみます．
+``lr.py`` の :meth:`fit` メソッドでの最適化関数 :func:`minimize` の呼び出しを次のように変更してみます．
+
+.. code-block:: python
+
+    res = minimize(fun=self.loss,
+                   x0=np.zeros(self.n_features_ + 1, dtype=float),
+                   jac=self.grad_loss,
+                   args=(X, y),
+                   method='Powell',
+                   options={'disp': True})
+
+これは勾配情報を使わないPowell法を指定し，さらに最適化の結果を表示するように変更しています．
+``run_lr.py`` スクリプトを実行すると，勾配利用しなかった警告が表示されたあと，最適化の結果が次のように表示されます::
+
+    Optimization terminated successfully.
+             Current function value: 31.685406
+             Iterations: 18
+             Function evaluations: 1061
+
+収束するまでに18回の反復が必要で，損失関数の呼び出しは1061回です．
+次に，損失関数の勾配を用いる共役勾配法を試してみます．
+
+.. code-block:: python
+
+    res = minimize(fun=self.loss,
+                   x0=np.zeros(self.n_features_ + 1, dtype=float),
+                   jac=self.grad_loss,
+                   args=(X, y),
+                   method='CG',
+                   options={'disp': True})
+
+十分に収束しなかった旨の警告が表示されますが，上記のPowell法と同等の損失関数値が達成できています::
+
+    Warning: Desired error not necessarily achieved due to precision loss.
+             Current function value: 31.685406
+             Iterations: 21
+             Function evaluations: 58
+             Gradient evaluations: 46
+
+収束までの反復数は21回とやや多いですが，損失関数とその勾配の呼び出しはそれぞれ58回と46回とずっと少なくなっています．
+最後に，二次の微分であるヘシアンも計算するBFGS法を試してみます．
+
+.. code-block:: python
+
+    res = minimize(fun=self.loss,
+                   x0=np.zeros(self.n_features_ + 1, dtype=float),
+                   jac=self.grad_loss,
+                   args=(X, y),
+                   method='CG',
+                   options={'disp': True})
+
+最適化は収束し，今までと同等の損失関数値が達成できています::
+
+    Optimization terminated successfully.
+             Current function value: 31.685406
+             Iterations: 11
+             Function evaluations: 15
+             Gradient evaluations: 15
+
+反復数は11と最も速く収束しており，損失関数やその勾配の評価回数も，共役勾配法より減少しています．
+
+以上の結果からすると，収束が速く，関数の評価回数も少ないBFGS法が優れているように見えます．
+しかし，BFGS法は2次微分であるヘシアン行列を計算するため，パラメータ数が多い場合には多くの記憶領域を必要とします．
+よって問題の性質や規模に応じて最適化手法は選択する必要が生じます．
