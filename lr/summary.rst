@@ -37,7 +37,7 @@
     * :func:`empty_like` などを用いた行列の生成
     * :func:`dot` による内積と行列積
 
-* :ref:`predict_run`
+* :ref:`lr-predict_run`
 
     * 3項演算を行う :func:`where` 関数
     * 構造化配列を用いたデータの読み込み
