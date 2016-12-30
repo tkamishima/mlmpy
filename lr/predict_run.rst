@@ -25,11 +25,11 @@
 :obj:`X` の各行の特徴ベクトルと重みベクトルの内積に，切片を加えて，シグモイド関数を適用することで，各事例のクラスが ``1`` になる確率を要素とする1次元の配列を得ます．
 
 この確率が :math:`0.5` 未満かどうかでクラスを予測します．
-これには3項演算子に該当する :func:`np.where` を用います．
+これには3項演算子に該当する :func:`where` を用います．
 
 .. index:: where
 
-.. function:: (condition, x, y)
+.. function:: np.where(condition, x, y)
 
     Return elements, either from x or y, depending on condition.
 
