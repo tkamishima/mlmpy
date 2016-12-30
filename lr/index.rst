@@ -16,5 +16,4 @@
     fit
     loss
     predict_run
-    improvement
     summary
