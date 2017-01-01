@@ -58,12 +58,11 @@ NumPy や SciPy には，体系的なリファレンスマニュアルやサン�
   Python3 ではなく，Python2系統の最終版とされるバージョン 2.7 を想定しています．
 
 * ここで紹介する `NumPy <http://numpy.scipy.org/>`_ と `SciPy <http://www.scipy.org/>`_ も利用します．
-  NumPy は 1.6.0 以降， SciPy は 0.10.0 以降のバージョンを想定しています．
 
-.. index:: ! scikit-learn
+.. index:: scikit-learn
 
-* 機械学習のライブラリである `scikit-learn <http://scikit-learn.org/>`_ の利用や連携についても紹介します．
-  scikit-learn はバージョンが 0.10 以降を想定しています．
+* 機械学習のライブラリ `scikit-learn <http://scikit-learn.org/>`_ のAPI仕様に従ってクラスを設計します．
+  ただし，scikit-learn 自体の利用法については紹介しません．
 
 これらのモジュールは以下のように :obj:`import` されていることを前提とします:
 
@@ -71,7 +70,6 @@ NumPy や SciPy には，体系的なリファレンスマニュアルやサン�
 
    import numpy as np
    import scipy as sp
-   import sklearn
 
 バグリポート
 ------------
