@@ -13,7 +13,7 @@
 SciPy の非線形最適化関数
 ------------------------
 
-.. index:: non-linear optimization, optimization
+.. index:: non-linear optimization, ! optimization
 
 SciPy の非線形最適化関数には， :func:`minimize_scalar` と :func:`minimize` があります．
 それぞれを簡単に紹介しておきます．

@@ -38,7 +38,7 @@ NumPy配列の多様な配列操作を利用できるようにするため，こ
 * クラスの継承を利用して，モデルと予測メソッドだけを共有し，学習アルゴリズムだけを変えて部分的に改良するといったことが容易になります．
 * :mod:`cPickle` などの，オブジェクトのシリアライズを利用して，学習したモデルのオブジェクトを，ファイルに保存しておくことで再利用できるようになります．
 
-.. index:: scikit-learn
+.. index:: ! scikit-learn
 
 このチュートリアルでは，Python の機械学習パッケージ scikit-learn のAPI仕様 ( `APIs of scikit-learn objects <http://scikit-learn.org/stable/developers/index.html#apis-of-scikit-learn-objects>`_ ) に従ってクラスを設計します．
 主な仕様は次のとおりです．

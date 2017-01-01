@@ -14,7 +14,7 @@
 次にファイルからデータを読み込みます．
 NumPy と SciPy にはいろいろな形式のファイルを読み込む関数があります [#]_ が，テキスト形式のファイルの読み込みをする :func:`np.genfromtxt` [#]_ を用います．
 
-.. index:: genfromtxt
+.. index:: ! genfromtxt
 
 .. function:: np.genfromtxt(fname, dtype=<type 'float'>, comments='#', delimiter=None)
 
