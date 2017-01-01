@@ -341,7 +341,18 @@ if文は配列 :obj:`x` の要素を個別に処理しないので，このよ�
         return 1.0 / (1.0 + np.exp(-x))
 
 ユニバーサル関数であるため，特に :func:`vectorize` を用いる必要もありません．
-以後は，この実装を用います．
+この実装をこれ以降は採用します．
+他のメソッドを含むロジスティック回帰のクラスは次のファイルです．
+
+.. index:: sample; lr.py, class; LogisticRegression
+
+.. only:: epub or latex
+
+    https://github.com/tkamishima/mlmpy/blob/master/source/lr.py
+
+.. only:: html and not epub
+
+    :download:`LogisticRegresshon クラス：lr.py <../source/lr.py>`
 
 .. only:: not latex
 

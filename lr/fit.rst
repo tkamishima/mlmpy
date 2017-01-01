@@ -66,9 +66,7 @@
 
 .. _lr-fit-sarray:
 
-.. index::
-    single: structured array
-    pair: ndarray; dtype
+.. index:: ! structured array, ndarray; dtype
 
 構造化配列
 ----------
@@ -82,7 +80,7 @@
 * 文字列による名前で列を参照可能
 * 配列の要素として配列を指定可能
 
-.. index:: np.dtype
+.. index:: dtype
 
 構造化配列は今まで紹介した :class:`ndarray` とは， :attr:`dtype` 属性の値が異なります．
 構造化配列では，列ごとにその要素が異なるので，各列の定義をリストとして並べます．
