@@ -157,7 +157,7 @@
 
 .. code-block:: ipython
 
-    In [30]: from lr1 import LogisticRegression
+    In [30]: from lr2 import LogisticRegression
     In [31]: LogisticRegression.sigmoid(1000.)
     Out[31]: 0.999999999999999
     In [32]: LogisticRegression.sigmoid(-1000.)
