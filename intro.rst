@@ -65,11 +65,6 @@ NumPy や SciPy には，体系的なリファレンスマニュアルやサン�
 * 機械学習のライブラリである `scikit-learn <http://scikit-learn.org/>`_ の利用や連携についても紹介します．
   scikit-learn はバージョンが 0.10 以降を想定しています．
 
-.. index:: matplotlib
-
-* `Matplotlib <http://matplotlib.sourceforge.net/>`_ はグラフ（チャート）を描くためのライブラリで，入力データや学習結果の表示に利用します．
-  バージョンは 1.1.0 以降を想定しています．
-
 これらのモジュールは以下のように :obj:`import` されていることを前提とします:
 
 .. code-block:: python
