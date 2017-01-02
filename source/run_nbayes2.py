@@ -27,9 +27,9 @@ clr.fit(X, y)
 predict_y = clr.predict(X[:10, :])
 
 # print results
-print "NaiveBayes1"
-for i in xrange(10):
-    print i, y[i], predict_y[i]
+print("NaiveBayes1")
+for i in range(10):
+    print((i, y[i], predict_y[i]))
 
 # Naive1Bayes2
 
@@ -41,7 +41,7 @@ clr.fit(X, y)
 predict_y = clr.predict(X[:10, :])
 
 # print results
-print "NaiveBayes2"
-for i in xrange(10):
-    print i, y[i], predict_y[i]
+print("NaiveBayes2")
+for i in range(10):
+    print((i, y[i], predict_y[i]))
 

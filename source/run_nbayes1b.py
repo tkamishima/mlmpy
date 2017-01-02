@@ -25,5 +25,5 @@ clr.fit(X, y)
 predict_y = clr.predict(X[:10, :])
 
 # print results
-for i in xrange(10):
-    print i, y[i], predict_y[i]
+for i in range(10):
+    print(i, y[i], predict_y[i])

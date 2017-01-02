@@ -22,13 +22,13 @@ clr.fit(data['X'], data['y'])
 predict_y = clr.predict(data['X'])
 
 # print results
-for i in xrange(0, 100, 10):
-    print i, data['y'][i], predict_y[i]
+for i in range(0, 100, 10):
+    print(i, data['y'][i], predict_y[i])
 
 # print accuracy
-print "Accuracy =",
-print np.sum(data['y'] == predict_y, dtype=float) / predict_y.shape[0]
+print("Accuracy =", end=' ')
+print(np.sum(data['y'] == predict_y, dtype=float) / predict_y.shape[0])
 
 # print parameters
-print "coef =", clr.coef_
-print "intercept_ =", clr.intercept_
+print("coef =", clr.coef_)
+print("intercept_ =", clr.intercept_)
