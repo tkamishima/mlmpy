@@ -60,7 +60,7 @@
 .. code-block:: python
 
    nY = np.zeros(n_classes, dtype=int)
-   for i in xrange(n_samples):
+   for i in range(n_samples):
        nY[y[i]] += 1
 
 モデルパラメータ :obj:`self.pY_` は式(4)に従って計算します．
@@ -72,7 +72,7 @@
 .. code-block:: python
 
    self.pY_ = np.empty(n_classes, dtype=float)
-   for i in xrange(n_classes):
+   for i in range(n_classes):
        self.pY_[i] = nY[i] / float(n_samples)
 
 .. _nbayes1-fit1-feature:
@@ -89,8 +89,8 @@
 .. code-block:: python
 
    nXY = np.zeros((n_features, n_fvalues, n_classes), dtype=int)
-   for i in xrange(n_samples):
-       for j in xrange(n_features):
+   for i in range(n_samples):
+       for j in range(n_features):
            nXY[j, X[i, j], y[i]] += 1
 
 モデルパラメータ :obj:`self.pXgY_` は式(5)に従って計算します．
@@ -99,9 +99,9 @@
 
    self.pXgY_ = np.empty((n_features, n_fvalues, n_classes),
                          dtype=float)
-   for j in xrange(n_features):
-       for xi in xrange(n_fvalues):
-           for yi in xrange(n_classes):
+   for j in range(n_features):
+       for xi in range(n_fvalues):
+           for yi in range(n_classes):
                self.pXgY_[j, xi, yi] = nXY[j, xi, yi] / float(nY[yi])
 
 以上で，単純ベイズのモデルパラメータの学習を完了しました．

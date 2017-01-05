@@ -9,8 +9,8 @@
 .. code-block:: python
 
    nXY = np.zeros((n_features, n_fvalues, n_classes), dtype=int)
-   for i in xrange(n_samples):
-       for j in xrange(n_features):
+   for i in range(n_samples):
+       for j in range(n_features):
            nXY[j, X[i, j], y[i]] += 1
 
 クラスの分布の場合と同様に，各特徴値ごとに，対象の特徴値の場合にのみカウンタを増やすような実装にします．
@@ -18,10 +18,10 @@
 .. code-block:: python
 
     nXY = np.zeros((n_features, n_fvalues, n_classes), dtype=int)
-    for i in xrange(n_samples):
-        for j in xrange(n_features):
-            for yi in xrange(n_classes):
-                for xi in xrange(n_fvalues):
+    for i in range(n_samples):
+        for j in range(n_features):
+            for yi in range(n_classes):
+                for xi in range(n_fvalues):
                     if y[i] == yi and X[i, j] == xi:
                         nXY[j, xi, yi] += 1
 

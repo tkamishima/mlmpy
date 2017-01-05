@@ -12,8 +12,8 @@
 .. code-block:: python
 
     nY = np.zeros(n_classes, dtype=int)
-    for yi in xrange(n_classes):
-        for i in xrange(n_samples):
+    for yi in range(n_classes):
+        for i in range(n_samples):
             if y[i] == yi:
                 nY[yi] += 1
 
@@ -72,7 +72,7 @@
 
 .. code-block:: python
 
-    for i in xrange(n_samples):
+    for i in range(n_samples):
 
 このループ変数 :obj:`i` は ``0`` から ``n_samples - 1`` までの整数をとります．
 これらの値を含む配列は ``np.arange(n_samples)`` により生成できます．
@@ -97,7 +97,7 @@
 
 .. code-block:: python
 
-    for yi in xrange(n_classes):
+    for yi in range(n_classes):
 
 この変数は ``0`` から ``n_classes - 1`` までの整数をとり，第1次元に割り当てられているので，この変数に対応する配列は次のようになります．
 
@@ -140,7 +140,7 @@
 
 .. code-block:: python
 
-    for i in xrange(n_samples):
+    for i in range(n_samples):
         val_y = y[i]
 
 は， :obj:`for` ループで :obj:`y` の要素を順に参照する次のコードと同じ :obj:`val_y` の値を得ることができます．
@@ -207,7 +207,7 @@
 .. code-block:: python
 
     self.pY_ = np.empty(n_classes, dtype=float)
-    for i in xrange(n_classes):
+    for i in range(n_classes):
         self.pY_[i] = nY[i] / float(n_samples)
 
 この処理も，ユニバーサル関数の機能を使うと次のように簡潔に実装できます．
