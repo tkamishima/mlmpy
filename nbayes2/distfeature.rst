@@ -9,8 +9,8 @@
 .. code-block:: python
 
    nXY = np.zeros((n_features, n_fvalues, n_classes), dtype=int)
-   for i in xrange(n_samples):
-       for j in xrange(n_features):
+   for i in range(n_samples):
+       for j in range(n_features):
            nXY[j, X[i, j], y[i]] += 1
 
 クラスの分布の場合と同様に，各特徴値ごとに，対象の特徴値の場合にのみカウンタを増やすような実装にします．
@@ -18,10 +18,10 @@
 .. code-block:: python
 
     nXY = np.zeros((n_features, n_fvalues, n_classes), dtype=int)
-    for i in xrange(n_samples):
-        for j in xrange(n_features):
-            for yi in xrange(n_classes):
-                for xi in xrange(n_fvalues):
+    for i in range(n_samples):
+        for j in range(n_features):
+            for yi in range(n_classes):
+                for xi in range(n_fvalues):
                     if y[i] == yi and X[i, j] == xi:
                         nXY[j, xi, yi] += 1
 
@@ -190,7 +190,7 @@
    .. rubric:: 注釈
 
 .. [#]
-    同様の関数に， :obj:`or` ， :obj:`not` ，および :obj:`xor` の論理演算に，それぞれ対応するユニバーサル関数 :func:`logical_or` ，:func:`logical_not` ，および :func:`logical_xor` があります．
+    同様の関数に， :obj:`or` ， :obj:`not` ，および :obj:`xor` の論理演算に，それぞれ対応するユニバーサル関数 :func:`np.logical_or` ，:func:`np.logical_not` ，および :func:`np.logical_xor` があります．
 
 .. [#]
     もし同時に二つ以上の次元について同時に集約演算をする必要がある場合には， ``axis=(1,2)`` のようにタプルを利用して複数の次元を指定できます．
@@ -210,17 +210,17 @@
 最後に :obj:`nXY` と，クラスごとの事例数 :obj:`nY` を用いて，クラスが与えられたときの，各特徴値が生じる確率を計算します．
 それには :obj:`nXY` を，対応するクラスごとにクラスごとの総事例数 :obj:`nY` で割ります．
 :obj:`nY` を :obj:`nXY` と同じ次元数にし，そのクラスに対応する第2次元に割り当てるようにすると ``nY[np.newaxis, np.newaxis, :]`` となります．
-あとは，実数の結果を返す割り算のユニバーサル関数 :func:`np.true_divide` を適用すれば，特徴値の確率を計算できます [#]_ ．
+あとは，除算演算子 ``/`` を適用すれば，特徴値の確率を計算できます [#]_ ．
 
 .. code-block:: python
 
-    self.pXgY_ = np.true_divide(nXY, nY[np.newaxis, np.newaxis, :])
+    self.pXgY_ = nXY / nY[np.newaxis, np.newaxis, :]
 
 計算済みの :obj:`nY` を使う代わりに，ここで総和を計算する場合は次のようになります．
 
 .. code-block:: python
 
-    self.pXgY_ = np.true_divide(nXY, nXY.sum(axis=1, keepdims=True))
+    self.pXgY_ = nXY / nXY.sum(axis=1, keepdims=True)
 
 通常の :meth:`sum` では総和の対象とした次元は消去されるため，元の配列とはその大きさが一致しなくなります．
 そこで，``keepdims=True`` の指定を加えることで元の配列の次元が維持するようにすると，そのまま割り算できるようになります．
@@ -231,7 +231,7 @@
    .. rubric:: 注釈
 
 .. [#]
-    Python3 のように割り算を整数ではなく実数で行う指定 ``from __future__ import division`` がある場合には :class:`np.ndarray` に対する演算子 ``/`` による割り算でも，その解は実数となります．
+    Python2 ではこの除算にはユニバーサル関数の実数除算関数 :func:`np.true_divide` を用いる必要があります．
 
 .. _nbayes2-distfeature-run:
 

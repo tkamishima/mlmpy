@@ -14,7 +14,7 @@ import numpy as np
 __all__ = ['BaseBinaryNaiveBayes',
            'NaiveBayes1']
 
-class BaseBinaryNaiveBayes(object):
+class BaseBinaryNaiveBayes(object, metaclass=ABCMeta):
     """
     Abstract Class for Naive Bayes whose classes and features are binary.
 
@@ -26,8 +26,6 @@ class BaseBinaryNaiveBayes(object):
     `pXgY_` : array_like, shape(n_features, n_classes, n_fvalues), dtype=float
         pmf of feature values given a class
     """
-
-    __metaclass__ = ABCMeta
 
     def __init__(self):
         self.pY_ = None
@@ -109,24 +107,24 @@ class NaiveBayes1(BaseBinaryNaiveBayes):
 
         # count up n[yi=y]
         nY = np.zeros(n_classes, dtype=int)
-        for i in xrange(n_samples):
+        for i in range(n_samples):
             nY[y[i]] += 1
 
         # calc pY_
         self.pY_ = np.empty(n_classes, dtype=float)
-        for i in xrange(n_classes):
-            self.pY_[i] = nY[i] / float(n_samples)
+        for i in range(n_classes):
+            self.pY_[i] = nY[i] / n_samples
 
         # count up n[x_ij=xj, yi=y]
         nXY = np.zeros((n_features, n_fvalues, n_classes), dtype=int)
-        for i in xrange(n_samples):
-            for j in xrange(n_features):
+        for i in range(n_samples):
+            for j in range(n_features):
                 nXY[j, X[i, j], y[i]] += 1
 
         # calc pXgY_
         self.pXgY_ = np.empty((n_features, n_fvalues, n_classes),
                               dtype=float)
-        for j in xrange(n_features):
-            for xi in xrange(n_fvalues):
-                for yi in xrange(n_classes):
-                    self.pXgY_[j, xi, yi] = nXY[j, xi, yi] / float(nY[yi])
+        for j in range(n_features):
+            for xi in range(n_fvalues):
+                for yi in range(n_classes):
+                    self.pXgY_[j, xi, yi] = nXY[j, xi, yi] / nY[yi]

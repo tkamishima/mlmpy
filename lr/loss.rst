@@ -80,8 +80,8 @@
         grad_coef = grad.view(self._param_dtype)['coef']
         grad_intercept = grad.view(self._param_dtype)['intercept']
 
-入力パラメータ ``params`` と同じ大きさの配列を確保するのに，ここでは :func:`empty_like` を用います．
-:func:`zeros_like` ， :func:`ones_like` ，および :func:`empty_like` は，今までに生成した配列と同じ大きさの配列を生成する関数で，それぞれ :func:`zeros` ， :func:`ones` ，および :func:`empty` に対応しています．
+入力パラメータ ``params`` と同じ大きさの配列を確保するのに，ここでは :func:`np.empty_like` を用います．
+:func:`np.zeros_like` ， :func:`np.ones_like` ，および :func:`np.empty_like` は，今までに生成した配列と同じ大きさの配列を生成する関数で，それぞれ :func:`np.zeros` ， :func:`np.ones` ，および :func:`np.empty` に対応しています．
 
 .. index:: zeros_like
 
@@ -127,7 +127,7 @@
 切片についての勾配も，同様に ``grad_intercept`` の最初の要素に代入します．
 これら二つの勾配は ``grad`` にまとめて格納できているので，これを返します．
 
-この勾配を計算するのに， :func:`dot` を用いていますので，この関数を最後に紹介します．
+この勾配を計算するのに， :func:`np.dot` を用いていますので，この関数を最後に紹介します．
 
 .. index:: dot
 
@@ -178,7 +178,6 @@
 .. index:: matmul
 
 .. [#]
-
     Python 3.5 以上では，行列積演算子 ``@`` が利用できますが， :func:`np.dot` とは若干異なる :func:`np.matmul` が適用されます．
     すなわち ``a @ b`` は ``np.matmul(a, b)`` と等価です．
     3次元以上の配列での挙動と，スカラー同士の演算が許されない点が異なります．

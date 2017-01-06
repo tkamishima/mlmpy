@@ -65,19 +65,16 @@ SciPy の非線形最適化関数には， :func:`minimize_scalar` と :func:`mi
    .. rubric:: 注釈
 
 .. [#]
-
     .. index:: brute, basinhopping
 
     局所最適解を異なる初期値から探索することを何度も繰り返して大域最適解を求める関数として :func:`sp.optimize.basinhopping` や :func:`sp.optimize.brute` が用意されています．
 
 .. [#]
-
     ``hess`` は通常のヘシアン，すなわち :math:`f(\mathbf{x})` の2次導関数が特定の値 :math:`\mathbf{a}` をとったときの行列 :math:`\mathbf{H}(\mathbf{a}) = {\left[ \frac{\partial^2 f}{\partial x_i \partial x_j} \right]}_{ij}\bigg|_{\mathbf{x}=\mathbf{a}}` を指定します．
     しかし，パラメータベクトル :math:`\mathbf{x}` の次元数が大きいときは，ヘシアンを保持するためには次元数の2乗という多くの記憶領域を必要としてしまいます．
     そのような場合に， ``hessp`` はヘシアンと特定のベクトル :math:`\mathbf{p}` との積 :math:`\mathbf{H}(\mathbf{a})\mathbf{p}` を計算する関数を指定することで記憶領域を節約することができます．
 
 .. [#]
-
     非常に小さな値を指定すると，浮動小数点のまるめ誤差などの影響で最適化関数が停止しない場合があります．
     目安として :math:`10^{-6}` より小さな値を指定するときは，この点に注意した方がよいでしょう．
 
