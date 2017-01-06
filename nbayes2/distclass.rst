@@ -221,7 +221,7 @@
    .. rubric:: 注釈
 
 .. [#]
-    整数だけでなく浮動小数点に対する除算でも，切り捨てした整数で除算の結果を得るには :func:`floor_divide` を用います．
+    整数だけでなく浮動小数点に対する除算でも，切り捨てした整数で除算の結果を得るには :func:`np.floor_divide` を用います．
 
     .. index:: floor_divide
 
@@ -230,7 +230,7 @@
     Return the largest integer smaller or equal to the division of the inputs.
 
     Python2 では除算の結果は，整数同士の場合では，結果は切り捨てした整数でした．
-    そのため，整数同士の除算で実数の結果を得たい場合には :func:`true_divide` 関数を用います．
+    そのため，整数同士の除算で実数の結果を得たい場合には :func:`np.true_divide` 関数を用います．
 
     .. index:: true_divide
 

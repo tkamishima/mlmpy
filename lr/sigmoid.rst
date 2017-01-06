@@ -208,14 +208,14 @@ if文は配列 :obj:`x` の要素を個別に処理できないので，この�
 
 .. index:: vectorize
 
-そこで，通常の関数をユニバーサル関数に変換する :func:`vectorize` があります．
+そこで，通常の関数をユニバーサル関数に変換する :func:`np.vectorize` があります．
 
 .. function:: np.vectorize(pyfunc, otypes='', doc=None, excluded=None,
     cache=False)
 
     Define a vectorized function which takes a nested sequence of objects or numpy arrays as inputs and returns a numpy array as output. The vectorized function evaluates *pyfunc* over successive tuples of the input arrays like the python map function, except it uses the broadcasting rules of numpy.
 
-この :func:`vectorize` は，通常の関数を入力すると，その関数を，引数の配列の各要素に適用するユニバーサル関数を返す関数です．
+この :func:`np.vectorize` は，通常の関数を入力すると，その関数を，引数の配列の各要素に適用するユニバーサル関数を返す関数です．
 簡単なステップ関数の例を見てみましょう．
 
 .. code-block:: ipython
@@ -225,7 +225,7 @@ if文は配列 :obj:`x` の要素を個別に処理できないので，この�
    ...:
 
 三項演算子は入力配列の要素を個別に処理できないのでこの関数はユニバーサル関数ではありません．
-そこで次のように :func:`vectorize` を用いてユニバーサル関数に変換します．
+そこで次のように :func:`np.vectorize` を用いてユニバーサル関数に変換します．
 
 .. code-block:: ipython
 
@@ -238,7 +238,7 @@ if文は配列 :obj:`x` の要素を個別に処理できないので，この�
 
 
 関数を入力として関数を返す関数は Python のデコレータとして使うことができます．
-こ機能を利用して，先ほど定義したシグモイド関数の， ``@staticmethod`` デコレータの下に，関数 :func:`vectorize` を ``@np.vectorize`` のような形式でデコレータとして与えます [#]_ ．
+こ機能を利用して，先ほど定義したシグモイド関数の， ``@staticmethod`` デコレータの下に，関数 :func:`np.vectorize` を ``@np.vectorize`` のような形式でデコレータとして与えます [#]_ ．
 
 .. index:: sample; lr3.py
 
@@ -270,7 +270,7 @@ if文は配列 :obj:`x` の要素を個別に処理できないので，この�
 
 .. index:: frompyfunc
 
-なお，入力引数が複数の関数をユニバーサル関数にする :func:`frompyfunc` もあります．
+なお，入力引数が複数の関数をユニバーサル関数にする :func:`np.frompyfunc` もあります．
 
 .. function:: np..frompyfunc(func, nin, nout)
 
@@ -296,18 +296,18 @@ if文は配列 :obj:`x` の要素を個別に処理できないので，この�
 
 ここまで，他の数学関数の実装にも使える汎用的な手法を紹介しました．
 さらに，NumPy にはシグモイド関数の実装に使える便利な関数があり，これらを使って実装することもできます．
-そうした関数として :func:`pieceswise` と :func:`clip` を紹介します．
+そうした関数として :func:`np.pieceswise` と :func:`np.clip` を紹介します．
 
 .. index:: piecewise
 
-:func:`piecewise` はHuber関数や三角分布・切断分布の密度関数など，入力の範囲ごとに異なる数式でその出力が定義される区分関数を実装するのに便利です．
+:func:`np.piecewise` はHuber関数や三角分布・切断分布の密度関数など，入力の範囲ごとに異なる数式でその出力が定義される区分関数を実装するのに便利です．
 
 .. function:: np.piecewise(x, condlist, funclist, *args, **kw)
 
     Evaluate a piecewise-defined function.
 
 :ref:`lr-sigmoid-fpcheck` で実装したシグモイド関数は，浮動小数点エラーを防ぐために入力の範囲に応じて出力を変えています．
-:func:`piecewise` を用いて実装したシグモイド関数は次のようになります [#]_ ．
+:func:`np.piecewise` を用いて実装したシグモイド関数は次のようになります [#]_ ．
 
 .. code-block:: python
 
@@ -319,15 +319,15 @@ if文は配列 :obj:`x` の要素を個別に処理できないので，この�
 
         return np.piecewise(x, condlist, funclist)
 
-:func:`piecewise` の，第2引数は区間を定義する条件のリスト [#]_ で，第3引数はそれらの区間ごとの出力のリストを定義します．
-条件のリストで :const:`True` になった位置に対応する出力値が :func:`piecewise` の出力になります．
+:func:`np.piecewise` の，第2引数は区間を定義する条件のリスト [#]_ で，第3引数はそれらの区間ごとの出力のリストを定義します．
+条件のリストで :const:`True` になった位置に対応する出力値が :func:`np.piecewise` の出力になります．
 出力リストが条件のリストより一つだけ長い場合は，出力リストの最後はデフォルト値となります．
 条件リストが全て :const:`False` であるときに，このデフォルト値が出力されます．
 
 .. index:: clip
 
-:func:`clip` は，区間の最大値大きい入力はその最大値に，逆に最小値より小さい入力はその最小値にする関数です [#]_ ．
-シグモイド関数はこの :func:`clip` を用いると容易に実装できます．
+:func:`np.clip` は，区間の最大値大きい入力はその最大値に，逆に最小値より小さい入力はその最小値にする関数です [#]_ ．
+シグモイド関数はこの :func:`np.clip` を用いると容易に実装できます．
 
 .. code-block:: python
 
@@ -339,7 +339,7 @@ if文は配列 :obj:`x` の要素を個別に処理できないので，この�
 
         return 1.0 / (1.0 + np.exp(-x))
 
-:func:`clip` 関数は，ユニバーサル関数であるため，特に :func:`vectorize` を用いる必要もありません．
+:func:`np.clip` 関数は，ユニバーサル関数であるため，特に :func:`np.vectorize` を用いる必要もありません．
 この実装を採用した，さらにこのあと説明する他のメソッドを含むロジスティック回帰のモジュールは次のとおりです．
 以降は，これを用います．
 
@@ -358,7 +358,7 @@ if文は配列 :obj:`x` の要素を個別に処理できないので，この�
    .. rubric:: 注釈
 
 .. [#]
-    複数の条件に対して対応する値を出力する関数は他にも :func:`select` などがあります．
+    複数の条件に対して対応する値を出力する関数は他にも :func:`np.select` などがあります．
 
     .. function::  numpy.select(condlist, choicelist, default=0)
 
@@ -368,7 +368,7 @@ if文は配列 :obj:`x` の要素を個別に処理できないので，この�
 
 .. [#]
     条件リスト中で ``and`` や ``or`` を使うと，これらはユニバーサル関数ではないため，:obj:`x` が配列の場合にうまく動作しません．
-    代わりに NumPy の :func:`logical_and` や :func:`logical_or` を使うこともできます．
+    代わりに NumPy の :func:`np.logical_and` や :func:`np.logical_or` を使うこともできます．
 
 .. [#]
-    最大値か最小値の一方だけで十分な場合はそれぞれ :func:`min` や :func:`max` を用います．
+    最大値か最小値の一方だけで十分な場合はそれぞれ :func:`np.min` や :func:`np.max` を用います．

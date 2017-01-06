@@ -190,7 +190,7 @@
    .. rubric:: 注釈
 
 .. [#]
-    同様の関数に， :obj:`or` ， :obj:`not` ，および :obj:`xor` の論理演算に，それぞれ対応するユニバーサル関数 :func:`logical_or` ，:func:`logical_not` ，および :func:`logical_xor` があります．
+    同様の関数に， :obj:`or` ， :obj:`not` ，および :obj:`xor` の論理演算に，それぞれ対応するユニバーサル関数 :func:`np.logical_or` ，:func:`np.logical_not` ，および :func:`np.logical_xor` があります．
 
 .. [#]
     もし同時に二つ以上の次元について同時に集約演算をする必要がある場合には， ``axis=(1,2)`` のようにタプルを利用して複数の次元を指定できます．
@@ -231,7 +231,7 @@
    .. rubric:: 注釈
 
 .. [#]
-    Python2 ではこの除算にはユニバーサル関数の実数除算関数 :func:`true_divide` を用いる必要があります．
+    Python2 ではこの除算にはユニバーサル関数の実数除算関数 :func:`np.true_divide` を用いる必要があります．
 
 .. _nbayes2-distfeature-run:
 
