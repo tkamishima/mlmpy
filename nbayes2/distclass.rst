@@ -208,7 +208,7 @@
 
     self.pY_ = np.empty(n_classes, dtype=float)
     for i in range(n_classes):
-        self.pY_[i] = nY[i] / float(n_samples)
+        self.pY_[i] = nY[i] / n_samples
 
 この処理も，除算演算子 ``/`` にユニバーサル関数の機能があるため次のように簡潔に実装できます [#]_ ．
 
