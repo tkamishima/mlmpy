@@ -70,12 +70,12 @@ author = '神嶌 敏弘 (Toshihiro Kamishima)'
 import subprocess
 import os
 if os.access('.git', os.F_OK):
-    p = subprocess.Popen(['git', '--no-pager', 'log', '-1', '--pretty=%H'],
-                         stdout=subprocess.PIPE)
-    version = str(p.stdout.readlines()[0][:-1])
-    p = subprocess.Popen(['git', '--no-pager', 'log', '-1', '--pretty=%ai'],
-                         stdout=subprocess.PIPE)
-    release = str(p.stdout.readlines()[0][:-1])
+    version = subprocess.Popen(
+        ['git', '--no-pager', 'log', '-1', '--pretty=%H'],
+        stdout=subprocess.PIPE).communicate()[0][:-1].decode("utf-8")
+    release = subprocess.Popen(
+        ['git', '--no-pager', 'log', '-1', '--pretty=%ai'],
+        stdout=subprocess.PIPE).communicate()[0][:-1].decode("utf-8")
 else:
     version = "Unknown"
     release = version
