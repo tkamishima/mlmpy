@@ -210,32 +210,30 @@
     for i in range(n_classes):
         self.pY_[i] = nY[i] / float(n_samples)
 
-この処理も，ユニバーサル関数の機能を使うと次のように簡潔に実装できます．
+この処理も，除算演算子 ``/`` にユニバーサル関数の機能があるため次のように簡潔に実装できます [#]_ ．
 
 .. code-block:: python
 
-    self.pY_ = np.true_divide(nY, n_samples)
-
-Python では整数同士の割り算の解は切り捨ての整数になります [#]_ ．
-しかし，ここでは実数の解を得たいので :func:`np.true_divide` 関数を用いて，切り捨てではない実数の解を得ます．
-
-.. index:: true_divide
-
-.. function:: np.true_divide(x1, x2[, out]) = <ufunc 'true_divide'>
-
-    Returns a true division of the inputs, element-wise.
-
-この関数はユニバーサル関数なので， :obj:`nY` の各要素は，それぞれ :obj:`n_samples` で割られます．
+    self.pY_ = nY / n_samples
 
 .. only:: not latex
 
    .. rubric:: 注釈
 
 .. [#]
-    逆に浮動小数点に対する場合でも，切り捨てした割り算の結果を得るには :func:`np.floor_divide` を用います．
+    整数だけでなく浮動小数点に対する除算でも，切り捨てした整数で除算の結果を得るには :func:`floor_divide` を用います．
 
     .. index:: floor_divide
 
     .. function:: np.floor_divide(x1, x2[, out]) = <ufunc 'floor_divide'>
 
     Return the largest integer smaller or equal to the division of the inputs.
+
+    Python2 では除算の結果は，整数同士の場合では，結果は切り捨てした整数でした．
+    そのため，整数同士の除算で実数の結果を得たい場合には :func:`true_divide` 関数を用います．
+
+    .. index:: true_divide
+
+    .. function:: np.true_divide(x1, x2[, out]) = <ufunc 'true_divide'>
+
+        Returns a true division of the inputs, element-wise.
