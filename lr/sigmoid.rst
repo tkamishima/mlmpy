@@ -79,7 +79,6 @@
    .. rubric:: 注釈
 
 .. [#]
-
     .. only:: epub or latex
 
         https://github.com/tkamishima/mlmpy/blob/master/source/lr1.py
@@ -91,7 +90,6 @@
 .. index:: e, pi, sp.constants
 
 .. [#]
-
     NumPy には，このネピアの数を表す :const:`np.e` の他に，円周率を表す :const:`np.pi` の定数があります．
     SciPy の :mod:`sp.consants` モジュール内には，光速や重力定数などの物理定数が定義されています．
 
@@ -171,11 +169,9 @@
    .. rubric:: 注釈
 
 .. [#]
-
     ``sigmoid_range`` の具体的な計算式は :math:`\log((1 - 10^{-15}) / 10^{-15})` です．
 
 .. [#]
-
     .. only:: epub or latex
 
         https://github.com/tkamishima/mlmpy/blob/master/source/lr2.py
@@ -285,7 +281,6 @@ if文は配列 :obj:`x` の要素を個別に処理できないので，この�
    .. rubric:: 注釈
 
 .. [#]
-
     .. only:: epub or latex
 
         https://github.com/tkamishima/mlmpy/blob/master/source/lr3.py
@@ -363,7 +358,6 @@ if文は配列 :obj:`x` の要素を個別に処理できないので，この�
    .. rubric:: 注釈
 
 .. [#]
-
     複数の条件に対して対応する値を出力する関数は他にも :func:`select` などがあります．
 
     .. function::  numpy.select(condlist, choicelist, default=0)
@@ -373,10 +367,8 @@ if文は配列 :obj:`x` の要素を個別に処理できないので，この�
     しかし，条件が満たされるかどうかに関わらず，全ての場合の出力値を計算するため，この節のシグモイド関数場合は浮動小数点エラーを生じてしまいます．
 
 .. [#]
-
     条件リスト中で ``and`` や ``or`` を使うと，これらはユニバーサル関数ではないため，:obj:`x` が配列の場合にうまく動作しません．
     代わりに NumPy の :func:`logical_and` や :func:`logical_or` を使うこともできます．
 
 .. [#]
-
     最大値か最小値の一方だけで十分な場合はそれぞれ :func:`min` や :func:`max` を用います．
