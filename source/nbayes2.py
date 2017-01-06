@@ -113,7 +113,7 @@ class NaiveBayes1(BaseBinaryNaiveBayes):
         # calc pY_
         self.pY_ = np.empty(n_classes, dtype=float)
         for i in range(n_classes):
-            self.pY_[i] = nY[i] / float(n_samples)
+            self.pY_[i] = nY[i] / n_samples
 
         # count up n[x_ij=xj, yi=y]
         nXY = np.zeros((n_features, n_fvalues, n_classes), dtype=int)
@@ -127,7 +127,7 @@ class NaiveBayes1(BaseBinaryNaiveBayes):
         for j in range(n_features):
             for xi in range(n_fvalues):
                 for yi in range(n_classes):
-                    self.pXgY_[j, xi, yi] = nXY[j, xi, yi] / float(nY[yi])
+                    self.pXgY_[j, xi, yi] = nXY[j, xi, yi] / nY[yi]
 
 class NaiveBayes2(BaseBinaryNaiveBayes):
     """
@@ -166,7 +166,7 @@ class NaiveBayes2(BaseBinaryNaiveBayes):
                     axis=0)
 
         # calc pY_
-        self.pY_ = np.true_divide(nY, n_samples)
+        self.pY_ = nY / n_samples
 
         # count up n[x_ij=xj, yi=y]
         ary_xi = np.arange(n_fvalues)[np.newaxis, np.newaxis, :, np.newaxis]
@@ -177,4 +177,4 @@ class NaiveBayes2(BaseBinaryNaiveBayes):
         nXY = np.sum(np.logical_and(ary_X == ary_xi, ary_y == ary_yi), axis=0)
 
         # calc pXgY_
-        self.pXgY_ = np.true_divide(nXY, nY[np.newaxis, np.newaxis, :])
+        self.pXgY_ = nXY / nY[np.newaxis, np.newaxis, :]

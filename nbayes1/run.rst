@@ -74,8 +74,8 @@ NumPy と SciPy にはいろいろな形式のファイルを読み込む関数�
 .. code-block:: python
 
    predict_y = clr.predict(X[:10, :])
-   for i in xrange(10):
-       print i, y[i], predict_y[i]
+   for i in range(10):
+       print(i, y[i], predict_y[i])
 
 結果を見ると，ほぼ正しく予測出来ていますが，6番のデータについては誤って予測しているようです．
 

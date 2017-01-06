@@ -41,7 +41,7 @@
 .. code-block:: python
 
     nY = np.zeros(n_classes, dtype=int)
-    for i in xrange(n_samples):
+    for i in range(n_samples):
         nY[y[i]] += 1
 
 この実装では，クラスの対応する添え字の要素のカウンタを一つずつ増やしていました．
@@ -50,8 +50,8 @@
 .. code-block:: python
 
     nY = np.zeros(n_classes, dtype=int)
-    for yi in xrange(n_classes):
-        for i in xrange(n_samples):
+    for yi in range(n_classes):
+        for i in range(n_samples):
             if y[i] == yi:
                 nY[yi] += 1
 
@@ -88,7 +88,7 @@
 .. code-block:: python
 
     nY = np.empty(n_classes, dtype=int)
-    for yi in xrange(n_classes):
+    for yi in range(n_classes):
         nY[yi] = np.sum(y ==yi)
 
 なお，配列 :obj:`nY` は ``0`` で初期化しておく必要がなくなったので， :func:`np.zeros` ではなく， :func:`np.empty` で作成しています．

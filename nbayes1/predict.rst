@@ -69,7 +69,7 @@ NumPy 配列やリストを使って複数の要素を指定し，それらを�
 
 .. code-block:: python
 
-   for i in xrange(n_samples):
+   for i in range(n_samples):
        xi = X[i, :]
 
 :class:`np.ndarray` は，最初の次元を順に走査するイテレータの機能も備えています．
@@ -115,7 +115,7 @@ NumPy 配列やリストを使って複数の要素を指定し，それらを�
 
 .. code-block:: python
 
-    for j in xrange(n_features):
+    for j in range(n_features):
         logpXY = logpXY + np.log(self.pXgY_[j, xi[j], :])
 
 :func:`np.log` と同様に， ``+`` や ``*`` などの四則演算もユニバーサル関数としての機能を持っています．

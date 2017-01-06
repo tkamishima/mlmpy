@@ -12,8 +12,8 @@
 .. code-block:: python
 
     nY = np.zeros(n_classes, dtype=int)
-    for yi in xrange(n_classes):
-        for i in xrange(n_samples):
+    for yi in range(n_classes):
+        for i in range(n_samples):
             if y[i] == yi:
                 nY[yi] += 1
 
@@ -72,7 +72,7 @@
 
 .. code-block:: python
 
-    for i in xrange(n_samples):
+    for i in range(n_samples):
 
 このループ変数 :obj:`i` は ``0`` から ``n_samples - 1`` までの整数をとります．
 これらの値を含む配列は ``np.arange(n_samples)`` により生成できます．
@@ -97,7 +97,7 @@
 
 .. code-block:: python
 
-    for yi in xrange(n_classes):
+    for yi in range(n_classes):
 
 この変数は ``0`` から ``n_classes - 1`` までの整数をとり，第1次元に割り当てられているので，この変数に対応する配列は次のようになります．
 
@@ -140,7 +140,7 @@
 
 .. code-block:: python
 
-    for i in xrange(n_samples):
+    for i in range(n_samples):
         val_y = y[i]
 
 は， :obj:`for` ループで :obj:`y` の要素を順に参照する次のコードと同じ :obj:`val_y` の値を得ることができます．
@@ -207,35 +207,33 @@
 .. code-block:: python
 
     self.pY_ = np.empty(n_classes, dtype=float)
-    for i in xrange(n_classes):
-        self.pY_[i] = nY[i] / float(n_samples)
+    for i in range(n_classes):
+        self.pY_[i] = nY[i] / n_samples
 
-この処理も，ユニバーサル関数の機能を使うと次のように簡潔に実装できます．
+この処理も，除算演算子 ``/`` にユニバーサル関数の機能があるため次のように簡潔に実装できます [#]_ ．
 
 .. code-block:: python
 
-    self.pY_ = np.true_divide(nY, n_samples)
-
-Python では整数同士の割り算の解は切り捨ての整数になります [#]_ ．
-しかし，ここでは実数の解を得たいので :func:`np.true_divide` 関数を用いて，切り捨てではない実数の解を得ます．
-
-.. index:: true_divide
-
-.. function:: np.true_divide(x1, x2[, out]) = <ufunc 'true_divide'>
-
-    Returns a true division of the inputs, element-wise.
-
-この関数はユニバーサル関数なので， :obj:`nY` の各要素は，それぞれ :obj:`n_samples` で割られます．
+    self.pY_ = nY / n_samples
 
 .. only:: not latex
 
    .. rubric:: 注釈
 
 .. [#]
-    逆に浮動小数点に対する場合でも，切り捨てした割り算の結果を得るには :func:`np.floor_divide` を用います．
+    整数だけでなく浮動小数点に対する除算でも，切り捨てした整数で除算の結果を得るには :func:`floor_divide` を用います．
 
     .. index:: floor_divide
 
     .. function:: np.floor_divide(x1, x2[, out]) = <ufunc 'floor_divide'>
 
     Return the largest integer smaller or equal to the division of the inputs.
+
+    Python2 では除算の結果は，整数同士の場合では，結果は切り捨てした整数でした．
+    そのため，整数同士の除算で実数の結果を得たい場合には :func:`true_divide` 関数を用います．
+
+    .. index:: true_divide
+
+    .. function:: np.true_divide(x1, x2[, out]) = <ufunc 'true_divide'>
+
+        Returns a true division of the inputs, element-wise.

@@ -60,20 +60,25 @@
 .. code-block:: python
 
    nY = np.zeros(n_classes, dtype=int)
-   for i in xrange(n_samples):
+   for i in range(n_samples):
        nY[y[i]] += 1
 
 モデルパラメータ :obj:`self.pY_` は式(4)に従って計算します．
-なお，後で値を書き換えるので :func:`np.empty` で初期化します．
-また，割り算の結果を実数で得るため， :class:`float` 型への変換も行います．
-
-.. todo: python3 対応の時に割り算での型変換は無視
+なお，後で値を書き換えるので :func:`np.empty` で初期化したあと，各クラスの確率を計算して格納します [#]_ ．
 
 .. code-block:: python
 
    self.pY_ = np.empty(n_classes, dtype=float)
-   for i in xrange(n_classes):
-       self.pY_[i] = nY[i] / float(n_samples)
+   for i in range(n_classes):
+       self.pY_[i] = nY[i] / n_samples
+
+.. only:: not latex
+
+   .. rubric:: 注釈
+
+.. [#]
+    Python3 では，整数同士の除算の結果も実数ですが，Python2 では切り捨てした整数となります．
+    これを避けるために，Python2 では :obj:`n_samples` を ``float(n_samples)`` のように実数型に変換しておく必要があります．
 
 .. _nbayes1-fit1-feature:
 
@@ -89,8 +94,8 @@
 .. code-block:: python
 
    nXY = np.zeros((n_features, n_fvalues, n_classes), dtype=int)
-   for i in xrange(n_samples):
-       for j in xrange(n_features):
+   for i in range(n_samples):
+       for j in range(n_features):
            nXY[j, X[i, j], y[i]] += 1
 
 モデルパラメータ :obj:`self.pXgY_` は式(5)に従って計算します．
@@ -99,9 +104,9 @@
 
    self.pXgY_ = np.empty((n_features, n_fvalues, n_classes),
                          dtype=float)
-   for j in xrange(n_features):
-       for xi in xrange(n_fvalues):
-           for yi in xrange(n_classes):
+   for j in range(n_features):
+       for xi in range(n_fvalues):
+           for yi in range(n_classes):
                self.pXgY_[j, xi, yi] = nXY[j, xi, yi] / float(nY[yi])
 
 以上で，単純ベイズのモデルパラメータの学習を完了しました．

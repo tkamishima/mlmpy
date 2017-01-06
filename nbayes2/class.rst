@@ -18,18 +18,16 @@
 .. index:: abstract class
 
 二値単純ベイズの共通部分を含む抽象クラス :class:`BaseBinaryNaiveBayes` を作成します．
-抽象クラスを作るための :mod:`abc` モジュールを利用して，次のようにクラスを定義しておきます．
+抽象クラスを作るための :mod:`abc` モジュールを利用して，次のようにクラスを定義しておきます [#]_ ．
 
 .. code-block:: python
 
     from abc import ABCMeta, abstractmethod
 
-    class BaseBinaryNaiveBayes(object):
+    class BaseBinaryNaiveBayes(object, metaclass=ABCMeta):
     """
     Abstract Class for Naive Bayes whose classes and features are binary.
     """
-
-    __metaclass__ = ABCMeta
 
 この抽象クラスでは実装しない :meth:`fit` メソッドは，抽象メソッドとして次のように定義しておきます．
 このように定義しておくと，この抽象クラスの下位クラスで :meth:`fit` メソッドが定義されていないときには例外が発生するので，定義し忘れたことが分かるようになります．
@@ -45,6 +43,14 @@
 
 最後に，今後の単純ベイズの実装で共通して使うコンストラクタと :meth:`predict` メソッドを，今までの :class:`NaiveBayes1` からコピーしておきます．
 以上で，二値単純ベイズの抽象クラスは完成です．
+
+.. only:: not latex
+
+   .. rubric:: 注釈
+
+.. [#]
+    抽象クラスの定義の記述は Python2 では異なっています．
+    Python3 と 2 の両方で動作するようにするには :mod:`six` などのモジュールが必要になります．
 
 .. index:: class; NaiveBayes1
 
