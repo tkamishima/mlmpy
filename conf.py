@@ -204,13 +204,7 @@ epub_copyright = copyright
 
 # A list of files that should not be packed into the epub file.
 epub_exclude_files = [
-    '_static/doctools.js',
-    '_static/jquery.js',
-    '_static/searchtools.js',
-    '_static/translations.js',
-    '_static/underscore.js',
-    '_static/websupport.js',
-    '_static/search.html',
+    'search.html',
     '_downloads/iris2.tsv',
     '_downloads/lr.py',
     '_downloads/lr1.py',
