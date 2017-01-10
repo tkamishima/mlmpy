@@ -358,9 +358,12 @@ if文は配列 :obj:`x` の要素を個別に処理できないので，この�
    .. rubric:: 注釈
 
 .. [#]
+
+    .. index:: select
+
     複数の条件に対して対応する値を出力する関数は他にも :func:`np.select` などがあります．
 
-    .. function::  numpy.select(condlist, choicelist, default=0)
+    .. function::  np.select(condlist, choicelist, default=0)
 
     Return an array drawn from elements in choicelist, depending on conditions.
 
