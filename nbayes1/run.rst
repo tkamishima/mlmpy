@@ -41,7 +41,7 @@ NumPy と SciPy にはいろいろな形式のファイルを読み込む関数�
 
 .. only:: html and not epub
 
-  :download:`Congressional Voting Records Data Set : vote_filled.tsv <../source/vote_filled.tsv>`
+  `Congressional Voting Records Data Set : vote_filled.tsv <https://github.com/tkamishima/mlmpy/blob/master/source/vote_filled.tsv>`_
 
 このデータはタブ区切り形式です．
 また， :class:`NaiveBayes1` クラスでは，入力訓練データの :attr:`dtype` 属性が整数であることを前提としています．
@@ -90,7 +90,7 @@ NumPy と SciPy にはいろいろな形式のファイルを読み込む関数�
 
 .. only:: html and not epub
 
-  :download:`NaiveBayes1 実行スクリプト：run_nbayes1.py <../source/run_nbayes1.py>`
+  `NaiveBayes1 実行スクリプト：run_nbayes1.py <https://github.com/tkamishima/mlmpy/blob/master/source/run_nbayes1.py>`_
 
 .. only:: not latex
 
