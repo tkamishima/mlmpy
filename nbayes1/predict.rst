@@ -235,7 +235,7 @@ NumPy 配列の添え字として与える場合には :attr:`dtype` 属性は�
 
 .. only:: html and not epub
 
-  :download:`NaiveBayes1 クラス：nbayes1.py <../source/nbayes1.py>`
+  `NaiveBayes1 クラス：nbayes1.py <https://github.com/tkamishima/mlmpy/blob/master/source/nbayes1.py>`_
 
 .. only:: not latex
 

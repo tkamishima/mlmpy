@@ -85,7 +85,7 @@
 
     .. only:: html and not epub
 
-        :download:`LogisticRegresshon クラス：lr1.py <../source/lr1.py>`
+        `LogisticRegresshon クラス：lr1.py <https://github.com/tkamishima/mlmpy/blob/master/source/lr1.py>`_
 
 .. index:: e, pi, sp.constants
 
@@ -178,7 +178,7 @@
 
     .. only:: html and not epub
 
-        :download:`LogisticRegresshon クラス：lr2.py <../source/lr2.py>`
+        `LogisticRegresshon クラス：lr2.py <https://github.com/tkamishima/mlmpy/blob/master/source/lr2.py>`_
 
 .. _lr-sigmoid-ufunc:
 
@@ -287,7 +287,7 @@ if文は配列 :obj:`x` の要素を個別に処理できないので，この�
 
     .. only:: html and not epub
 
-        :download:`LogisticRegresshon クラス：lr3.py <../source/lr3.py>`
+        `LogisticRegresshon クラス：lr3.py <https://github.com/tkamishima/mlmpy/blob/master/source/lr3.py>`_
 
 .. _lr-sigmoid-utils:
 
@@ -351,7 +351,7 @@ if文は配列 :obj:`x` の要素を個別に処理できないので，この�
 
 .. only:: html and not epub
 
-    :download:`LogisticRegresshon クラス：lr.py <../source/lr.py>`
+    `LogisticRegresshon クラス：lr.py <https://github.com/tkamishima/mlmpy/blob/master/source/lr.py>`_
 
 .. only:: not latex
 

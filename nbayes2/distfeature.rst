@@ -249,7 +249,7 @@
 
 .. only:: html and not epub
 
-  :download:`NaiveBayes2 クラス：nbayes2.py <../source/nbayes2.py>`
+  `NaiveBayes2 クラス：nbayes2.py <https://github.com/tkamishima/mlmpy/blob/master/source/nbayes2.py>`_
 
 であり，実行ファイルは
 
@@ -259,7 +259,7 @@
 
 .. only:: html and not epub
 
-  :download:`NaiveBayes2 実行スクリプト：run_nbayes2.py <../source/run_nbayes2.py>`
+  `NaiveBayes2 実行スクリプト：run_nbayes2.py <https://github.com/tkamishima/mlmpy/blob/master/source/run_nbayes2.py>`_
 
 です．
 実行すると， :class:`NaiveBayes1` と :class:`NaiveBayes2` で同じ結果が得られます．

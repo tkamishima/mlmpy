@@ -58,7 +58,7 @@
 
 .. only:: html and not epub
 
-  :download:`LogisticRegression 実行スクリプト：run_lr.py <../source/run_lr.py>`
+  `LogisticRegression 実行スクリプト：run_lr.py <https://github.com/tkamishima/mlmpy/blob/master/source/run_lr.py>`_
 
 .. index:: structured array, genfromtxt
 

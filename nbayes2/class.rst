@@ -94,7 +94,7 @@
 
 .. only:: html and not epub
 
-  :download:`新 NaiveBayes1 クラス：nbayes1b.py <../source/nbayes1b.py>`
+  `新 NaiveBayes1 クラス：nbayes1b.py <https://github.com/tkamishima/mlmpy/blob/master/source/nbayes1b.py>`_
 
 実行ファイルも， :class:`NaiveBayes1` クラスを読み込むファイルを変えるだけです．
 
@@ -106,7 +106,7 @@
 
 .. only:: html and not epub
 
-  :download:`新 NaiveBayes1 実行スクリプト：run_nbayes1b.py <../source/run_nbayes1b.py>`
+  `新 NaiveBayes1 実行スクリプト：run_nbayes1b.py <https://github.com/tkamishima/mlmpy/blob/master/source/run_nbayes1b.py>`_
 
 データファイル ``vote_filled.tsv`` を作業ディレクトリに置いて実行すると，以前の ``run_nbayes1.py``
 と同じ結果が得られます．
