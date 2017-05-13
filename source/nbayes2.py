@@ -64,9 +64,9 @@ class BaseBinaryNaiveBayes(object, metaclass=ABCMeta):
         for i, xi in enumerate(X):
 
             # calc joint probability
-            logpXY = np.log(self.pY_) + \
-                     np.sum(np.log(self.pXgY_[np.arange(n_features), xi, :]),
-                            axis=0)
+            logpXY = (np.log(self.pY_) +
+                      np.sum(np.log(self.pXgY_[np.arange(n_features), xi, :]),
+                             axis=0))
 
             # predict class
             y[i] = np.argmax(logpXY)
