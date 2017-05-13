@@ -184,9 +184,9 @@ NumPy 配列の添え字として与える場合には :attr:`dtype` 属性は�
 
 .. code-block:: python
 
-    logpXY = np.log(self.pY_) + \
-             np.sum(np.log(self.pXgY_[np.arange(n_features), xi, :]),
-                    axis=0)
+    logpXY = (np.log(self.pY_) +
+              np.sum(np.log(self.pXgY_[np.arange(n_features), xi, :]),
+                     axis=0))
 
 .. only:: not latex
 
