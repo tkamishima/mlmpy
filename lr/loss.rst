@@ -33,7 +33,7 @@
 損失関数の計算には訓練データが必要なので， :func:`minimize` では :obj:`X` と :obj:`y` を渡していましたので，これらがこの損失関数に引き渡されています．
 
 :meth:`fit` メソッドでは，ロジスティック回帰モデルのパラメータは，構造化配列を使って1次元配列にまとめていました．
-これを再び，重みベクトル :math:`mathbf{w}` と 切片 :math:`b` それぞれに相当する :obj:`coef` と :obj:`intercept` に分けます．
+これを再び，重みベクトル :math:`\mathbf{w}` と 切片 :math:`b` それぞれに相当する :obj:`coef` と :obj:`intercept` に分けます．
 
 .. code-block:: python
 
