@@ -22,8 +22,9 @@
       <!-- hatena bookmark -->
       <td>
       <a
-        href="http://b.hatena.ne.jp/entry/"
+        href="http://b.hatena.ne.jp/entry/http://www.kamishima.net/mlmpyja/"
         class="hatena-bookmark-button"
+        data-hatena-bookmark-title="{{ title }}"
         data-hatena-bookmark-layout="basic-counter"
         title="このエントリーをはてなブックマークに追加">
       <img
@@ -32,6 +33,12 @@
         width="20" height="20"
         style="border: none;" />
       </a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async">
+      </script>
       </td>
       <!-- facebook -->
       <td>
