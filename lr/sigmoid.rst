@@ -272,7 +272,7 @@ if文は配列 :obj:`x` の要素を個別に処理できないので，この�
 
 なお，入力引数が複数の関数をユニバーサル関数にする :func:`np.frompyfunc` もあります．
 
-.. function:: np..frompyfunc(func, nin, nout)
+.. function:: np.frompyfunc(func, nin, nout)
 
     Takes an arbitrary Python function and returns a Numpy ufunc.
 

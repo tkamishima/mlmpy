@@ -38,7 +38,7 @@
                    args=(X, y),
                    method='CG')
 
-:func:`minimize` を呼び出して，ロジスティック回帰モデルをあてはめて，その結果を:class:`OptimizeResult` のインスタンスとして受け取り， :obj`res` に保持しています．
+:func:`minimize` を呼び出して，ロジスティック回帰モデルをあてはめて，その結果を:class:`OptimizeResult` のインスタンスとして受け取り， :obj:`res` に保持しています．
 
 最適化手法には ``method`` で ``CG`` ，すなわち共役勾配降下法を指定しました．
 :func:`minimize` の引数 ``fun`` と ``jac`` には，それぞれロジスティック回帰の目的関数とその勾配ベクトル，すなわち :ref:`lr-lr` の式(2)と式(4)を計算するメソッドを与えています．
@@ -190,6 +190,6 @@ C言語などの共用体と同様の動作をします．
 もう一方の列 ``intercept`` はスカラーの実数なので， ``res.x.view(self._param_dtype)['intercept']`` と記述することで，大きさが1の1次元実数配列を参照できます．
 この配列の最初の要素を参照し，これを切片として取り出しています．
 
-以上で， :ref:`lr-lr` の式(3)を解いて，得られた重みベクトル :math:`mathbf{w}` と切片 :math:`b` を，ロジスティック回帰の属性 :attr:`coef_` と :attr:`intercept_` とにそれぞれ格納することができました．
+以上で， :ref:`lr-lr` の式(3)を解いて，得られた重みベクトル :math:`\mathbf{w}` と切片 :math:`b` を，ロジスティック回帰の属性 :attr:`coef_` と :attr:`intercept_` とにそれぞれ格納することができました．
 
 次の :ref:`lr-loss` では， :func:`minimize` に ``fun`` と ``jac`` の引数として引き渡す損失関数とその勾配を実装します．
